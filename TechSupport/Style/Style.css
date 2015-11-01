@@ -1,0 +1,37 @@
+﻿body {
+    color: #FFFF00;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .80em;
+    background-color: #008080;
+    padding: 0px;
+    margin: 0px;
+}
+a:hover {
+    color: #FF0000;
+    text-decoration: underline overline;
+}
+a:link, a:visited {
+    color: #00FFFF;
+}
+a:active {
+    color: #00ffff;
+}
+h1 {
+    text-align: center;
+}
+.menu ul li a {
+    background-color: #008085;
+    border-style: solid;
+    border-width: 1px;
+    color: #dde4ec;
+    text-decoration: none;
+    line-height: 1.35em;  
+    padding: 4px 20px;
+    display: block;
+    white-space: nowrap;
+}
+.menu ul li a:hover{
+    background-color: #bfcbd6;
+    color: #465c71;
+    text-decoration: none;    
+}
