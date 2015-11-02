@@ -3,5 +3,5 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
-        THIS IS THE HOME PAGE</p>
+        THIS IS THE HOME PAGE1</p>
 </asp:Content>
