@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -22,9 +23,15 @@ namespace TechSupport.Admin
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            string query = "select * from Customers where CustomerID like'" + txtSearch.Text + "%'";
             
-        }
 
+
+            GridView1.DataSource = SqlDataSource1;
+            GridView1.DataBind();
+
+
+        }
 
     }
 }
