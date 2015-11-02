@@ -53,30 +53,6 @@
                 <asp:Parameter Name="CustomerID" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Customers] WHERE [CustomerID] = @CustomerID" InsertCommand="INSERT INTO [Customers] ([Name], [Address], [City], [State], [ZipCode], [Phone], [Email]) VALUES (@Name, @Address, @City, @State, @ZipCode, @Phone, @Email)" ProviderName="<%$ ConnectionStrings:TechSupportConnectionString1.ProviderName %>" SelectCommand="SELECT [CustomerID], [Name], [Address], [City], [State], [ZipCode], [Phone], [Email] FROM [Customers]" UpdateCommand="UPDATE [Customers] SET [Name] = @Name, [Address] = @Address, [City] = @City, [State] = @State, [ZipCode] = @ZipCode, [Phone] = @Phone, [Email] = @Email WHERE [CustomerID] = @CustomerID">
-            <DeleteParameters>
-                <asp:Parameter Name="CustomerID" Type="Int32" />
-            </DeleteParameters>
-            <InsertParameters>
-                <asp:Parameter Name="Name" Type="String" />
-                <asp:Parameter Name="Address" Type="String" />
-                <asp:Parameter Name="City" Type="String" />
-                <asp:Parameter Name="State" Type="String" />
-                <asp:Parameter Name="ZipCode" Type="String" />
-                <asp:Parameter Name="Phone" Type="String" />
-                <asp:Parameter Name="Email" Type="String" />
-            </InsertParameters>
-            <UpdateParameters>
-                <asp:Parameter Name="Name" Type="String" />
-                <asp:Parameter Name="Address" Type="String" />
-                <asp:Parameter Name="City" Type="String" />
-                <asp:Parameter Name="State" Type="String" />
-                <asp:Parameter Name="ZipCode" Type="String" />
-                <asp:Parameter Name="Phone" Type="String" />
-                <asp:Parameter Name="Email" Type="String" />
-                <asp:Parameter Name="CustomerID" Type="Int32" />
-            </UpdateParameters>
-        </asp:SqlDataSource>
     </p>
     <p>
         &nbsp;</p>
