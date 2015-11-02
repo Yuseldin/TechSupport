@@ -13,5 +13,18 @@ namespace TechSupport.Admin
         {
 
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TextBox1.Text = GridView1.SelectedIndex.ToString();
+            //GridView2.SelectedIndex = GridView1.SelectedIndex;
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+
     }
 }
