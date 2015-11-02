@@ -60,11 +60,17 @@
     <Content Include="Admin\Customers.aspx" />
     <Content Include="Admin\Products.aspx" />
     <Content Include="Admin\Technicians.aspx" />
+    <Content Include="App_Data\TechSupport.mdf" />
+    <Content Include="App_Data\TechSupport_log.ldf">
+      <DependentUpon>TechSupport.mdf</DependentUpon>
+    </Content>
     <Content Include="Default.aspx" />
     <Content Include="Login1.aspx" />
     <Content Include="Style\Style.css" />
     <Content Include="Technicians\Incidents.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\Customers.aspx.cs">
@@ -130,6 +136,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
