@@ -21,17 +21,14 @@ namespace TechSupport.Admin
             //GridView2.SelectedIndex = GridView1.SelectedIndex;
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
+        protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            string query = "select * from Customers where CustomerID like'" + txtSearch.Text + "%'";
-            
-
-
-            GridView1.DataSource = SqlDataSource1;
-            GridView1.DataBind();
-
+           
+            GridView1.Visible = true;
 
         }
+
+
 
     }
 }
