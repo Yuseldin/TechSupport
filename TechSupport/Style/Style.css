@@ -12,6 +12,7 @@ a:hover {
 }
 a:link, a:visited {
     color: #00FFFF;
+    text-align: left;
 }
 a:active {
     color: #00ffff;

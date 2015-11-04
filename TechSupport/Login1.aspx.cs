@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace TechSupport
 {
@@ -13,5 +16,18 @@ namespace TechSupport
         {
 
         }
+
+        protected void Login_Authenticate(object sender, AuthenticateEventArgs e)
+        {
+
+        }
+
+        protected void Login_LoggedIn(object sender, EventArgs e)
+        {
+            string username = Login.UserName;
+            Session["username"] = username;
+        }
+
+      
     }
 }
