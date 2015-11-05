@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -15,6 +16,7 @@ namespace TechSupport.Admin
 
         }
 
+
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //TextBox1.Text = GridView1.SelectedIndex.ToString();
@@ -23,8 +25,8 @@ namespace TechSupport.Admin
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-           
-            GridView1.Visible = true;
+            
+
 
         }
 

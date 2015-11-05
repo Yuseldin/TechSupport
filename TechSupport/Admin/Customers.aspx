@@ -9,13 +9,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;<asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
 &nbsp;<asp:Button ID="btnSearch" runat="server" Text="Search" />
-    &nbsp;<asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">View All</asp:LinkButton>
+    &nbsp;<asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" PostBackUrl="~/Admin/ViewCustomers.aspx">View All</asp:LinkButton>
     </p>
-    <p>
-        <asp:Label ID="Label2" runat="server" Text="Search Name:"></asp:Label>
-&nbsp;<asp:TextBox ID="txtSearchName" runat="server"></asp:TextBox>
-&nbsp;<asp:Button ID="btnSearch0" runat="server" Text="Search" />
-    &nbsp;</p>
     <p>
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="CustomerID" DataSourceID="techDataSource" EmptyDataText="There are no data records to display." GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="Gainsboro" ForeColor="#284775" />
@@ -41,7 +36,7 @@
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#000065" />
         </asp:GridView>
-        <asp:SqlDataSource ID="techDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Customers] WHERE [CustomerID] = @CustomerID" InsertCommand="INSERT INTO [Customers] ([Name], [Address], [City], [State], [ZipCode], [Phone], [Email]) VALUES (@Name, @Address, @City, @State, @ZipCode, @Phone, @Email)" SelectCommand="SELECT * FROM [Customers] WHERE (([CustomerID] = @CustomerID) OR ([Name] LIKE '%' + @Name + '%')) ORDER BY [CustomerID], [Name]" UpdateCommand="UPDATE [Customers] SET [Name] = @Name, [Address] = @Address, [City] = @City, [State] = @State, [ZipCode] = @ZipCode, [Phone] = @Phone, [Email] = @Email WHERE [CustomerID] = @CustomerID">
+        <asp:SqlDataSource ID="techDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Customers] WHERE [CustomerID] = @CustomerID" InsertCommand="INSERT INTO [Customers] ([Name], [Address], [City], [State], [ZipCode], [Phone], [Email]) VALUES (@Name, @Address, @City, @State, @ZipCode, @Phone, @Email)" SelectCommand="SELECT * FROM [Customers] WHERE ([CustomerID] = @CustomerID)" UpdateCommand="UPDATE [Customers] SET [Name] = @Name, [Address] = @Address, [City] = @City, [State] = @State, [ZipCode] = @ZipCode, [Phone] = @Phone, [Email] = @Email WHERE [CustomerID] = @CustomerID">
             <DeleteParameters>
                 <asp:Parameter Name="CustomerID" Type="Int32" />
             </DeleteParameters>
@@ -56,7 +51,6 @@
             </InsertParameters>
             <SelectParameters>
                 <asp:ControlParameter ControlID="txtSearch" Name="CustomerID" PropertyName="Text" Type="Int32" />
-                <asp:ControlParameter ControlID="txtSearchName" Name="Name" PropertyName="Text" Type="String" />
             </SelectParameters>
             <UpdateParameters>
                 <asp:Parameter Name="Name" Type="String" />
