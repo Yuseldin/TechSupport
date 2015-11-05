@@ -40,15 +40,6 @@ namespace TechSupport.Admin {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// LinkButton1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
-        
-        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>
@@ -58,13 +49,13 @@ namespace TechSupport.Admin {
         protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// techDataSource control.
+        /// techSqlDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource techDataSource;
+        protected global::System.Web.UI.WebControls.SqlDataSource techSqlDataSource;
         
         /// <summary>
         /// GridView2 control.

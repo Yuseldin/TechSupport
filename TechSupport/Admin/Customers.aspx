@@ -8,11 +8,10 @@
         <asp:Label ID="Label1" runat="server" Text="Search ID:"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;<asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
-&nbsp;<asp:Button ID="btnSearch" runat="server" Text="Search" />
-    &nbsp;<asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" PostBackUrl="~/Admin/ViewCustomers.aspx">View All</asp:LinkButton>
-    </p>
+&nbsp;<asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
+    &nbsp;</p>
     <p>
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="CustomerID" DataSourceID="techDataSource" EmptyDataText="There are no data records to display." GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="CustomerID" DataSourceID="techSqlDataSource" EmptyDataText="There are no data records to display." GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="Gainsboro" ForeColor="#284775" />
             <Columns>
                 <asp:CommandField ShowEditButton="True" ShowSelectButton="True" />
@@ -36,7 +35,7 @@
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#000065" />
         </asp:GridView>
-        <asp:SqlDataSource ID="techDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Customers] WHERE [CustomerID] = @CustomerID" InsertCommand="INSERT INTO [Customers] ([Name], [Address], [City], [State], [ZipCode], [Phone], [Email]) VALUES (@Name, @Address, @City, @State, @ZipCode, @Phone, @Email)" SelectCommand="SELECT * FROM [Customers] WHERE ([CustomerID] = @CustomerID)" UpdateCommand="UPDATE [Customers] SET [Name] = @Name, [Address] = @Address, [City] = @City, [State] = @State, [ZipCode] = @ZipCode, [Phone] = @Phone, [Email] = @Email WHERE [CustomerID] = @CustomerID">
+        <asp:SqlDataSource ID="techSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Customers] WHERE [CustomerID] = @CustomerID" InsertCommand="INSERT INTO [Customers] ([Name], [Address], [City], [State], [ZipCode], [Phone], [Email]) VALUES (@Name, @Address, @City, @State, @ZipCode, @Phone, @Email)" SelectCommand="SELECT * FROM [Customers]" UpdateCommand="UPDATE [Customers] SET [Name] = @Name, [Address] = @Address, [City] = @City, [State] = @State, [ZipCode] = @ZipCode, [Phone] = @Phone, [Email] = @Email WHERE [CustomerID] = @CustomerID">
             <DeleteParameters>
                 <asp:Parameter Name="CustomerID" Type="Int32" />
             </DeleteParameters>
@@ -49,9 +48,6 @@
                 <asp:Parameter Name="Phone" Type="String" />
                 <asp:Parameter Name="Email" Type="String" />
             </InsertParameters>
-            <SelectParameters>
-                <asp:ControlParameter ControlID="txtSearch" Name="CustomerID" PropertyName="Text" Type="Int32" />
-            </SelectParameters>
             <UpdateParameters>
                 <asp:Parameter Name="Name" Type="String" />
                 <asp:Parameter Name="Address" Type="String" />
@@ -83,7 +79,7 @@
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#000065" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Registrations] WHERE [CustomerID] = @CustomerID AND [ProductCode] = @ProductCode" InsertCommand="INSERT INTO [Registrations] ([CustomerID], [ProductCode], [RegistrationDate]) VALUES (@CustomerID, @ProductCode, @RegistrationDate)" SelectCommand="SELECT * FROM [Registrations] WHERE ([CustomerID] = @CustomerID) ORDER BY [CustomerID]" UpdateCommand="UPDATE [Registrations] SET [RegistrationDate] = @RegistrationDate WHERE [CustomerID] = @CustomerID AND [ProductCode] = @ProductCode">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Registrations] WHERE [CustomerID] = @CustomerID AND [ProductCode] = @ProductCode" InsertCommand="INSERT INTO [Registrations] ([CustomerID], [ProductCode], [RegistrationDate]) VALUES (@CustomerID, @ProductCode, @RegistrationDate)" SelectCommand="SELECT * FROM [Registrations] ORDER BY [CustomerID]" UpdateCommand="UPDATE [Registrations] SET [RegistrationDate] = @RegistrationDate WHERE [CustomerID] = @CustomerID AND [ProductCode] = @ProductCode">
             <DeleteParameters>
                 <asp:Parameter Name="CustomerID" Type="Int32" />
                 <asp:Parameter Name="ProductCode" Type="String" />
@@ -93,9 +89,6 @@
                 <asp:Parameter Name="ProductCode" Type="String" />
                 <asp:Parameter Name="RegistrationDate" Type="DateTime" />
             </InsertParameters>
-            <SelectParameters>
-                <asp:ControlParameter ControlID="txtSearch" Name="CustomerID" PropertyName="Text" Type="Int32" />
-            </SelectParameters>
             <UpdateParameters>
                 <asp:Parameter Name="RegistrationDate" Type="DateTime" />
                 <asp:Parameter Name="CustomerID" Type="Int32" />
