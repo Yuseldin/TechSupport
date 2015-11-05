@@ -13,9 +13,9 @@
     <form id="form1" runat="server">
         <div class="header">   
 
-        <h1>&nbsp;</h1>
-            <h1>Welcome to TechSupport
-            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+        <h1 style="clip: rect(auto, auto, 200px, auto)"> 
+            <img src="Style/SoftwareLogo1.png" style="height: 157px; width: 111px" />  Software Support&nbsp;
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
         </h1>    
         <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticDisplayLevels="2" CssClass="menu">
         </asp:Menu>
