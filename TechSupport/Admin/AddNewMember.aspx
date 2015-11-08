@@ -1,23 +1,37 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TechSupport.Master" AutoEventWireup="true" CodeBehind="AddNewMember.aspx.cs" Inherits="TechSupport.Admin.AddNewMember" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            height: 20px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
     <br />
     <asp:Label ID="lblSelectMember" runat="server" Text="Select member"></asp:Label>
-    <asp:DropDownList ID="DropDownListSelectMember" runat="server" style="margin-left: 21px">
+    <asp:DropDownList ID="DropDownListSelectMember" runat="server" style="margin-left: 21px" OnSelectedIndexChanged="DropDownListSelectMember_SelectedIndexChanged">
         <asp:ListItem>Add Technician </asp:ListItem>
         <asp:ListItem>Add Customer</asp:ListItem>
     </asp:DropDownList>
 </p>
+        
+    <asp:Label ID="lblAddName" runat="server" Text="Name"></asp:Label>
+    <asp:TextBox ID="txtBoxAddName" runat="server" Width="130px" Enabled="False"></asp:TextBox>
+
 <p>
-    <asp:CreateUserWizard ID="CreateUserWizard1" runat="server">
+    <asp:Label ID="lblAddPhone" runat="server" Text="Phone"></asp:Label>
+    <asp:TextBox ID="txtBoxAddPhone" runat="server" Width="130px" Enabled="False"></asp:TextBox>
+</p>
+
+<p>    
+    <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" Enabled="False">
         <WizardSteps>
             <asp:CreateUserWizardStep runat="server">
                 <ContentTemplate>
                     <table>
                         <tr>
-                            <td align="center" colspan="2">Sign Up for Your New Account</td>
+                            <td align="center" colspan="2" class="auto-style1">Sign Up for Your New Account</td>
                         </tr>
                         <tr>
                             <td align="right">
@@ -85,6 +99,15 @@
                         </tr>
                     </table>
                 </ContentTemplate>
+                <CustomNavigationTemplate>
+                    <table border="0" cellspacing="5" style="width:100%;height:100%;">
+                        <tr align="right">
+                            <td align="right" colspan="0">
+                                <asp:Button ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Create User" ValidationGroup="CreateUserWizard1" />
+                            </td>
+                        </tr>
+                    </table>
+                </CustomNavigationTemplate>
             </asp:CreateUserWizardStep>
             <asp:CompleteWizardStep runat="server">
                 <ContentTemplate>
@@ -104,12 +127,11 @@
                 </ContentTemplate>
             </asp:CompleteWizardStep>
         </WizardSteps>
+        <FinishNavigationTemplate>
+            <asp:Button ID="FinishPreviousButton" runat="server" CausesValidation="False" CommandName="MovePrevious" Text="Previous" />
+            <asp:Button ID="FinishButton" runat="server" CommandName="MoveComplete" Text="Finish" />
+        </FinishNavigationTemplate>
     </asp:CreateUserWizard>
 </p>
-<p>
-</p>
-<p>
-</p>
-<p>
-</p>
+    
 </asp:Content>

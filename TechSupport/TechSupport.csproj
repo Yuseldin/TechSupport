@@ -68,7 +68,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Login1.aspx" />
     <Content Include="Style\SoftwareLogo.PNG" />
-    <Content Include="Style\SoftwareLogo1.png" />
+    <Content Include="Style\SoftwareLogo1.PNG" />
     <Content Include="Style\Style.css" />
     <Content Include="Technicians\Incidents.aspx" />
     <Content Include="Web.config">

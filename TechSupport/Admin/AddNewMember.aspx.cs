@@ -11,7 +11,17 @@ namespace TechSupport.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
+
+        protected void DropDownListSelectMember_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DropDownListSelectMember.SelectedIndex.Equals(0))
+            {
+                txtBoxAddName.Enabled = true;
+            }
+        }
+
+        
     }
 }
