@@ -10,24 +10,33 @@
 namespace TechSupport.Admin {
     
     
-    public partial class Customers {
+    public partial class AddNewMember {
         
         /// <summary>
-        /// GridView1 control.
+        /// lblSelectMember control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Label lblSelectMember;
         
         /// <summary>
-        /// techDataSource control.
+        /// DropDownListSelectMember control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource techDataSource;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListSelectMember;
+        
+        /// <summary>
+        /// CreateUserWizard1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CreateUserWizard CreateUserWizard1;
     }
 }
