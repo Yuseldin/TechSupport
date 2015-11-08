@@ -11,7 +11,7 @@ namespace TechSupport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblSessionLogin.Text = "Welcome, " + Session["username"] + ".";
         }
     }
 }

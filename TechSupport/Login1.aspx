@@ -14,8 +14,10 @@
         <h1>Welcome to TechSupport</h1>
     </div>
         <div>
-            <asp:Login ID="Login" runat="server">
+            <asp:Login ID="Login" runat="server" DestinationPageUrl="~/Default.aspx" OnLoggedIn="Login_LoggedIn">
             </asp:Login>
+            <br />
+            <br />
         </div>
     </form>
 </body>
