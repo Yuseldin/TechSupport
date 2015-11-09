@@ -29,7 +29,7 @@
         <br />
     </p>
     <p>
-        <asp:SqlDataSource ID="SqlDataSource_Incidents" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString1 %>" SelectCommand="SELECT  c.Name AS Customer, p.Name AS Product, i.Title, i.Description, t.Name AS Technician, i.DateOpened AS 'Date Opened', i.DateClosed as 'Date Closed'
+        <asp:SqlDataSource ID="SqlDataSource_Incidents" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT  c.Name AS Customer, p.Name AS Product, i.Title, i.Description, t.Name AS Technician, i.DateOpened AS 'Date Opened', i.DateClosed as 'Date Closed'
 FROM Customers AS c 
 INNER JOIN Incidents AS i ON c.CustomerID = i.CustomerID 
 INNER JOIN Products AS p ON i.ProductCode = p.ProductCode 
