@@ -9,9 +9,23 @@
     <style type="text/css">
         .auto-style3 {
             width: 92px;
-}
+            margin-top: 20px;
+        }
         .auto-style7 {
             width: 165px;
+            margin-top: 20px;
+        }
+        .auto-style8 {
+            width: 92px;
+            height: 34px;
+        }
+        .auto-style9 {
+            width: 165px;
+            height: 34px;
+        }
+        .requiredFields {
+            color:red;
+            text-align: left;
         }
     </style>
     </head>
@@ -20,11 +34,11 @@
     <div>
         <h1 style="clip: rect(auto, auto, auto, auto)">
             <img src="Style/SoftwareLogo1.PNG" style="height: 157px; width: 111px" /> </h1>
-        <h1>Welcome to TechSupport</h1>
+        <h1>Welcome to SoftwareSupport</h1>
     </div>
 
         <div style="text-align: center;">
-            <div style="width: 234px; margin-left: auto; margin-right: auto;">
+            <div style="width: 236px; margin-left: auto; margin-right: auto;">
 
                 <asp:Login ID="Login" runat="server" DestinationPageUrl="~/Default.aspx" OnLoggedIn="Login_LoggedIn" Width="394px">
                     <LayoutTemplate>
@@ -36,24 +50,24 @@
                                             <td align="center" colspan="2">Log In</td>
                                         </tr>
                                         <tr>
-                                            <td align="right" class="auto-style3">
+                                            <td align="right" class="auto-style8">
                                                 <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName" style="text-align: left">User Name:</asp:Label>
                                             </td>
-                                            <td class="auto-style7">
+                                            <td class="auto-style9">
                                                 <asp:TextBox ID="UserName" runat="server" Width="128px" style="text-align: left; margin-left: 0px;"></asp:TextBox>                                                
                                             </td>
-                                            <td>
+                                            <td class="requiredFields">
                                                 <asp:RequiredFieldValidator Width="166px" ID="UserNameRequired" runat="server" ControlToValidate="UserName" ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="Login">User Name is required.</asp:RequiredFieldValidator>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td align="right" class="auto-style3"> <%-- Make the password label align, Change the Required fields text colour through class id css --%>
-                                                <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password" style="text-align: left; margin-top: 20px;">Password:</asp:Label>
+                                            <td align="right" class="auto-style3">
+                                                <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password" Style="text-align: left;">Password:</asp:Label>
                                             </td>
                                             <td class="auto-style7">
-                                                <asp:TextBox ID="Password" runat="server" TextMode="Password" style="text-align: left; margin-top: 20px;" Width="128px"></asp:TextBox>                                                
+                                                <asp:TextBox ID="Password" runat="server" TextMode="Password" Style="text-align: left;" Width="128px"></asp:TextBox>
                                             </td>
-                                            <td>
+                                            <td class="requiredFields">
                                                 <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password" ErrorMessage="Password is required." ToolTip="Password is required." ValidationGroup="Login">Password Required.</asp:RequiredFieldValidator>
                                             </td>
                                         </tr>
