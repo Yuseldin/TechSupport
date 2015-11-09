@@ -152,6 +152,8 @@
     <Content Include="Web.sitemap">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Web1.sitemap" />
+    <Content Include="Web2.sitemap" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

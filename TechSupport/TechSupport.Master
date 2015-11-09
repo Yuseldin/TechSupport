@@ -17,9 +17,18 @@
             <img src="Style/SoftwareLogo1.PNG" style="height: 157px; width: 111px" />  Software Support&nbsp;
 
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
-        </h1>    
-        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticDisplayLevels="2" CssClass="menu" OnMenuItemClick="Menu1_MenuItemClick">
+            <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" SiteMapProvider="SitemapProvider" />
+            <asp:SiteMapDataSource ID="SiteMapDataSource3" runat="server" SiteMapProvider="SitemapProvider1" />
+        </h1>
+        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticDisplayLevels="2" CssClass="menu" OnMenuItemClick="Menu1_MenuItemClick" OnMenuItemDataBound="Menu1_MenuItemDataBound">
+            <DynamicItemTemplate>
+<%# Eval("Text") %>
+            </DynamicItemTemplate>
         </asp:Menu>
+            <asp:Menu ID="Menu2" runat="server" CssClass="menu" Orientation="Horizontal" StaticDisplayLevels="2" DataSourceID="SiteMapDataSource2" >
+            </asp:Menu>
+            <asp:Menu ID="Menu3" runat="server" CssClass="menu" Orientation="Horizontal" StaticDisplayLevels="2" DataSourceID="SiteMapDataSource3">
+            </asp:Menu>
     </div>
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

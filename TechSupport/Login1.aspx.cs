@@ -24,6 +24,7 @@ namespace TechSupport
 
         protected void Login_LoggedIn(object sender, EventArgs e)
         {
+            
             string username = Login.UserName;
             Session["username"] = username;
         }

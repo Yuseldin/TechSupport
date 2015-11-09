@@ -17,9 +17,21 @@ namespace TechSupport
         protected void Page_Load(object sender, EventArgs e)
         {
             lblSessionLogin.Text = "Welcome, "+Session["username"] + ".";
+
+            if (Session["username"].Equals("Admin")||Session["username"].Equals("admin"))
+            {
+                GridView1.Visible = false;
+                btnClose.Visible = false;
+                txtClose.Visible = false;
+                Label1.Visible = false;
+            }
+            else
+            {
+                string view = "SELECT * FROM Incidents WHERE TechID ='" + Session["username"] + "'";
+                SqlDataSource1.SelectCommand = view;
+            }
             
-            string view = "SELECT * FROM Incidents WHERE TechID ='" + Session["username"] + "'";
-            SqlDataSource1.SelectCommand = view;
+            
 
             
         }

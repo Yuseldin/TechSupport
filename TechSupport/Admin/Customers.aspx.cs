@@ -19,14 +19,13 @@ namespace TechSupport.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TextBox1.Text = GridView1.SelectedIndex.ToString();
-            //GridView2.SelectedIndex = GridView1.SelectedIndex;
+
         }
 
 
