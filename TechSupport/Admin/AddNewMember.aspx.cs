@@ -19,6 +19,7 @@ namespace TechSupport.Admin
             if (DropDownListSelectMember.SelectedIndex.Equals(0))
             {
                 txtBoxAddName.Enabled = true;
+                txtBoxAddPhone.Enabled = true;
             }
         }
 
