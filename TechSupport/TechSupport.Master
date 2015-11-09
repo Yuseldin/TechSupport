@@ -18,7 +18,10 @@
 
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
         </h1>    
-        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticDisplayLevels="2" CssClass="menu">
+        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticDisplayLevels="2" CssClass="menu" OnMenuItemClick="Menu1_MenuItemClick">
+            <DataBindings>
+                <asp:MenuItemBinding DataMember="SiteMapNode" />
+            </DataBindings>
         </asp:Menu>
     </div>
     <div>
