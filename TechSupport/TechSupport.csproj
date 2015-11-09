@@ -68,6 +68,7 @@
     <Content Include="Login1.aspx" />
     <Content Include="Style\Style.css" />
     <Content Include="Technicians\Incidents.aspx" />
+    <Content Include="ViewIncidents.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -129,6 +130,13 @@
     </Compile>
     <Compile Include="Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewIncidents.aspx.cs">
+      <DependentUpon>ViewIncidents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewIncidents.aspx.designer.cs">
+      <DependentUpon>ViewIncidents.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
