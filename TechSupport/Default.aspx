@@ -8,11 +8,16 @@
     <p>
         <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Login1.aspx" /> 
 </p>
+    <p>
+        <asp:Label ID="Label1" runat="server" Text="Select IncidentID:"></asp:Label>
+&nbsp;<asp:TextBox ID="txtClose" runat="server" Width="60px"></asp:TextBox>
+&nbsp;<asp:Button ID="btnClose" runat="server" OnClick="btnClose_Click" Text="Close Incident" />
+&nbsp;<asp:Label ID="lblError" runat="server" BackColor="White" ForeColor="Red" Text="Please select the right IncidentID." Visible="False"></asp:Label>
+</p>
 <p>
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="IncidentID" DataSourceID="SqlDataSource1" GridLines="Vertical" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="IncidentID" DataSourceID="SqlDataSource1">
             <AlternatingRowStyle BackColor="#DCDCDC" />
             <Columns>
-                <asp:CommandField ShowSelectButton="True" />
                 <asp:BoundField DataField="IncidentID" HeaderText="IncidentID" InsertVisible="False" ReadOnly="True" SortExpression="IncidentID" />
                 <asp:BoundField DataField="CustomerID" HeaderText="CustomerID" SortExpression="CustomerID" />
                 <asp:BoundField DataField="ProductCode" HeaderText="ProductCode" SortExpression="ProductCode" />
@@ -33,7 +38,7 @@
             <SortedDescendingHeaderStyle BackColor="#000065" />
         </asp:GridView>
 &nbsp;
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Incidents] WHERE [IncidentID] = @IncidentID" InsertCommand="INSERT INTO [Incidents] ([CustomerID], [ProductCode], [TechID], [DateOpened], [DateClosed], [Title], [Description]) VALUES (@CustomerID, @ProductCode, @TechID, @DateOpened, @DateClosed, @Title, @Description)" SelectCommand="SELECT * FROM [Incidents] WHERE ([TechID] = @TechID)" UpdateCommand="UPDATE [Incidents] SET [CustomerID] = @CustomerID, [ProductCode] = @ProductCode, [TechID] = @TechID, [DateOpened] = @DateOpened, [DateClosed] = @DateClosed, [Title] = @Title, [Description] = @Description WHERE [IncidentID] = @IncidentID">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Incidents] WHERE [IncidentID] = @IncidentID" InsertCommand="INSERT INTO [Incidents] ([CustomerID], [ProductCode], [TechID], [DateOpened], [DateClosed], [Title], [Description]) VALUES (@CustomerID, @ProductCode, @TechID, @DateOpened, @DateClosed, @Title, @Description)" SelectCommand="SELECT * FROM [Incidents]" UpdateCommand="UPDATE [Incidents] SET [CustomerID] = @CustomerID, [ProductCode] = @ProductCode, [TechID] = @TechID, [DateOpened] = @DateOpened, [DateClosed] = @DateClosed, [Title] = @Title, [Description] = @Description WHERE [IncidentID] = @IncidentID">
             <DeleteParameters>
                 <asp:Parameter Name="IncidentID" Type="Int32" />
             </DeleteParameters>
@@ -46,9 +51,6 @@
                 <asp:Parameter Name="Title" Type="String" />
                 <asp:Parameter Name="Description" Type="String" />
             </InsertParameters>
-            <SelectParameters>
-                <asp:SessionParameter Name="TechID" SessionField="username" Type="Int32" />
-            </SelectParameters>
             <UpdateParameters>
                 <asp:Parameter Name="CustomerID" Type="Int32" />
                 <asp:Parameter Name="ProductCode" Type="String" />
@@ -60,8 +62,7 @@
                 <asp:Parameter Name="IncidentID" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:Button ID="btnClose" runat="server" OnClick="btnClose_Click" Text="Close Incident" />
-    </p>
+        &nbsp;</p>
 <p aria-autocomplete="none">
         THIS IS THE HOME PAGE1&nbsp; </p>
 </asp:Content>
