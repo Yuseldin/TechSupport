@@ -14,7 +14,7 @@
         <div class="header">   
 
         <h1 style="clip: rect(auto, auto, auto, auto)"> 
-            <img src="Style/SoftwareLogo1.PNG" style="height: 157px; width: 111px" />  Software Support&nbsp;
+            <img src="../SoftwareLogo1.PNG" style="height: 157px; width: 111px" />  Software Support&nbsp;
 
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
             <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" SiteMapProvider="SitemapProvider" />
