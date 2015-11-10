@@ -10,7 +10,7 @@
 namespace TechSupport.Admin {
     
     
-    public partial class AddNewMember {
+    public partial class AddTechnician {
         
         /// <summary>
         /// lblAddName control.

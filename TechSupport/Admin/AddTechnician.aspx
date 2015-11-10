@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TechSupport.Master" AutoEventWireup="true" CodeBehind="AddTechnician.aspx.cs" Inherits="TechSupport.Admin.AddNewMember" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TechSupport.Master" AutoEventWireup="true" CodeBehind="AddTechnician.aspx.cs" Inherits="TechSupport.Admin.AddTechnician" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style1 {
@@ -22,7 +22,7 @@
 </p>
    <div  style="width: 400px; margin-left: auto; margin-right: auto;">     
       <p>    
-    <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" OnCreatedUser="CreateUserWizard1_CreatedUser">
+    <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" >
         <WizardSteps>
             <asp:CreateUserWizardStep runat="server">
                 <ContentTemplate>

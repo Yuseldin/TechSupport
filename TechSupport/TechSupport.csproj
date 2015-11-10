@@ -62,12 +62,14 @@
     <Content Include="Admin\Customers.aspx" />
     <Content Include="Admin\Products.aspx" />
     <Content Include="Admin\Technicians.aspx" />
+    <Content Include="Admin\ViewTechnicians.aspx" />
     <Content Include="App_Data\TechSupport.mdf" />
     <Content Include="App_Data\TechSupport_log.ldf">
       <DependentUpon>TechSupport.mdf</DependentUpon>
     </Content>
     <Content Include="Default.aspx" />
     <Content Include="Login1.aspx" />
+    <Content Include="Manage.aspx" />
     <Content Include="Style\SoftwareLogo.PNG" />
     <Content Include="SoftwareLogo1.PNG" />
     <Content Include="Style\Style.css" />
@@ -88,6 +90,12 @@
       <DependentUpon>AddTechnician.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\AddTechnician.aspx.cs.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddTechnician.aspx.cs.designer.cs">
+      <DependentUpon>AddTechnician.aspx.cs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AddTechnician.aspx.designer.cs">
       <DependentUpon>AddTechnician.aspx</DependentUpon>
     </Compile>
@@ -105,12 +113,15 @@
     <Compile Include="Admin\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Technicians.aspx.cs">
-      <DependentUpon>Technicians.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Admin\Technicians.aspx.designer.cs">
       <DependentUpon>Technicians.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewTechnicians.aspx.cs">
+      <DependentUpon>ViewTechnicians.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewTechnicians.aspx.designer.cs">
+      <DependentUpon>ViewTechnicians.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -160,6 +171,8 @@
     <Content Include="Web.sitemap">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Web1.sitemap" />
+    <Content Include="Web2.sitemap" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
