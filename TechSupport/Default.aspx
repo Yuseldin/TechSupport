@@ -6,7 +6,7 @@
         <asp:Label ID="lblSessionLogin" runat="server"></asp:Label>
 </p>
     <p>
-        <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Login1.aspx" /> 
+        <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Login1.aspx" ForeColor="Blue" /> 
 </p>
     <p>
         <asp:Label ID="Label1" runat="server" Text="Select IncidentID:"></asp:Label>
