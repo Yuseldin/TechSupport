@@ -13,24 +13,6 @@ namespace TechSupport.Admin {
     public partial class AddNewMember {
         
         /// <summary>
-        /// lblSelectMember control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSelectMember;
-        
-        /// <summary>
-        /// DropDownListSelectMember control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListSelectMember;
-        
-        /// <summary>
         /// lblAddName control.
         /// </summary>
         /// <remarks>

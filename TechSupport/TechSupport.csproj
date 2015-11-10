@@ -57,10 +57,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\AddNewMember.aspx" />
+    <Content Include="Admin\AddCustomer.aspx" />
+    <Content Include="Admin\AddTechnician.aspx" />
     <Content Include="Admin\Customers.aspx" />
     <Content Include="Admin\Products.aspx" />
-    <Content Include="Admin\ViewTechnicians.aspx" />
+    <Content Include="Admin\Technicians.aspx" />
     <Content Include="App_Data\TechSupport.mdf" />
     <Content Include="App_Data\TechSupport_log.ldf">
       <DependentUpon>TechSupport.mdf</DependentUpon>
@@ -76,12 +77,19 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\AddNewMember.aspx.cs">
-      <DependentUpon>AddNewMember.aspx</DependentUpon>
+    <Compile Include="Admin\AddCustomer.aspx.cs">
+      <DependentUpon>AddCustomer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\AddNewMember.aspx.designer.cs">
-      <DependentUpon>AddNewMember.aspx</DependentUpon>
+    <Compile Include="Admin\AddCustomer.aspx.designer.cs">
+      <DependentUpon>AddCustomer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddTechnician.aspx.cs">
+      <DependentUpon>AddTechnician.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddTechnician.aspx.designer.cs">
+      <DependentUpon>AddTechnician.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Customers.aspx.cs">
       <DependentUpon>Customers.aspx</DependentUpon>
@@ -97,12 +105,12 @@
     <Compile Include="Admin\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ViewTechnicians.aspx.cs">
-      <DependentUpon>ViewTechnicians.aspx</DependentUpon>
+    <Compile Include="Admin\Technicians.aspx.cs">
+      <DependentUpon>Technicians.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ViewTechnicians.aspx.designer.cs">
-      <DependentUpon>ViewTechnicians.aspx</DependentUpon>
+    <Compile Include="Admin\Technicians.aspx.designer.cs">
+      <DependentUpon>Technicians.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -152,8 +160,6 @@
     <Content Include="Web.sitemap">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web1.sitemap" />
-    <Content Include="Web2.sitemap" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
