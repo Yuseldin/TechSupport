@@ -5,5 +5,10 @@
         <siteMapNode url="Admin/Technicians.aspx" title="View Technicians"  description="View and edit Technicians list" />
         <siteMapNode url="Admin/Customers.aspx" title="View Customers"  description="View and edit Customers list" />
         <siteMapNode url="Technicians/ViewIncidents.aspx" title="View Incidents"  description="View and edit Incidents list" />
+        <siteMapNode url="" title="Add New Member" description="Sub menu to add a new technician and customer" >
+          <siteMapNode url="Admin/AddTechnician.aspx" title="Add Technician" description="add a new technician"/>
+          <siteMapNode url="Admin/AddCustomer.aspx" title="Add New Customer" description="add a new customer"/>
+        </siteMapNode>
+      
     </siteMapNode>
 </siteMap>
