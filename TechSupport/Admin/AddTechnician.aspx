@@ -14,7 +14,7 @@
      <p>
         <asp:Label ID="lblAddName" runat="server" Text="Name"></asp:Label>
         &nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtBoxAddName" runat="server" Width="130px"></asp:TextBox>
+        <asp:TextBox ID="txtBoxAddName" runat="server" Width="130px" OnTextChanged="txtBoxAddName_TextChanged"></asp:TextBox>
         <br />
         <asp:Label ID="lblAddPhone" runat="server" Text="Phone"></asp:Label>
         &nbsp;&nbsp;&nbsp;
@@ -26,9 +26,9 @@
         <WizardSteps>
             <asp:CreateUserWizardStep runat="server">
                 <ContentTemplate>
-                    <table>
+                    <table border"0.01">
                         <tr>
-                            <td align="center" colspan="2">Sign Up for Your New Account</td>
+                            <td align="center" colspan="2">Create login to a technician</td>
                         </tr>
                         <tr>
                             <td align="right">
@@ -90,12 +90,21 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" colspan="2" style="color:Red;">
+                            <td align="center" colspan="2" style="color: Red;">
                                 <asp:Literal ID="ErrorMessage" runat="server" EnableViewState="False"></asp:Literal>
                             </td>
                         </tr>
                     </table>
                 </ContentTemplate>
+                <CustomNavigationTemplate>
+                    <table border="0" cellspacing="5" style="width:100%;height:100%;">
+                        <tr align="right">
+                            <td align="right" colspan="0">
+                                <asp:Button ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Create User" ValidationGroup="CreateUserWizard1" />
+                            </td>
+                        </tr>
+                    </table>
+                </CustomNavigationTemplate>
             </asp:CreateUserWizardStep>
             <asp:CompleteWizardStep runat="server">
                 <ContentTemplate>
