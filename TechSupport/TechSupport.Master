@@ -18,11 +18,14 @@
 
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
         </h1>    
+            <hr />
         <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticDisplayLevels="2" CssClass="menu" OnMenuItemClick="Menu1_MenuItemClick">
         </asp:Menu>
     </div>
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            <hr />
         
         </asp:ContentPlaceHolder>
     </div>

@@ -18,8 +18,8 @@ namespace TechSupport
         {
             lblSessionLogin.Text = "Welcome, "+Session["username"] + ".";
             
-            string view = "SELECT * FROM Incidents WHERE TechID ='" + Session["username"] + "'";
-            SqlDataSource1.SelectCommand = view;
+            //string view = "SELECT * FROM Incidents WHERE TechID ='" + Session["username"] + "'";
+            //SqlDataSource1.SelectCommand = view;
 
             
         }

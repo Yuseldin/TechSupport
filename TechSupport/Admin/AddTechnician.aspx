@@ -8,10 +8,12 @@
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <hr />
     <p>
 
     </p>
     <div style="width: 293px; margin-left: auto; margin-right: auto;">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
        <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" OnCreatedUser="CreateUserWizard1_CreatedUser">
            <WizardSteps>
                <asp:CreateUserWizardStep runat="server" >
@@ -56,8 +58,30 @@
                                    <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email" ErrorMessage="E-mail is required." ToolTip="E-mail is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
                                </td>
                            </tr>
+
+                            <tr>
+                               <td align="right">
+                                   <asp:Label ID="TechType" runat="server" AssociatedControlID="Email">Tech Type:</asp:Label>
+                               </td>
+                               <td>
+                                   <asp:DropDownList ID="TextBox1" runat="server" DataSourceID="SqlDataSource1" DataTextField="TypeName" DataValueField="TypeName"></asp:DropDownList>
+                                   <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT [TypeName] FROM [TechTypes]"></asp:SqlDataSource>
+                                 <%--  <asp:RequiredFieldValidator ID="TechTypeRequired" runat="server" ControlToValidate="TechType" ErrorMessage="TechType is required." ToolTip="TechType is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>--%>
+                               </td>
+                           </tr>
+                           
                            <tr>
-                               <td align="right">&nbsp;</td>
+                               <td align="right">
+                                   <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" InsertCommand="INSERT INTO Technicians(TechID, Name, Email, Phone, TypeID) VALUES (@TechID, @Name, @Email,@Phone, @TypeID)" OnSelecting="SqlDataSource2_Selecting" SelectCommand="SELECT Technicians.TechID AS Expr1, Technicians.Email AS Expr2, Technicians.Name AS Expr3, Technicians.*, TechTypes.* FROM Technicians INNER JOIN TechTypes ON Technicians.TypeID = TechTypes.TypeID">
+                                       <InsertParameters>
+                                           <asp:ControlParameter ControlID="UserName" Name="TechID" PropertyName="Text" />
+                                           <asp:ControlParameter ControlID="Name" Name="Name" PropertyName="Text" />
+                                           <asp:ControlParameter ControlID="Email" Name="Email" PropertyName="Text" />
+                                           <asp:ControlParameter ControlID="Phone" Name="Phone" PropertyName="Text" />
+                                           <asp:ControlParameter ControlID="TechType" Name="TypeID" PropertyName="Text" />
+                                       </InsertParameters>
+                                   </asp:SqlDataSource>
+                               </td>
                                <td>&nbsp;</td>
                            </tr>
                            <tr>
@@ -113,7 +137,7 @@
                                </td>
                            </tr>
                            <tr>
-                               <td align="center" colspan="2" style="color:Red;">&nbsp;</td>
+                               <td align="center" colspan="2" style="color: Red;">&nbsp;</td>
                            </tr>
                        </table>
                    </ContentTemplate>
