@@ -4,14 +4,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style type="text/css">
         .gridview {
-            width: 575px;
             margin-left: 126px;
             margin-right: auto;
         }
         .selectOption {
             width: 26%;
             float: left;
-            height: 161px;
+            height: 202px;
+            border-right: 1px solid #000; 
         }
         .auto-style1 {
             width: 100%;
@@ -37,7 +37,7 @@
                         <asp:Label ID="Label1" runat="server" Text="View All Technicians:"></asp:Label>
                     </td>
                     <td class="auto-style2">
-                        <asp:Button ID="Button1" runat="server" Text="Go" OnClick="Button1_Click" />
+                        <asp:Button ID="btnViewAllTechs" runat="server" Text="Go" OnClick="btnViewAllTechs_Click" />
                     </td>
                 </tr>
                 <tr>
@@ -74,21 +74,35 @@
                     </td>
                 </tr>
             </table>
+            
     </div>
     <br />
 
-        <asp:GridView class="gridview" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="TechID" DataSourceID="AllTechs" Height="138px" style="text-align: left; margin-left: auto; margin-right: auto;" Visible="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="800px">
-            <Columns>
-                <asp:BoundField DataField="TechID" HeaderText="TechID" InsertVisible="False" ReadOnly="True" SortExpression="TechID" />
-                <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-                <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
-                <asp:BoundField DataField="Employed" HeaderText="Employed" SortExpression="Employed"/>
-                <asp:BoundField DataField="TypeID" HeaderText="TypeID" SortExpression="TypeID" />
-            </Columns>
-        </asp:GridView>
+    <%-- Backup Gridview --%>
+    <%-- <asp:GridView class="gridview" ID="GridView1" runat="server" DataSourceID="AllTechs" Height="138px" style="text-align: left; margin-left: auto; margin-right: auto;" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" DataKeyNames="TechID">
+    <Columns>
+        <asp:BoundField DataField="TechID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="TechID" ItemStyle-Width="25" ></asp:BoundField>
+        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" HeaderStyle-Height="25" ItemStyle-Height="25" ItemStyle-Width="100px" ></asp:BoundField>
+        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+        <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" ItemStyle-Width="100px" ></asp:BoundField>
+        <asp:BoundField DataField="Employed" HeaderText="Employed" SortExpression="Employed" ></asp:BoundField>
+        <asp:BoundField DataField="TypeID" HeaderText="Type" SortExpression="TypeID" ItemStyle-Width="150px" ></asp:BoundField>
+    </Columns>
+    </asp:GridView> --%>
 
-<asp:SqlDataSource ID="AllTechs" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>"
+    <b> View All Technicians</b>
+<asp:GridView class="gridview" ID="GridView1" runat="server" DataSourceID="AllTechs" Height="138px" style="text-align: left; margin-left: auto; margin-right: auto;" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" DataKeyNames="TechID">
+    <Columns>
+        <asp:BoundField DataField="TechID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="TechID" ItemStyle-Width="25" ></asp:BoundField>
+        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" HeaderStyle-Height="25" ItemStyle-Height="25" ItemStyle-Width="100px" ></asp:BoundField>
+        <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+        <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" ItemStyle-Width="100px" ></asp:BoundField>
+        <asp:BoundField DataField="Employed" HeaderText="Employed" SortExpression="Employed" ></asp:BoundField>
+        <asp:BoundField DataField="TypeID" HeaderText="Type" SortExpression="TypeID" ItemStyle-Width="150px" ></asp:BoundField>
+    </Columns>
+    </asp:GridView>
+
+    <asp:SqlDataSource ID="AllTechs" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>"
      SelectCommand="SELECT Technicians.* FROM Technicians"></asp:SqlDataSource>
 
 </asp:Content>
