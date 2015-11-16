@@ -13,40 +13,40 @@ namespace TechSupport.Admin {
     public partial class AddNewMember {
         
         /// <summary>
-        /// lblAddName control.
+        /// DetailsView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddName;
+        protected global::System.Web.UI.WebControls.DetailsView DetailsView1;
         
         /// <summary>
-        /// txtBoxAddName control.
+        /// SqlDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxAddName;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
-        /// lblAddPhone control.
+        /// InsertTech control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddPhone;
+        protected global::System.Web.UI.WebControls.SqlDataSource InsertTech;
         
         /// <summary>
-        /// txtBoxAddPhone control.
+        /// CreateUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxAddPhone;
+        protected global::System.Web.UI.WebControls.SqlDataSource CreateUserName;
         
         /// <summary>
         /// CreateUserWizard1 control.
