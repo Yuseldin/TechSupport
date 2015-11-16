@@ -1,4 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TechSupport.Master" AutoEventWireup="true" CodeBehind="AddTechnician.aspx.cs" Inherits="TechSupport.Admin.AddNewMember" %>
+
+<script runat="server">
+    private void insertTechnician(object source, EventArgs e)
+    {
+        try
+        {
+            InsertTech.Insert();
+        }
+        catch 
+        {
+            
+        }
+    }
+
+</script>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style2 {
@@ -8,12 +24,17 @@
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <hr />
-    <p>
+    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="UserId" DataSourceID="SqlDataSource1" Height="50px" Width="125px">
+        <Fields>
+            <asp:BoundField DataField="UserId" HeaderText="UserId" ReadOnly="True" SortExpression="UserId" />
+        </Fields>
+    </asp:DetailsView>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETConnectionString %>" SelectCommand="SELECT UserId FROM aspnet_Membership ORDER BY UserId DESC"></asp:SqlDataSource>
 
-    </p>
+    <hr />
+    <asp:SqlDataSource ID="InsertTech" runat="server" InsertCommand="INSERT INTO Technicians(Name, Email, Phone, TypeID, Employed) VALUES (@Name, @Email, @Phone, @TypeID, 0)"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="CreateUserName" runat="server"></asp:SqlDataSource>
     <div style="width: 293px; margin-left: auto; margin-right: auto;">
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
        <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" OnCreatedUser="CreateUserWizard1_CreatedUser">
            <WizardSteps>
                <asp:CreateUserWizardStep runat="server" >
@@ -64,24 +85,15 @@
                                    <asp:Label ID="TechType" runat="server" AssociatedControlID="Email">Tech Type:</asp:Label>
                                </td>
                                <td>
-                                   <asp:DropDownList ID="TextBox1" runat="server" DataSourceID="SqlDataSource1" DataTextField="TypeName" DataValueField="TypeName"></asp:DropDownList>
-                                   <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT [TypeName] FROM [TechTypes]"></asp:SqlDataSource>
+                                   <asp:DropDownList ID="TextBox1" runat="server" DataSourceID="TechTypeDataSource" DataTextField="TypeName" DataValueField="TypeName"></asp:DropDownList>
+                                   <asp:SqlDataSource ID="TechTypeDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT [TypeName] FROM [TechTypes]"></asp:SqlDataSource>
                                  <%--  <asp:RequiredFieldValidator ID="TechTypeRequired" runat="server" ControlToValidate="TechType" ErrorMessage="TechType is required." ToolTip="TechType is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>--%>
                                </td>
                            </tr>
                            
                            <tr>
                                <td align="right">
-                                   <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" InsertCommand="INSERT INTO Technicians(TechID, Name, Email, Phone, TypeID) VALUES (@TechID, @Name, @Email,@Phone, @TypeID)" OnSelecting="SqlDataSource2_Selecting" SelectCommand="SELECT Technicians.TechID AS Expr1, Technicians.Email AS Expr2, Technicians.Name AS Expr3, Technicians.*, TechTypes.* FROM Technicians INNER JOIN TechTypes ON Technicians.TypeID = TechTypes.TypeID">
-                                       <InsertParameters>
-                                           <asp:ControlParameter ControlID="UserName" Name="TechID" PropertyName="Text" />
-                                           <asp:ControlParameter ControlID="Name" Name="Name" PropertyName="Text" />
-                                           <asp:ControlParameter ControlID="Email" Name="Email" PropertyName="Text" />
-                                           <asp:ControlParameter ControlID="Phone" Name="Phone" PropertyName="Text" />
-                                           <asp:ControlParameter ControlID="TechType" Name="TypeID" PropertyName="Text" />
-                                       </InsertParameters>
-                                   </asp:SqlDataSource>
-                               </td>
+                                   &nbsp;</td>
                                <td>&nbsp;</td>
                            </tr>
                            <tr>
@@ -136,17 +148,19 @@
                                    <asp:Literal ID="ErrorMessage" runat="server" EnableViewState="False"></asp:Literal>
                                </td>
                            </tr>
-                           <tr>
-                               <td align="center" colspan="2" style="color: Red;">&nbsp;</td>
-                           </tr>
+                           
                        </table>
                    </ContentTemplate>
                    <CustomNavigationTemplate>
                        <table border="0" cellspacing="5" style="width:100%;height:100%;">
                            <tr align="center">
                                <td align="center" colspan="0">
-                                   <asp:Button ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Create User" ValidationGroup="CreateUserWizard1" />
+                                   <asp:Button ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Create New Technician" ValidationGroup="CreateUserWizard1" OnClick="insertTechnician" />
                                </td>
+                           </tr>
+                           <tr>
+                               <td align="center" colspan="2" style="color: Red;">
+                                   &nbsp;</td>
                            </tr>
                        </table>
                    </CustomNavigationTemplate>
@@ -155,13 +169,13 @@
                    <ContentTemplate>
                        <table>
                            <tr>
-                               <td align="center" colspan="2">Complete</td>
+                               <td align="center">Complete</td>
                            </tr>
                            <tr>
                                <td>Your account has been successfully created.</td>
                            </tr>
                            <tr>
-                               <td align="center" colspan="2">
+                               <td align="center">
                                    <asp:Button ID="ContinueButton" runat="server" CausesValidation="False" CommandName="Continue" Text="Continue" ValidationGroup="CreateUserWizard1" />
                                </td>
                            </tr>
@@ -170,6 +184,7 @@
                </asp:CompleteWizardStep>
            </WizardSteps>
        </asp:CreateUserWizard>
+
     </div>          
    
 </asp:Content>
