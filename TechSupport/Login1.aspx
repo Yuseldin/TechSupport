@@ -33,7 +33,7 @@
     <form id="form1" runat="server">
     <div>
         <h1 style="clip: rect(auto, auto, auto, auto)">
-            <img src="Style/SoftwareLogo1.PNG" style="height: 157px; width: 111px" /> </h1>
+            <img src="SoftwareLogo1.PNG" style="height: 157px; width: 111px" /> </h1>
         <h1>Welcome to SoftwareSupport</h1>
     </div>
 

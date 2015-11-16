@@ -6,6 +6,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 
+//Author Block
+//Author: Jak Revai
+//Project: Revai_Jak_TechSupport_AS3
+//Description: Create Web App in C#
+//Version: 1.0
+//NOTE: The design of these pages were created on a monitor with a resolution of: 1920x1080, if the pages look funky then that is why.
+
 namespace TechSupport.Admin
 {
     public partial class Technicians : System.Web.UI.Page

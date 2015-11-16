@@ -1,5 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TechSupport.Master" AutoEventWireup="true" CodeBehind="ViewTechnicians.aspx.cs" Inherits="TechSupport.Admin.Technicians" %>
 
+<%--Author Block
+    Author: Jak Revai
+    Project: Revai_Jak_TechSupport_AS3
+    Description: Create Web App in C#
+    Version: 1.0
+    NOTE: The design of these pages were created on a monitor with a resolution of: 1920x1080, if the pages look funky then that is why.--%>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
