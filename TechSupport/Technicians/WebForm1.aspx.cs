@@ -4,12 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Diagnostics;
 
 
-namespace TechSupport
+namespace TechSupport.Technicians
 {
-    public partial class ViewIncidents : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
         private Dictionary<string, TextBox> txtList;
 
@@ -36,19 +35,23 @@ namespace TechSupport
             Dictionary<string, TextBox> controls = new Dictionary<string, TextBox>();
 
 
-            for(int e=1; e<this.GridView_Incidents.Columns.Count-1; e++)
+            for (int e = 1; e < this.GridView_Incidents.Columns.Count - 1; e++)
             {
                 string key = GridView_Incidents.Columns[e].HeaderText;
-                controls.Add(key, textboxes[e-1]);
+                controls.Add(key, textboxes[e - 1]);
             }
 
             return controls;
         }
 
+
+
         protected void Grid_ViewIncidents_SelectedIndexChanged(object sender, EventArgs e)
         {
             string colName = string.Empty, cellValue = string.Empty, text = string.Empty;
             bool ok = false;
+
+            //this.GridView_Incidents.SelectedRow.BackColor = System.Drawing.Color.Azure; 
 
             DDLActions.Enabled = true;
             GridViewRow selected = this.GridView_Incidents.SelectedRow;
@@ -56,12 +59,12 @@ namespace TechSupport
 
 
             Dictionary<string, string> selectedRow = new Dictionary<string, string>();
-                for (int i = 1; i < cellsCount - 1; i++)
-                {
-                    colName = this.GridView_Incidents.Columns[i].HeaderText;
-                    cellValue = selected.Cells[i].Text;
-                    selectedRow.Add(colName, cellValue);
-                }
+            for (int i = 1; i < cellsCount - 1; i++)
+            {
+                colName = this.GridView_Incidents.Columns[i].HeaderText;
+                cellValue = selected.Cells[i].Text;
+                selectedRow.Add(colName, cellValue);
+            }
 
             foreach (KeyValuePair<string, string> pair in selectedRow)
             {
@@ -97,6 +100,8 @@ namespace TechSupport
             if (e.Row.RowType == DataControlRowType.DataRow &&
                       e.Row.RowState == DataControlRowState.Alternate)
                 e.Row.CssClass = "alternate";
+
+
         }
 
 
@@ -138,6 +143,7 @@ namespace TechSupport
             ParameterCollection parameters = SqlDataSource_Incidents.UpdateParameters;
             string adsf = GridView_Incidents.SelectedValue.ToString();
             SqlDataSource_Incidents.Update();
+            GridView_Incidents.DataBind();
             ResetForm();
         }
 
@@ -151,6 +157,29 @@ namespace TechSupport
             //}
             //gv.PageIndex = 0;
         }
+
+
+        protected void IncidentMenu_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            int index = Int32.Parse(e.Item.Value);
+            this.Incidents_MultiView.ActiveViewIndex = index;
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            this.FormView1.ChangeMode(FormViewMode.Edit);
+            
+        }
+
+
+
+
+
+
+
+
+
+
 
 
 

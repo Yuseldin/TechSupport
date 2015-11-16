@@ -8,6 +8,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link href="Style/Style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Resources/Functions.js" ></script>
 </head>
 <body>
     <form id="form1" runat="server">
