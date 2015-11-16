@@ -6,10 +6,10 @@
         CUSTOMERS</p>
     <p>
         <asp:Label ID="Label1" runat="server" Text="Search ID:"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;<asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
 &nbsp;<asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
-    &nbsp;</p>
+&nbsp;
+        &nbsp;</p>
     <p>
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" DataKeyNames="CustomerID" DataSourceID="techSqlDataSource" EmptyDataText="There are no data records to display." GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="Gainsboro" ForeColor="#284775" />
@@ -35,29 +35,7 @@
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#000065" />
         </asp:GridView>
-        <asp:SqlDataSource ID="techSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Customers] WHERE [CustomerID] = @CustomerID" InsertCommand="INSERT INTO [Customers] ([Name], [Address], [City], [State], [ZipCode], [Phone], [Email]) VALUES (@Name, @Address, @City, @State, @ZipCode, @Phone, @Email)" SelectCommand="SELECT * FROM [Customers]" UpdateCommand="UPDATE [Customers] SET [Name] = @Name, [Address] = @Address, [City] = @City, [State] = @State, [ZipCode] = @ZipCode, [Phone] = @Phone, [Email] = @Email WHERE [CustomerID] = @CustomerID">
-            <DeleteParameters>
-                <asp:Parameter Name="CustomerID" Type="Int32" />
-            </DeleteParameters>
-            <InsertParameters>
-                <asp:Parameter Name="Name" Type="String" />
-                <asp:Parameter Name="Address" Type="String" />
-                <asp:Parameter Name="City" Type="String" />
-                <asp:Parameter Name="State" Type="String" />
-                <asp:Parameter Name="ZipCode" Type="String" />
-                <asp:Parameter Name="Phone" Type="String" />
-                <asp:Parameter Name="Email" Type="String" />
-            </InsertParameters>
-            <UpdateParameters>
-                <asp:Parameter Name="Name" Type="String" />
-                <asp:Parameter Name="Address" Type="String" />
-                <asp:Parameter Name="City" Type="String" />
-                <asp:Parameter Name="State" Type="String" />
-                <asp:Parameter Name="ZipCode" Type="String" />
-                <asp:Parameter Name="Phone" Type="String" />
-                <asp:Parameter Name="Email" Type="String" />
-                <asp:Parameter Name="CustomerID" Type="Int32" />
-            </UpdateParameters>
+        <asp:SqlDataSource ID="techSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT * FROM [Customers]">
         </asp:SqlDataSource>
     </p>
     <p>

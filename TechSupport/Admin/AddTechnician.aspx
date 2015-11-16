@@ -10,7 +10,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <div style="text-align: center;">
+    <div style="text-align: center;">
      <p>
         <asp:Label ID="lblAddName" runat="server" Text="Name"></asp:Label>
         &nbsp;&nbsp;&nbsp;

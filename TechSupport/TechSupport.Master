@@ -30,6 +30,12 @@
             <asp:Menu ID="Menu3" runat="server" CssClass="menu" Orientation="Horizontal" StaticDisplayLevels="2" DataSourceID="SiteMapDataSource3">
             </asp:Menu>
     </div>
+    <div style="text-align:right">
+        <asp:Label ID="lblSessionLogin" runat="server"></asp:Label>
+&nbsp;<br />
+        <br />
+        <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Login1.aspx" ForeColor="Blue"/>
+&nbsp;</div>
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         

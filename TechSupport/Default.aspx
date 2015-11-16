@@ -3,16 +3,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
-        <asp:Label ID="lblSessionLogin" runat="server"></asp:Label>
-</p>
-    <p>
-        <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Login1.aspx" ForeColor="Blue" /> 
-</p>
-    <p>
         <asp:Label ID="Label1" runat="server" Text="Select IncidentID:"></asp:Label>
 &nbsp;<asp:TextBox ID="txtClose" runat="server" Width="60px"></asp:TextBox>
 &nbsp;<asp:Button ID="btnClose" runat="server" OnClick="btnClose_Click" Text="Close Incident" />
-&nbsp;<asp:Label ID="lblError" runat="server" BackColor="White" ForeColor="Red" Text="Please select the right IncidentID." Visible="False"></asp:Label>
+&nbsp;<asp:Label ID="lblError" runat="server" ForeColor="Red" Text="Please select the right IncidentID." Visible="False"></asp:Label>
 </p>
 <p>
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="IncidentID" DataSourceID="SqlDataSource1">
@@ -62,7 +56,5 @@
                 <asp:Parameter Name="IncidentID" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        &nbsp;</p>
-<p aria-autocomplete="none">
-        THIS IS THE HOME PAGE1&nbsp; </p>
+    </p>
 </asp:Content>
