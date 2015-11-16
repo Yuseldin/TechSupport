@@ -131,7 +131,7 @@
 
             <asp:TemplateField HeaderText="Employed" SortExpression="Employed">                    
                 <ItemTemplate>
-                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("Employed") %>'></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("Employed") %>' Visible="True"></asp:Label>
                     <asp:DropDownList ID="DropDown1" runat="server" Visible="False" AppendDataBoundItems="True">
                         <asp:ListItem Text="Yes" Value="0" />
                         <asp:ListItem Text="No" Value="1" />

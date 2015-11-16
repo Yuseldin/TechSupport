@@ -192,12 +192,12 @@ namespace TechSupport.Admin
                             row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = true; //Makes it visible
                             
                             //if the data pulled from the database is 0, then it will set the dropdown box in edit mode to contain the value "Yes"
-                            if (row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text == "Yes")                 //Database Reference
-                            {                                                                                       //Employed: 0
-                                row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 0;    //Unemployed: 1
+                            if (row.Cells[i].Text == "Yes")                                                          //Database Reference
+                            {                                                                                        //Employed: 0
+                                row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 0;     //Unemployed: 1
                             }
                             //if the data pulled from the database is 1, then it will set the dropdown box in edit mode to contain the value "No"
-                            if (row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text == "No")
+                            if (row.Cells[i].Text == "No")
                             {
                                 row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 1;
                             }
@@ -210,12 +210,12 @@ namespace TechSupport.Admin
                             row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = true; //Makes it visible
 
                             //if the data pulled from the database is 1, then it will set the dropdown box in edit mode to contain the value "Support Officer" - Jak
-                            if (row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text == "Support Officer Level 1")   //Database Reference
+                            if (row.Cells[i].Text == "Support Officer Level 1")   //Database Reference
                             {                                                                                               //Technician: 2
                                 row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 0;            //Support: 1
                             }
                             //if the data pulled from the database is 2, then it will set the dropdown box in edit mode to contain the value "Technician" - Jak
-                            if (row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text == "Technician Level 2")
+                            if (row.Cells[i].Text == "Technician Level 2")
                             {
                                 row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 1;
                             }
@@ -235,7 +235,7 @@ namespace TechSupport.Admin
 
         }
 
-        protected void BtnCancel_Click(object sender, EventArgs e)
+        protected void BtnCancel_Click(object sender, EventArgs e) //Error with the drop down boxes, sends over the data when it should just cancel and do nothing
         {
             //Turns the gridview back into a non-editable state
             foreach (GridViewRow row in ViewAllTechsGrid.Rows) //Looping through each row in the grid
@@ -243,16 +243,26 @@ namespace TechSupport.Admin
                 if (row.RowType == DataControlRowType.DataRow) //Checks to make sure the row contains data
                 {
                     for (int i = 1; i < row.Cells.Count; i++)
-                    {
+                    {                        
+                        row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Visible = true; //Finds all the labels in the gridview and make them invisible
+                        
                         if (row.Cells[i].Controls.OfType<TextBox>().ToList().Count > 0)
                         {
                             row.Cells[i].Controls.OfType<TextBox>().FirstOrDefault().Visible = false; //Finds all the textboxes in the gridview and make them visible
                         }
-                        if (row.Cells[i].Controls.OfType<DropDownList>().ToList().Count > 0)
+                        if (row.Cells[i].Controls.OfType<DropDownList>().ToList().Count > 0 &&
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown1"))
                         {
                             row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = false; //Finds all the textboxes in the gridview and make them visible
+                            row.Cells[i].Text = row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Text;
                         }
-                        row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Visible = true; //Finds all the labels in the gridview and make them invisible
+                        if (row.Cells[i].Controls.OfType<DropDownList>().ToList().Count > 0 &&
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown2"))
+                        {
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = false; //Finds all the textboxes in the gridview and make them visible
+                            row.Cells[i].Text = row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Text;
+                        }
+                        
                     }
                 }
             }
