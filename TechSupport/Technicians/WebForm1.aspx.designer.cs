@@ -7,10 +7,37 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TechSupport {
+namespace TechSupport.Technicians {
     
     
-    public partial class ViewIncidents {
+    public partial class WebForm1 {
+        
+        /// <summary>
+        /// IncidentMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Menu IncidentMenu;
+        
+        /// <summary>
+        /// Incidents_MultiView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView Incidents_MultiView;
+        
+        /// <summary>
+        /// IncidentList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View IncidentList;
         
         /// <summary>
         /// ScriptManager_Incidents control.
@@ -29,6 +56,87 @@ namespace TechSupport {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView_Incidents;
+        
+        /// <summary>
+        /// SqlDataSource_Incidents control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource_Incidents;
+        
+        /// <summary>
+        /// ViewDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View ViewDetails;
+        
+        /// <summary>
+        /// FormView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FormView FormView1;
+        
+        /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
+        
+        /// <summary>
+        /// SqlDataSource_TechsList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource_TechsList;
+        
+        /// <summary>
+        /// SqlDataSource_ClientsList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource_ClientsList;
+        
+        /// <summary>
+        /// SqlDataSource_ProdsList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource_ProdsList;
+        
+        /// <summary>
+        /// UpdateIncident control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View UpdateIncident;
         
         /// <summary>
         /// UpdatePanel_IncidentDetails control.
@@ -193,12 +301,12 @@ namespace TechSupport {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// SqlDataSource_Incidents control.
+        /// CreateIncident control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource_Incidents;
+        protected global::System.Web.UI.WebControls.View CreateIncident;
     }
 }

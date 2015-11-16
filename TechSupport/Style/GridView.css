@@ -1,0 +1,170 @@
+﻿.grid-view
+{
+   padding: 0;
+   margin: 0;
+   border: 1px solid #333;
+  margin-left:auto; margin-right:auto;
+   font-family: "Verdana, Arial, Helvetica, sans-serif, Trebuchet MS";
+   font-size: 0.9em;
+   white-space: nowrap;
+}
+
+.grid-view tr.header
+{
+   color: white;
+   background-color: darkblue;
+   height: 25px;
+   vertical-align: middle;
+   text-align: center;
+   font-weight: bold;
+   white-space: nowrap;
+}
+
+.grid-view tr.normal
+{
+   color: black;
+   background-color: #b3ccff;
+   height: 25px;
+   vertical-align: middle;
+   text-align: center;
+   white-space: nowrap;
+}
+
+.grid-view tr.alternate
+{
+   color: black;
+   background-color: #009999;
+   height: 25px;
+   vertical-align: middle;
+   text-align: center;
+   white-space: nowrap;
+}
+
+.grid-view tr.normal:hover, .grid-view tr.alternate:hover
+{
+   background-color: azure;
+   color: black;
+   font-weight: bold;
+   white-space: nowrap;
+
+}
+
+.hideColumn
+{
+    display: none;
+}
+
+
+/*TABLE CLASS*/
+
+.table {
+    vertical-align: middle;
+    text-align: left;
+    padding: 2px;
+    table-layout: fixed;
+}
+.table td, .table th {
+    border: 1px solid black;
+    padding: .2em .5em .2em .5em;
+    vertical-align: middle;
+    text-align: left;
+    white-space: nowrap;
+    font-weight: bold;
+
+     white-space: -o-pre-wrap; 
+    word-wrap: break-word;
+    white-space: pre-wrap; 
+    white-space: -moz-pre-wrap; 
+    white-space: -pre-wrap;
+}
+.table tr:nth-child(even) td{
+    background-color: #D1D1BA;
+}
+.table tr:nth-child(odd) td{
+    background-color: #ADAD85;
+    font-weight: bolder;
+}
+.table th{ 
+    background-color: #999999
+}
+
+.stdCell
+{
+    height: 20px;
+}
+
+/********************** TABLE AUTOSTYLE ************************/
+
+        #actionDdl
+        {
+            width: 150px;
+        }
+        .auto-style1
+    {
+        height: 20px;
+    }
+        .auto-style17
+        {
+            height: 20px;
+        }
+        .auto-style20
+        {
+            height: 20px;
+            width: 5px;
+        }
+        .auto-style18
+        {
+            width: 10px;
+        }
+        .auto-style21
+        {
+            width: 5px;
+        }
+        .auto-style10
+        {
+            height: 19px;
+        }
+        .auto-style22
+        {
+            width: 100%;
+        }
+        .auto-style23
+        {
+            width: 238px;
+        }
+
+
+/***********************************************/
+.tabs
+    {
+    position:relative;
+    top:1px;       
+    z-index:auto;     
+    }
+   
+    .tab
+    {
+        border:1px solid black;
+        background-image:url(images/navigation.jpg);
+        background-repeat:repeat-x;
+        color:White;       
+        padding:2px 10px; 
+    }
+   
+    .selectedtab
+    {
+    background:none;
+    background-repeat:repeat-x;
+    color:black; 
+   }
+   
+   
+.tabcontents
+    {
+    border: none;
+    padding:10px;
+    width: auto; /*600px;*/
+    height: auto;/*500px;*/  
+    background-color: Background;        
+   
+    }
