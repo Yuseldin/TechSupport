@@ -61,7 +61,7 @@
     <Content Include="Admin\AddTechnician.aspx" />
     <Content Include="Admin\Customers.aspx" />
     <Content Include="Admin\Products.aspx" />
-    <Content Include="Admin\Technicians.aspx" />
+    <Content Include="Admin\ViewTechnicians.aspx" />
     <Content Include="App_Data\TechSupport.mdf" />
     <Content Include="App_Data\TechSupport_log.ldf">
       <DependentUpon>TechSupport.mdf</DependentUpon>
@@ -105,12 +105,12 @@
     <Compile Include="Admin\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Technicians.aspx.cs">
-      <DependentUpon>Technicians.aspx</DependentUpon>
+    <Compile Include="Admin\ViewTechnicians.aspx.cs">
+      <DependentUpon>ViewTechnicians.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Technicians.aspx.designer.cs">
-      <DependentUpon>Technicians.aspx</DependentUpon>
+    <Compile Include="Admin\ViewTechnicians.aspx.designer.cs">
+      <DependentUpon>ViewTechnicians.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
