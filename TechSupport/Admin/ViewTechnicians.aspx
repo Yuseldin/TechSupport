@@ -109,7 +109,7 @@
             <asp:TemplateField HeaderText="Name" SortExpression="Name">
                 <ItemTemplate>
                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
-                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>' Visible="False"></asp:TextBox>
+                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>' Visible="false" Width="100"></asp:TextBox>
                 </ItemTemplate>
                 <HeaderStyle Height="25px" />
                 <ItemStyle Height="25px" />
@@ -118,28 +118,34 @@
             <asp:TemplateField HeaderText="Email" SortExpression="Email">
                 <ItemTemplate>
                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
-                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Email") %>' Visible="False"></asp:TextBox>
+                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Email") %>' Visible="false" Width="200"></asp:TextBox>
                 </ItemTemplate>
             </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Phone" SortExpression="Phone">
                 <ItemTemplate>
                     <asp:Label ID="Label3" runat="server" Text='<%# Bind("Phone") %>'></asp:Label>
-                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Phone") %>' Visible="False"></asp:TextBox>
+                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Phone") %>' Visible="false" Width="100"></asp:TextBox>
                 </ItemTemplate>
             </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Employed" SortExpression="Employed">                    
                 <ItemTemplate>
                     <asp:Label ID="Label4" runat="server" Text='<%# Bind("Employed") %>'></asp:Label>
-                    <asp:DropDownList ID="DropDown1" runat="server" Visible="False"></asp:DropDownList>
+                    <asp:DropDownList ID="DropDown1" runat="server" Visible="False" AppendDataBoundItems="True">
+                        <asp:ListItem Text="Yes" Value="0" />
+                        <asp:ListItem Text="No" Value="1" />
+                    </asp:DropDownList>
                 </ItemTemplate>
             </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Type" SortExpression="TypeID">
                  <ItemTemplate>
                     <asp:Label ID="Label5" runat="server" Text='<%# Bind("TypeID") %>'></asp:Label>
-                     <asp:DropDownList ID="DropDown2" runat="server" Visible="False"></asp:DropDownList>
+                     <asp:DropDownList ID="DropDown2" runat="server" Visible="False" AppendDataBoundItems="True">
+                        <asp:ListItem Text="Support Officer Level 1" Value="0" />
+                        <asp:ListItem Text="Technician Level 2" Value="1" />
+                     </asp:DropDownList>
                 </ItemTemplate>
             </asp:TemplateField>
 

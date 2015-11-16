@@ -17,69 +17,82 @@ namespace TechSupport.Admin
 
         protected void btnViewAllTechs_Click(object sender, EventArgs e)
         {
-            //ViewAllTechsGrid.Visible = false;
+            ViewAllTechsGrid.DataSourceID = "Techs"; //Changes the datasource of the grid
 
-            //Techs.SelectCommand = "SELECT Technicians.* FROM Technicians";
-            ViewAllTechsGrid.DataSourceID = "Techs";
-
+            //Hides labels
             lblViewLevel1.Visible = false;
             lblViewLevel2.Visible = false;
             lblEditDetails.Visible = false;
             lblSearchByID.Visible = false;
+
+            //Sets current label to  be visible
             lblViewAllTechs.Visible = true;
 
-            //ViewAllTechsGrid.Visible = true;            
+            //Enabled/Disabled buttons
+            btnViewAllTechs.Enabled = false;
+            btnEditDetails.Enabled = true;
+            btnViewLevel1.Enabled = true;
+            btnViewLevel2.Enabled = true;
+            btnEditGrid.Visible = false;
+            btnUpdate.Visible = false;
+            BtnCancel.Visible = false;
         }
 
         //When this event is fired i can access the current row and all of its data - Jak
         protected void ViewAllTechsGrid_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //if (e.Row.RowType == DataControlRowType.DataRow) //Making sure that the row being accessed contains data
-            //{
-            //    DataRowView currentRow = (DataRowView)e.Row.DataItem; //Retrieves a reference to the data used to databound the row
+            if (e.Row.RowType == DataControlRowType.DataRow) //Making sure that the row being accessed contains data
+            {
+                DataRowView currentRow = (DataRowView)e.Row.DataItem; //Retrieves a reference to the data used to databound the row
 
-            //    //Finds the employed column and converts the database int values into readable text for the end user
-            //    if (Convert.ToInt32(currentRow["Employed"]) == 0)       //Technician Employment database reference
-            //    {                                                       //0 = Employed                                                            
-            //        e.Row.Cells[4].Text = "Yes";                        //1 = Unemployed
-            //    }
-            //    else if (Convert.ToInt32(currentRow["Employed"]) == 1)
-            //    {
-            //        e.Row.Cells[4].Text = "No";
+                //Finds the employed column and converts the database int values into readable text for the end user
+                if (Convert.ToInt32(currentRow["Employed"]) == 0)       //Technician Employment database reference
+                {                                                       //0 = Employed                                                            
+                    e.Row.Cells[4].Text = "Yes";                        //1 = Unemployed
+                }
+                else if (Convert.ToInt32(currentRow["Employed"]) == 1)
+                {
+                    e.Row.Cells[4].Text = "No";
 
-            //        //e.Row.ForeColor = System.Drawing.Color.Red;   //Undecided on the colour, either red text white background, red cell, or red whole row
-            //        e.Row.Cells[4].BackColor = System.Drawing.Color.Red;
-            //        //e.Row.BackColor = System.Drawing.Color.Red;
-            //    }
+                    //e.Row.ForeColor = System.Drawing.Color.Red;   //Undecided on the colour, either red text white background, red cell, or red whole row
+                    //e.Row.Cells[4].BackColor = System.Drawing.Color.Red;
+                    e.Row.BackColor = System.Drawing.Color.Red;
+                }
 
-            //    //Technician TypeID database reference
-            //    //1 = Support Officer Level 1
-            //    //2 = Technician Level 2
-            //    if (Convert.ToInt32(currentRow["TypeID"]) == 1)
-            //    {
-            //        e.Row.Cells[5].Text = "Support Officer Level 1";
-            //    }
-            //    else if (Convert.ToInt32(currentRow["TypeID"]) == 2)
-            //    {
-            //        e.Row.Cells[5].Text = "Technician Level 2";
-            //    }
-            //}
+                //Technician TypeID database reference
+                //1 = Support Officer Level 1
+                //2 = Technician Level 2
+                if (Convert.ToInt32(currentRow["TypeID"]) == 1)
+                {
+                    e.Row.Cells[5].Text = "Support Officer Level 1";
+                }
+                else if (Convert.ToInt32(currentRow["TypeID"]) == 2)
+                {
+                    e.Row.Cells[5].Text = "Technician Level 2";
+                }
+            }
         }
 
         protected void btnViewLevel1_Click(object sender, EventArgs e)
         {
-            //ViewAllTechsGrid.Visible = false;
-
-            //Techs.SelectCommand = "SELECT Technicians.* FROM Technicians WHERE (TypeID = 1)";
-            ViewAllTechsGrid.DataSourceID = "ViewLevel1";
-
+            ViewAllTechsGrid.DataSourceID = "ViewLevel1"; //Changes the datasource id
+            
             lblViewLevel1.Visible = true;
+            
+            //Hides labels
             lblViewLevel2.Visible = false;
             lblEditDetails.Visible = false;
             lblSearchByID.Visible = false;
             lblViewAllTechs.Visible = false;
 
-            //ViewAllTechsGrid.Visible = true;
+
+            btnViewAllTechs.Enabled = true;
+            btnEditDetails.Enabled = true;
+            btnViewLevel1.Enabled = false;
+            btnViewLevel2.Enabled = true;
+            btnEditGrid.Visible = false;
+            btnUpdate.Visible = false;
+            BtnCancel.Visible = false;
         }
 
         protected void btnViewLevel2_Click(object sender, EventArgs e)
@@ -92,14 +105,19 @@ namespace TechSupport.Admin
             lblSearchByID.Visible = false;
             lblViewAllTechs.Visible = false;
 
-
+            //Enabled/Disabled buttons
+            btnViewAllTechs.Enabled = true;
+            btnEditDetails.Enabled = true;
+            btnViewLevel1.Enabled = true;
+            btnViewLevel2.Enabled = false;
+            btnEditGrid.Visible = false;
+            btnUpdate.Visible = false;
+            BtnCancel.Visible = false;
         }
         //http://www.aspsnippets.com/Articles/Bulk-Edit-Update-Multiple-Rows-in-ASPNet-GridView-using-CheckBoxes.aspx //Maybe add a hidden column for chkboxes and set them al to checked when the button is pressed?
         protected void btnEditDetails_Click(object sender, EventArgs e)
         {
             ViewAllTechsGrid.DataSourceID = "EditDetails";
-
-            //ViewAllTechsGrid.Columns[6].Visible = true; //Sets the checkbox field to be visible //TESTING
 
             lblViewLevel1.Visible = false;
             lblViewLevel2.Visible = false;
@@ -107,7 +125,12 @@ namespace TechSupport.Admin
             lblSearchByID.Visible = false;
             lblViewAllTechs.Visible = false;
 
+            //Enabled/Disabled buttons
+            btnViewAllTechs.Enabled = true;
             btnEditDetails.Enabled = false;
+            btnViewLevel1.Enabled = true;
+            btnViewLevel2.Enabled = true;
+
             btnEditGrid.Visible = true;
         }
 
@@ -120,6 +143,15 @@ namespace TechSupport.Admin
             lblEditDetails.Visible = false;
             lblSearchByID.Visible = true;
             lblViewAllTechs.Visible = false;
+
+            btnViewAllTechs.Enabled = true;
+            btnEditDetails.Enabled = true;
+            btnViewLevel1.Enabled = true;
+            btnViewLevel2.Enabled = true;
+
+            btnEditGrid.Visible = false;
+            btnUpdate.Visible = false;
+            BtnCancel.Visible = false;
         }
 
         protected void ViewAllTechsGrid_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,7 +171,7 @@ namespace TechSupport.Admin
 
         protected void btnEditGrid_Click(object sender, EventArgs e)
         {
-            //This only works if the ViewAllTechsGrid_RowDataBound event is disabled, im assuming once it hits the converted text it doesnt know what to do with it
+            //This only works if the ViewAllTechsGrid_RowDataBound event is disabled, im assuming once it hits the converted text it doesnt know what to do with it - Jak
             foreach (GridViewRow row in ViewAllTechsGrid.Rows) //Looping through each row in the grid
             {
                 if (row.RowType == DataControlRowType.DataRow) //Checks to make sure the row contains data
@@ -152,16 +184,49 @@ namespace TechSupport.Admin
                         {
                             row.Cells[i].Controls.OfType<TextBox>().FirstOrDefault().Visible = true; //Finds all the textboxes in the gridview and make them visible
                         }
-                        if (row.Cells[i].Controls.OfType<DropDownList>().ToList().Count > 0)
+
+                        //Finds all dropdown boxes //Code for Employed dropdown box
+                        if (row.Cells[i].Controls.OfType<DropDownList>().ToList().Count > 0 && 
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown1")) //Finds the employed dropdown box
                         {
-                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = true; //Finds all the textboxes in the gridview and make them visible
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = true; //Makes it visible
+                            
+                            //if the data pulled from the database is 0, then it will set the dropdown box in edit mode to contain the value "Yes"
+                            if (row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text == "Yes")                 //Database Reference
+                            {                                                                                       //Employed: 0
+                                row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 0;    //Unemployed: 1
+                            }
+                            //if the data pulled from the database is 1, then it will set the dropdown box in edit mode to contain the value "No"
+                            if (row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text == "No")
+                            {
+                                row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 1;
+                            }
                         }
-                    }
-                }
-            }
+
+                        //Finds all dropdown boxes //Code for Type dropdown box
+                        if (row.Cells[i].Controls.OfType<DropDownList>().ToList().Count > 0 &&
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown2")) //Finds the employed dropdown box
+                        {
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = true; //Makes it visible
+
+                            //if the data pulled from the database is 1, then it will set the dropdown box in edit mode to contain the value "Support Officer" - Jak
+                            if (row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text == "Support Officer Level 1")   //Database Reference
+                            {                                                                                               //Technician: 2
+                                row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 0;            //Support: 1
+                            }
+                            //if the data pulled from the database is 2, then it will set the dropdown box in edit mode to contain the value "Technician" - Jak
+                            if (row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text == "Technician Level 2")
+                            {
+                                row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 1;
+                            }
+                        } //End if
+                    }//End for loop
+                }//End outer if datarows
+            }//End foreach
+
             btnEditGrid.Visible = false;
             btnUpdate.Visible = true;
-            BtnCancel.Visible = false;
+            BtnCancel.Visible = true;
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
