@@ -11,7 +11,7 @@ namespace TechSupport.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //INSERT INTO Customers(CustomerID, Name, Address, City, State, ZipCode, country, Phone, Email) VALUES (,,,,,,,,)
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿body {
+﻿@import url("GridView.css");
+
+body {
     color: #000000;
     font-family: Verdana;
     font-size: .80em;
@@ -40,4 +42,3 @@ h1 {
     color: #465c71;
     text-decoration: none;    
 }
-
