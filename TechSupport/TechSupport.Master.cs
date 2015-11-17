@@ -13,33 +13,21 @@ namespace TechSupport
     {
         public SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["TechSupportConnectionString"].ToString());
         public SqlDataReader dr;
+        public SqlDataReader dr2;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             string name = "SELECT Name FROM Technicians WHERE TechID ='" + Session["username"] + "'";
-            string level1 = "SELECT TechID FROM Technicians WHERE TypeID = 1";
-            string level2 = "SELECT TechID FROM Technicians WHERE TypeID = 2";
+            //string level1 = "SELECT TechID FROM Technicians WHERE TypeID = 1 AND TechID ='"+Session["username"]+"'";
+            string level1 = "SELECT TechID FROM Technicians WHERE (TypeID = '1') AND TechID ='" + Session["username"] + "'";
+            string level2 = "SELECT TechID FROM Technicians WHERE (TypeID = '2') AND TechID ='" + Session["username"] + "'";
 
             SqlCommand showname = new SqlCommand(name, con);
             SqlCommand showlvl1 = new SqlCommand(level1, con);
             SqlCommand showlvl2 = new SqlCommand(level2, con);
-                       
-            con.Open();
 
-            //dr = showlvl1.ExecuteReader();
             
-
-            //if (dr.HasRows)
-            //{
-            //    while (dr.Read())
-            //    {
-                    
-            //        SqlCommand showname = new SqlCommand(name, con);
-            //        lblSessionLogin.Text = showname.ExecuteScalar().ToString();
-            //    }
-                
-            //}
-
+            con.Open();
 
             if (Session["username"].Equals("Admin") || Session["username"].Equals("admin"))
             {
@@ -48,29 +36,37 @@ namespace TechSupport
                 Menu2.Visible = false;
                 Menu3.Visible = false;
             }
-            else if (Session["username"].Equals(showlvl1.ExecuteScalar().ToString()))
-            {
-                lblSessionLogin.Text = "Welcome, " + showname.ExecuteScalar().ToString() + ".";
-
-                Menu1.Visible = false;
-                Menu3.Visible = false;
-
-            }
-            else if (Session["username"].Equals(showlvl2.ExecuteScalar().ToString()))
-            {
-                lblSessionLogin.Text = "Welcome, " + showname.ExecuteScalar().ToString() + ".";
-
-                Menu1.Visible = false;
-                Menu2.Visible = false;
-            }
             else
             {
-                lblSessionLogin.Text = "Welcome, Stranger.";
-                Menu1.Visible = false;
-                Menu2.Visible = false;
-                LoginStatus1.Visible = false;
-            }
+                dr = showlvl1.ExecuteReader();
+                while (dr.Read())
+                {
+                    string techId = dr["TechID"].ToString();
 
+                    if (Session["username"].Equals(techId))
+                    {
+                        lblSessionLogin.Text = "Welcome, " + showname.ExecuteScalar().ToString() + ".";
+
+                        Menu1.Visible = false;
+                        Menu3.Visible = false;
+
+                    }
+                }
+
+                dr2 = showlvl2.ExecuteReader();
+                while (dr2.Read())
+                {
+                    string techId2 = dr2["TechID"].ToString();
+
+                    if (Session["username"].Equals(techId2))
+                    {
+                        lblSessionLogin.Text = "Welcome, " + showname.ExecuteScalar().ToString() + ".";
+
+                        Menu1.Visible = false;
+                        Menu2.Visible = false;
+                    }
+                }
+            }
             con.Close();
 
             
