@@ -5,7 +5,7 @@
     Project: Revai_Jak_TechSupport_AS3
     Description: Create Web App in C#
     Version: 1.0
-    NOTE: The design of these pages were created on a monitor with a resolution of: 1920x1080, if the pages look funky then that is why.--%>
+    NOTE: The design of these pages were created on a monitor with a resolution of: 1920x1080, if the pages look funny on a smaller resolution then that is why.--%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -109,6 +109,9 @@
     <asp:Label ID="lblEditDetails" runat="server" Text="Edit Technicians Details" Visible="False" Style="font-weight: 700"></asp:Label>
     <asp:Label ID="lblSearchByID" runat="server" Text="View Technicians By ID" Visible="False" Style="font-weight: 700"></asp:Label>
 
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+    
     <asp:GridView class="gridview" ID="ViewAllTechsGrid" runat="server" Style="text-align: left;" OnRowDataBound="ViewAllTechsGrid_RowDataBound" AutoGenerateColumns="False" DataKeyNames="TechID" OnRowEditing="ViewAllTechsGrid_RowEditing">
         <Columns>
             <asp:BoundField DataField="TechID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="TechID"></asp:BoundField>
@@ -150,26 +153,36 @@
                  <ItemTemplate>
                     <asp:Label ID="Label5" runat="server" Text='<%# Bind("TypeID") %>'></asp:Label>
                      <asp:DropDownList ID="DropDown2" runat="server" Visible="False" AppendDataBoundItems="True">
-                        <asp:ListItem Text="Support Officer Level 1" Value="0" />
-                        <asp:ListItem Text="Technician Level 2" Value="1" />
+                        <asp:ListItem Text="Support Officer Level 1" Value="1" />
+                        <asp:ListItem Text="Technician Level 2" Value="2" />
                      </asp:DropDownList>
                 </ItemTemplate>
             </asp:TemplateField>
-
-<%--            <asp:TemplateField Visible="False">
-                <ItemTemplate>
-                    <asp:CheckBox ID="CheckAll" runat="server" AutoPostBack="true" OnCheckedChanged="CheckAll_CheckedChanged" Visible="True" />
-                </ItemTemplate>
-            </asp:TemplateField>--%>
         </Columns>
     </asp:GridView>
     <br />
     <asp:Button ID="btnEditGrid" runat="server" Text="Edit" class="gridview" Visible="false" OnClick="btnEditGrid_Click"/>
     <asp:Button ID="btnUpdate" runat="server" Text="Update" class="gridview" Visible="false" OnClick="btnUpdate_Click" />&nbsp
     <asp:Button ID="BtnCancel" runat="server" Text="Cancel" Visible="false" OnClick="BtnCancel_Click"/>
+    <br />
+    Employed conversion:
+    <asp:ListBox ID="ListBox1" runat="server" Width="88px"></asp:ListBox>
+    <br />
+    Type converison:
+    <asp:ListBox ID="ListBox2" runat="server" Width="88px"></asp:ListBox>
 
 
-    <asp:SqlDataSource ID="EditDetails" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT Technicians.* FROM Technicians"></asp:SqlDataSource>
+
+    <asp:SqlDataSource ID="EditDetails" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT * FROM [Technicians]" UpdateCommand="UPDATE [Technicians] SET [Name] = @Name, [Email] = @Email, [Phone] = @Phone, [Employed] = @Employed, [TypeID] = @TypeID WHERE [TechID] = @TechID">
+        <UpdateParameters>
+            <asp:Parameter Name="Name" Type="String" />
+            <asp:Parameter Name="Email" Type="String" />
+            <asp:Parameter Name="Phone" Type="String" />
+            <asp:Parameter Name="Employed" Type="Int32" />
+            <asp:Parameter Name="TypeID" Type="Int32" />
+            <asp:Parameter Name="TechID" Type="Int32" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
 
     <asp:SqlDataSource ID="ViewLevel2" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT Technicians.* FROM Technicians WHERE (TypeID = 2)"></asp:SqlDataSource>
 

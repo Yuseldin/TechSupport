@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 //Author Block
 //Author: Jak Revai
@@ -53,17 +55,15 @@ namespace TechSupport.Admin
                 DataRowView currentRow = (DataRowView)e.Row.DataItem; //Retrieves a reference to the data used to databound the row
 
                 //Finds the employed column and converts the database int values into readable text for the end user
-                if (Convert.ToInt32(currentRow["Employed"]) == 0)       //Technician Employment database reference
-                {                                                       //0 = Employed                                                            
-                    e.Row.Cells[4].Text = "Yes";                        //1 = Unemployed
+                if (Convert.ToInt32(currentRow["Employed"]) == 0)                           //Technician Employment database reference
+                {                                                                           //0 = Employed                                                            
+                    e.Row.Cells[4].Controls.OfType<Label>().FirstOrDefault().Text = "Yes";  //1 = Unemployed
                 }
                 else if (Convert.ToInt32(currentRow["Employed"]) == 1)
                 {
-                    e.Row.Cells[4].Text = "No";
+                    e.Row.Cells[4].Controls.OfType<Label>().FirstOrDefault().Text = "No";
 
-                    //e.Row.ForeColor = System.Drawing.Color.Red;   //Undecided on the colour, either red text white background, red cell, or red whole row
-                    //e.Row.Cells[4].BackColor = System.Drawing.Color.Red;
-                    e.Row.BackColor = System.Drawing.Color.Red;
+                    e.Row.Cells[4].BackColor = System.Drawing.Color.Red;
                 }
 
                 //Technician TypeID database reference
@@ -71,16 +71,16 @@ namespace TechSupport.Admin
                 //2 = Technician Level 2
                 if (Convert.ToInt32(currentRow["TypeID"]) == 1)
                 {
-                    e.Row.Cells[5].Text = "Support Officer Level 1";
+                    e.Row.Cells[5].Controls.OfType<Label>().FirstOrDefault().Text = "Support Officer Level 1";
                 }
                 else if (Convert.ToInt32(currentRow["TypeID"]) == 2)
                 {
-                    e.Row.Cells[5].Text = "Technician Level 2";
+                    e.Row.Cells[5].Controls.OfType<Label>().FirstOrDefault().Text = "Technician Level 2";
                 }
             }
         }
 
-        protected void btnViewLevel1_Click(object sender, EventArgs e)
+        protected void btnViewLevel1_Click(object sender, EventArgs e) //REMINDER: ADD CODE TO DISPLAY IF NOTHING EXISTS
         {
             ViewAllTechsGrid.DataSourceID = "ViewLevel1"; //Changes the datasource id
             
@@ -121,7 +121,7 @@ namespace TechSupport.Admin
             btnUpdate.Visible = false;
             BtnCancel.Visible = false;
         }
-        //http://www.aspsnippets.com/Articles/Bulk-Edit-Update-Multiple-Rows-in-ASPNet-GridView-using-CheckBoxes.aspx //Maybe add a hidden column for chkboxes and set them al to checked when the button is pressed?
+       
         protected void btnEditDetails_Click(object sender, EventArgs e)
         {
             ViewAllTechsGrid.DataSourceID = "EditDetails";
@@ -181,6 +181,8 @@ namespace TechSupport.Admin
             //This only works if the ViewAllTechsGrid_RowDataBound event is disabled, im assuming once it hits the converted text it doesnt know what to do with it - Jak
             foreach (GridViewRow row in ViewAllTechsGrid.Rows) //Looping through each row in the grid
             {
+                row.Cells[4].BackColor = System.Drawing.Color.Empty; //Resets the back colour of the employed cell
+
                 if (row.RowType == DataControlRowType.DataRow) //Checks to make sure the row contains data
                 {
                     for (int i = 1; i < row.Cells.Count; i++)
@@ -199,12 +201,12 @@ namespace TechSupport.Admin
                             row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = true; //Makes it visible
                             
                             //if the data pulled from the database is 0, then it will set the dropdown box in edit mode to contain the value "Yes"
-                            if (row.Cells[i].Text == "Yes")                                                          //Database Reference
+                            if (row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text == "Yes")                //Database Reference
                             {                                                                                        //Employed: 0
                                 row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 0;     //Unemployed: 1
                             }
                             //if the data pulled from the database is 1, then it will set the dropdown box in edit mode to contain the value "No"
-                            if (row.Cells[i].Text == "No")
+                            if (row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text == "No")
                             {
                                 row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 1;
                             }
@@ -217,12 +219,12 @@ namespace TechSupport.Admin
                             row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = true; //Makes it visible
 
                             //if the data pulled from the database is 1, then it will set the dropdown box in edit mode to contain the value "Support Officer" - Jak
-                            if (row.Cells[i].Text == "Support Officer Level 1")   //Database Reference
+                            if (row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text == "Support Officer Level 1")   //Database Reference
                             {                                                                                               //Technician: 2
                                 row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 0;            //Support: 1
                             }
                             //if the data pulled from the database is 2, then it will set the dropdown box in edit mode to contain the value "Technician" - Jak
-                            if (row.Cells[i].Text == "Technician Level 2")
+                            if (row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text == "Technician Level 2")
                             {
                                 row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex = 1;
                             }
@@ -238,8 +240,96 @@ namespace TechSupport.Admin
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            //Sends data to database
+            btnUpdate.Visible = false;
+            BtnCancel.Visible = false;
+            btnEditGrid.Visible = true;
 
+            foreach (GridViewRow row in ViewAllTechsGrid.Rows) //Converting the dropdown boxes to integers
+            {
+                if (row.RowType == DataControlRowType.DataRow) //Checks to make sure the row contains data
+                {
+                    for (int i = 1; i < row.Cells.Count; i++)
+                    {
+                        //Employed dropdown boxes
+                        if (row.Cells[i].Controls.OfType<DropDownList>().ToList().Count > 0 &&
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex == 0 &&
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown1")) //If the value in the dropdown list is "Yes"
+                        {
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value = "0";
+                            Convert.ToInt32(row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Text);
+                        }
+                        if (row.Cells[i].Controls.OfType<DropDownList>().ToList().Count > 0 &&
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex == 1 &&
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown1")) //If the value in the dropdown list is "No"
+                        {
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value = "1";
+                            Convert.ToInt32(row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Text);
+                        }
+
+                        //Technician Type dropdown boxes
+                        if (row.Cells[i].Controls.OfType<DropDownList>().ToList().Count > 0 &&
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedValue == "Support Officer Level 1" &&
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown2")) //If the value in the dropdown list is "Level 1"
+                        {
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value = "1";
+                            Convert.ToInt32(row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Text);
+                        }
+                        if (row.Cells[i].Controls.OfType<DropDownList>().ToList().Count > 0 &&
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedValue == "Technician Level 2" &&
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown2")) //If the value in the dropdown list is "Level 2"
+                        {
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value = "2";
+                            Convert.ToInt32(row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Text);
+                        }
+                    }
+                }
+            }
+
+            //TESTING CONVERSION
+            //foreach (GridViewRow row in ViewAllTechsGrid.Rows)
+            //{
+            //    if (row.RowType == DataControlRowType.DataRow)
+            //    {
+            //        ListBox1.Items.Add(row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value);
+            //        ListBox2.Items.Add(row.Cells[5].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value);
+            //    }
+            //}
+
+
+
+            //UPDATING THE DATABASE
+            foreach (GridViewRow row in ViewAllTechsGrid.Rows)
+            {
+                if (row.RowType == DataControlRowType.DataRow)
+                {
+
+                    SqlCommand cmd = new SqlCommand("UPDATE [Technicians] SET [Name] = @Name, [Email] = @Email, [Phone] = @Phone, [Employed] = @Employed, [TypeID] = @TypeID WHERE [TechID] = @TechID");
+                    cmd.Parameters.AddWithValue("@Name", row.Cells[1].Controls.OfType<TextBox>().FirstOrDefault().Text);
+                    cmd.Parameters.AddWithValue("@Email", row.Cells[2].Controls.OfType<TextBox>().FirstOrDefault().Text);
+                    cmd.Parameters.AddWithValue("@Phone", row.Cells[3].Controls.OfType<TextBox>().FirstOrDefault().Text);
+                    cmd.Parameters.AddWithValue("@Employed", row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value);
+                    cmd.Parameters.AddWithValue("@TypeID", row.Cells[5].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value);
+                    cmd.Parameters.AddWithValue("@TechID", ViewAllTechsGrid.DataKeys[row.RowIndex].Value);
+
+                    //Connection
+                    string conStr = ConfigurationManager.ConnectionStrings["TechSupportConnectionString"].ConnectionString;
+                    using (SqlConnection con = new SqlConnection(conStr))
+                    {
+                        cmd.Connection = con;
+                        try
+                        {
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                        catch (Exception)
+                        {                            
+                            throw;
+                        }                  
+                    }
+                }
+            }
+            ViewAllTechsGrid.DataBind(); //Rebinds the grid to the datasource and refreshes it
         }
 
         protected void BtnCancel_Click(object sender, EventArgs e) //Error with the drop down boxes, sends over the data when it should just cancel and do nothing
@@ -247,6 +337,11 @@ namespace TechSupport.Admin
             //Turns the gridview back into a non-editable state
             foreach (GridViewRow row in ViewAllTechsGrid.Rows) //Looping through each row in the grid
             {
+                if (row.Cells[4].Controls.OfType<Label>().FirstOrDefault().Text == "No") //If a technician is unemployed sets the cell back colour to be red
+                {
+                    row.Cells[4].BackColor = System.Drawing.Color.Red;
+                }
+
                 if (row.RowType == DataControlRowType.DataRow) //Checks to make sure the row contains data
                 {
                     for (int i = 1; i < row.Cells.Count; i++)
@@ -256,18 +351,18 @@ namespace TechSupport.Admin
                         if (row.Cells[i].Controls.OfType<TextBox>().ToList().Count > 0)
                         {
                             row.Cells[i].Controls.OfType<TextBox>().FirstOrDefault().Visible = false; //Finds all the textboxes in the gridview and make them visible
+                            row.Cells[i].Controls.OfType<TextBox>().FirstOrDefault().Text = row.Cells[i].Controls.OfType<Label>().FirstOrDefault().Text;
                         }
+
                         if (row.Cells[i].Controls.OfType<DropDownList>().ToList().Count > 0 &&
                             row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown1"))
                         {
-                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = false; //Finds all the textboxes in the gridview and make them visible
-                            row.Cells[i].Text = row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Text;
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = false; //Finds all the textboxes in the gridview and make them visible                            
                         }
                         if (row.Cells[i].Controls.OfType<DropDownList>().ToList().Count > 0 &&
                             row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown2"))
                         {
-                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = false; //Finds all the textboxes in the gridview and make them visible
-                            row.Cells[i].Text = row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Text;
+                            row.Cells[i].Controls.OfType<DropDownList>().FirstOrDefault().Visible = false; //Finds all the textboxes in the gridview and make them visible                            
                         }
                         
                     }
