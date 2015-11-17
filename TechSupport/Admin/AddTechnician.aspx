@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TechSupport.Master" AutoEventWireup="true" CodeBehind="AddTechnician.aspx.cs" Inherits="TechSupport.Admin.AddNewMember" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TechSupport.Master" AutoEventWireup="true" CodeBehind="AddTechnician.aspx.cs" Inherits="TechSupport.Admin.AddTechnician" %>
 
 <script runat="server">
     private void insertTechnician(object source, EventArgs e)

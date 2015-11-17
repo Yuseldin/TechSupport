@@ -143,7 +143,7 @@ namespace TechSupport.Technicians
             ParameterCollection parameters = SqlDataSource_Incidents.UpdateParameters;
             string adsf = GridView_Incidents.SelectedValue.ToString();
             SqlDataSource_Incidents.Update();
-            GridView_Incidents.DataBind();
+            GridView_Incidents.DataBind();            
             ResetForm();
         }
 

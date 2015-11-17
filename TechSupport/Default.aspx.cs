@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -16,7 +17,7 @@ namespace TechSupport
 
         protected void Page_Load(object sender, EventArgs e)
         {         
-            if (User.IsInRole("Admin"))//Session["username"].Equals("Admin")||Session["username"].Equals("admin"))
+            if (User.IsInRole("Admin")||User.IsInRole("Support Officer Level 1 "))
             {
                 GridView1.Visible = false;
                 btnClose.Visible = false;
@@ -25,7 +26,7 @@ namespace TechSupport
             }
             else 
             {
-                string view = "SELECT * FROM Incidents WHERE TechID ='" + Session["username"] + "'";
+                string view = "SELECT * FROM Incidents WHERE TechID ='" + Session["username"] + "' AND ([DateClosed] IS NULL)";
                 SqlDataSource1.SelectCommand = view;
             }
 
@@ -36,9 +37,17 @@ namespace TechSupport
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
-            string close = "UPDATE Incidents SET DateClosed ='" + DateTime.Now + "'WHERE IncidentID ='" + txtClose.Text + "' AND TechID ='" + Session["username"] + "' "; 
-            
 
+            //DateTime date = DateTime.Now;
+            DateTime date = DateTime.Now;
+            
+            string datet = date.ToString("MM/dd/yyyy");
+            
+            //lblClosed.Text = datet;
+
+            string close = "UPDATE Incidents SET DateClosed ='" + datet + "' WHERE IncidentID ='" + txtClose.Text + "' AND TechID ='" + Session["username"] + "' ";
+
+            
             if (txtClose.Text == "")
             {
                 lblError.Visible = true;
