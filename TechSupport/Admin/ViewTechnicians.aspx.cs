@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 //Author Block
 //Author: Jak Revai
@@ -45,6 +46,9 @@ namespace TechSupport.Admin
             btnEditGrid.Visible = false;
             btnUpdate.Visible = false;
             BtnCancel.Visible = false;
+
+            //lblErrorText.Visible = false;
+            ViewAllTechsGrid.Visible = true;
         }
 
         //When this event is fired i can access the current row and all of its data - Jak
@@ -85,7 +89,8 @@ namespace TechSupport.Admin
             ViewAllTechsGrid.DataSourceID = "ViewLevel1"; //Changes the datasource id
             
             lblViewLevel1.Visible = true;
-            
+
+            //lblErrorText.Visible = false;
             //Hides labels
             lblViewLevel2.Visible = false;
             lblEditDetails.Visible = false;
@@ -100,11 +105,34 @@ namespace TechSupport.Admin
             btnEditGrid.Visible = false;
             btnUpdate.Visible = false;
             BtnCancel.Visible = false;
+
+            
+            ViewAllTechsGrid.Visible = true;
+
+            if (ViewAllTechsGrid.Rows.Count == 0)
+            {
+                //lblErrorText.Visible = true;
+                //lblErrorText.Text = "No Technicians exist in that role.";
+            }
+            else
+            {
+                //lblErrorText.Visible = false;
+            }
         }
 
         protected void btnViewLevel2_Click(object sender, EventArgs e)
         {
             ViewAllTechsGrid.DataSourceID = "ViewLevel2";
+
+            if (ViewAllTechsGrid.Rows.Count == 0)
+            {
+                //lblErrorText.Visible = true;
+                //lblErrorText.Text = "No Technicians exist in that role.";
+            }
+            else
+            {
+                //lblErrorText.Visible = false;
+            }
 
             lblViewLevel1.Visible = false;
             lblViewLevel2.Visible = true;
@@ -120,6 +148,9 @@ namespace TechSupport.Admin
             btnEditGrid.Visible = false;
             btnUpdate.Visible = false;
             BtnCancel.Visible = false;
+
+            //lblErrorText.Visible = false;
+            ViewAllTechsGrid.Visible = true;
         }
        
         protected void btnEditDetails_Click(object sender, EventArgs e)
@@ -138,12 +169,15 @@ namespace TechSupport.Admin
             btnViewLevel1.Enabled = true;
             btnViewLevel2.Enabled = true;
 
+            //lblErrorText.Visible = false; //Need to set them to false when any button is pressed, maybe group the buttons??
+            ViewAllTechsGrid.Visible = true;
+
             btnEditGrid.Visible = true;
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            //ViewAllTechsGrid.DataSourceID = "ViewLevel2";
+            ViewAllTechsGrid.DataSourceID = "TechSearch";
 
             lblViewLevel1.Visible = false;
             lblViewLevel2.Visible = false;
@@ -154,26 +188,70 @@ namespace TechSupport.Admin
             btnViewAllTechs.Enabled = true;
             btnEditDetails.Enabled = true;
             btnViewLevel1.Enabled = true;
-            btnViewLevel2.Enabled = true;
+            btnViewLevel2.Enabled = true;            
 
             btnEditGrid.Visible = false;
             btnUpdate.Visible = false;
             BtnCancel.Visible = false;
-        }
 
-        protected void ViewAllTechsGrid_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            string pattern = @"[a-z A-Z]|[^\w \xC0-\xFF]"; //Pattern that matches anything but a number
+            Regex regexNotNumbers = new Regex(pattern);
+            Match match = regexNotNumbers.Match(txtBoxSearch.Text);
+            
+            if (txtBoxSearch.Text.Equals(""))
+            {
+                lblErrorText.Text = "The search box is empty, please input a number to continue.";
+                lblErrorText.Visible = true;
+                ViewAllTechsGrid.Visible = false;
+            }
+            else if (match.Success)
+            {
+                lblErrorText.Text = "The search box contains invalid characters or is empty, please input a number to continue.";
+                lblErrorText.Visible = true;
+                ViewAllTechsGrid.Visible = false;
+            }
+            else
+            {
+                lblErrorText.Visible = false;
+                ViewAllTechsGrid.Visible = true;
+                TechSearch.SelectCommand = "SELECT * FROM Technicians WHERE TechID = '" + txtBoxSearch.Text + "'";
+            }
 
-        }
+            SqlCommand cmd = new SqlCommand("SELECT TechID FROM Technicians WHERE TechID = '" + txtBoxSearch.Text + "'");
 
-        protected void ViewAllTechsGrid_RowEditing(object sender, GridViewEditEventArgs e)
-        {
+            if (!match.Success)
+            {
+                //Connection
+                string conStr = ConfigurationManager.ConnectionStrings["TechSupportConnectionString"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    cmd.Connection = con;
+                    try
+                    {
+                        con.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
 
-        }
+                        if (reader.HasRows == false) //If the reader hasn't retrieved any rows then the id doesnt exist in the database, display error message
+                        {
+                            lblErrorText.Visible = true;
+                            lblErrorText.Text = "That Technician doesn't exist in the database.";
+                        }
+                        con.Close();
 
-        protected void CheckAll_CheckedChanged(object sender, EventArgs e)
-        {
-
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }            
+            }
+            else
+            {
+                lblErrorText.Text = "The search box contains invalid characters or is empty, please input a number to continue.";
+                lblErrorText.Visible = true;
+                ViewAllTechsGrid.Visible = false;
+            }
+            ViewAllTechsGrid.DataBind();
         }
 
         protected void btnEditGrid_Click(object sender, EventArgs e)
@@ -285,18 +363,6 @@ namespace TechSupport.Admin
                 }
             }
 
-            //TESTING CONVERSION
-            //foreach (GridViewRow row in ViewAllTechsGrid.Rows)
-            //{
-            //    if (row.RowType == DataControlRowType.DataRow)
-            //    {
-            //        ListBox1.Items.Add(row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value);
-            //        ListBox2.Items.Add(row.Cells[5].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value);
-            //    }
-            //}
-
-
-
             //UPDATING THE DATABASE
             foreach (GridViewRow row in ViewAllTechsGrid.Rows)
             {
@@ -373,5 +439,9 @@ namespace TechSupport.Admin
             btnEditGrid.Visible = true;
         }
 
+        protected void txtBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -103,6 +103,15 @@ namespace TechSupport.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtBoxSearch;
         
         /// <summary>
+        /// txtCompareTechID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCompareTechID;
+        
+        /// <summary>
         /// btnSearch control.
         /// </summary>
         /// <remarks>
@@ -157,13 +166,22 @@ namespace TechSupport.Admin {
         protected global::System.Web.UI.WebControls.Label lblSearchByID;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
+        /// lblErrorText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorText;
         
         /// <summary>
         /// ViewAllTechsGrid control.
@@ -202,22 +220,13 @@ namespace TechSupport.Admin {
         protected global::System.Web.UI.WebControls.Button BtnCancel;
         
         /// <summary>
-        /// ListBox1 control.
+        /// TechSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBox1;
-        
-        /// <summary>
-        /// ListBox2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBox2;
+        protected global::System.Web.UI.WebControls.SqlDataSource TechSearch;
         
         /// <summary>
         /// EditDetails control.
