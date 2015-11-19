@@ -24,15 +24,27 @@
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="UserId" DataSourceID="SqlDataSource1" Height="50px" Width="125px">
+    <%--<asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="UserId" DataSourceID="SqlDataSource1" Height="50px" Width="125px">
         <Fields>
             <asp:BoundField DataField="UserId" HeaderText="UserId" ReadOnly="True" SortExpression="UserId" />
         </Fields>
-    </asp:DetailsView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETConnectionString %>" SelectCommand="SELECT UserId FROM aspnet_Membership ORDER BY UserId DESC"></asp:SqlDataSource>
+    </asp:DetailsView>--%>    <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETConnectionString %>" SelectCommand="SELECT UserId FROM aspnet_Membership ORDER BY UserId DESC"></asp:SqlDataSource>--%>
 
     <hr />
-    <asp:SqlDataSource ID="InsertTech" runat="server" InsertCommand="INSERT INTO Technicians(Name, Email, Phone, TypeID, Employed) VALUES (@Name, @Email, @Phone, @TypeID, 0)"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="InsertTech" runat="server" InsertCommand="INSERT INTO Technicians(Name, Email, Phone, TypeID, Employed) VALUES (@Name, @Email, @Phone, @TypeID, 0)" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT TechID FROM Technicians ORDER BY TechID DESC">
+        <InsertParameters>
+            <asp:Parameter Name="Name" />
+            <asp:Parameter Name="Email" />
+            <asp:Parameter Name="Phone" />
+            <asp:Parameter Name="TypeID" />
+        </InsertParameters>
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="InsertID" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT TechID FROM Technicians ORDER BY TechID DESC"></asp:SqlDataSource>
+    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="TechID" DataSourceID="InsertID" Height="50px" Visible="False" Width="125px">
+        <Fields>
+            <asp:BoundField DataField="TechID" HeaderText="TechID" InsertVisible="False" ReadOnly="True" SortExpression="TechID" />
+        </Fields>
+    </asp:DetailsView>
     <asp:SqlDataSource ID="CreateUserName" runat="server"></asp:SqlDataSource>
     <div style="width: 293px; margin-left: auto; margin-right: auto;">
        <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" OnCreatedUser="CreateUserWizard1_CreatedUser">
