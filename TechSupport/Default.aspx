@@ -32,10 +32,10 @@
             <SortedDescendingHeaderStyle BackColor="#000065" />
         </asp:GridView>
     </p>
-    <p>
+<p>
         <asp:Label ID="lblClosed" runat="server" ForeColor="Green" Visible="False"></asp:Label>
     </p>
-    <p>
+<p>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Incidents] WHERE [IncidentID] = @IncidentID" InsertCommand="INSERT INTO [Incidents] ([CustomerID], [ProductCode], [TechID], [DateOpened], [DateClosed], [Title], [Description]) VALUES (@CustomerID, @ProductCode, @TechID, @DateOpened, @DateClosed, @Title, @Description)" SelectCommand="SELECT * FROM [Incidents]" UpdateCommand="UPDATE [Incidents] SET [CustomerID] = @CustomerID, [ProductCode] = @ProductCode, [TechID] = @TechID, [DateOpened] = @DateOpened, [DateClosed] = @DateClosed, [Title] = @Title, [Description] = @Description WHERE [IncidentID] = @IncidentID">
             <DeleteParameters>
                 <asp:Parameter Name="IncidentID" Type="Int32" />
