@@ -31,6 +31,7 @@ namespace TechSupport.Admin
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            //You can search a Customer by inserting their ID in the txtbox and clicking the search button.
             con.Open();
             string searchCus = "SELECT * FROM Customers WHERE CustomerID ='" + txtSearch.Text + "'";
             string searchReg = "SELECT * FROM Registrations WHERE CustomerID ='" + txtSearch.Text + "'";

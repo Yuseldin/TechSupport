@@ -20,14 +20,14 @@
             <asp:SiteMapDataSource ID="SiteMapDataSource2" runat="server" SiteMapProvider="SitemapProvider" />
             <asp:SiteMapDataSource ID="SiteMapDataSource3" runat="server" SiteMapProvider="SitemapProvider1" />
         </h1>
-        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticDisplayLevels="2" CssClass="menu" OnMenuItemClick="Menu1_MenuItemClick" OnMenuItemDataBound="Menu1_MenuItemDataBound">
+        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticDisplayLevels="2" CssClass="menu" OnMenuItemClick="Menu1_MenuItemClick" OnMenuItemDataBound="Menu1_MenuItemDataBound" Visible="False">
             <DynamicItemTemplate>
 <%# Eval("Text") %>
             </DynamicItemTemplate>
         </asp:Menu>
-            <asp:Menu ID="Menu2" runat="server" CssClass="menu" Orientation="Horizontal" StaticDisplayLevels="2" DataSourceID="SiteMapDataSource2" >
+            <asp:Menu ID="Menu2" runat="server" CssClass="menu" Orientation="Horizontal" StaticDisplayLevels="2" DataSourceID="SiteMapDataSource2" Visible="False" >
             </asp:Menu>
-            <asp:Menu ID="Menu3" runat="server" CssClass="menu" Orientation="Horizontal" StaticDisplayLevels="2" DataSourceID="SiteMapDataSource3">
+            <asp:Menu ID="Menu3" runat="server" CssClass="menu" Orientation="Horizontal" StaticDisplayLevels="2" DataSourceID="SiteMapDataSource3" Visible="False">
             </asp:Menu>
     </div>
     <div style="text-align:right">

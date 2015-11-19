@@ -18,7 +18,6 @@ namespace TechSupport
         protected void Page_Load(object sender, EventArgs e)
         {
             string name = "SELECT Name FROM Technicians WHERE TechID ='" + Session["username"] + "'";
-            //string level1 = "SELECT TechID FROM Technicians WHERE TypeID = 1 AND TechID ='"+Session["username"]+"'";
             string level1 = "SELECT TechID FROM Technicians WHERE (TypeID = '1') AND TechID ='" + Session["username"] + "'";
             string level2 = "SELECT TechID FROM Technicians WHERE (TypeID = '2') AND TechID ='" + Session["username"] + "'";
 
@@ -26,48 +25,53 @@ namespace TechSupport
             SqlCommand showlvl1 = new SqlCommand(level1, con);
             SqlCommand showlvl2 = new SqlCommand(level2, con);
 
-            
-            con.Open();
-
-            if (Session["username"].Equals("Admin") || Session["username"].Equals("admin"))
+            try
             {
-                lblSessionLogin.Text = "Welcome, Admin.";
-
-                Menu2.Visible = false;
-                Menu3.Visible = false;
-            }
-            else
-            {
-                dr = showlvl1.ExecuteReader();
-                while (dr.Read())
+                con.Open();
+                //if Admin logs in it will show the text "Welcome, Admin" at the left side of the screen and the Menu with all the features
+                if (Session["username"].Equals("Admin") || Session["username"].Equals("admin"))
                 {
-                    string techId = dr["TechID"].ToString();
+                    lblSessionLogin.Text = "Welcome, Admin.";
 
-                    if (Session["username"].Equals(techId))
+                    Menu1.Visible = true;
+                }
+                else
+                {
+                    //If Support Officer Level 1 logs in, it will show "Welcome, (and the name of the user)" and the Menu with "Home" and "View Incidents" features
+                    dr = showlvl1.ExecuteReader();
+                    while (dr.Read())
                     {
-                        lblSessionLogin.Text = "Welcome, " + showname.ExecuteScalar().ToString() + ".";
+                        string techId = dr["TechID"].ToString();
 
-                        Menu1.Visible = false;
-                        Menu3.Visible = false;
+                        if (Session["username"].Equals(techId))
+                        {
+                            lblSessionLogin.Text = "Welcome, " + showname.ExecuteScalar().ToString() + ".";
 
+                            Menu2.Visible = true;
+                        }
+                    }
+                    //If Technician Level 2 logs in, it will show "Welcome, (and the name of the user)" and the Menu with only the "Home" feature
+                    dr2 = showlvl2.ExecuteReader();
+                    while (dr2.Read())
+                    {
+                        string techId2 = dr2["TechID"].ToString();
+
+                        if (Session["username"].Equals(techId2))
+                        {
+                            lblSessionLogin.Text = "Welcome, " + showname.ExecuteScalar().ToString() + ".";
+
+                            Menu3.Visible = true;
+
+                        }
                     }
                 }
+                con.Close();
 
-                dr2 = showlvl2.ExecuteReader();
-                while (dr2.Read())
-                {
-                    string techId2 = dr2["TechID"].ToString();
-
-                    if (Session["username"].Equals(techId2))
-                    {
-                        lblSessionLogin.Text = "Welcome, " + showname.ExecuteScalar().ToString() + ".";
-
-                        Menu1.Visible = false;
-                        Menu2.Visible = false;
-                    }
-                }
             }
-            con.Close();
+            catch 
+            {
+                Menu1.Visible = true;
+            }
 
             
         }

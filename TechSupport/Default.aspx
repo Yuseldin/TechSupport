@@ -9,15 +9,15 @@
 &nbsp;<asp:Label ID="lblError" runat="server" ForeColor="Red" Text="Please select the right IncidentID." Visible="False"></asp:Label>
 </p>
 <p>
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="IncidentID" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="IncidentID" DataSourceID="SqlDataSource1" >
             <AlternatingRowStyle BackColor="#DCDCDC" />
             <Columns>
                 <asp:BoundField DataField="IncidentID" HeaderText="IncidentID" InsertVisible="False" ReadOnly="True" SortExpression="IncidentID" />
                 <asp:BoundField DataField="CustomerID" HeaderText="CustomerID" SortExpression="CustomerID" />
                 <asp:BoundField DataField="ProductCode" HeaderText="ProductCode" SortExpression="ProductCode" />
                 <asp:BoundField DataField="TechID" HeaderText="TechID" SortExpression="TechID" />
-                <asp:BoundField DataField="DateOpened" HeaderText="DateOpened" SortExpression="DateOpened" />
-                <asp:BoundField DataField="DateClosed" HeaderText="DateClosed" SortExpression="DateClosed" />
+                <asp:BoundField DataField="DateOpened" HeaderText="DateOpened" SortExpression="DateOpened" DataFormatString="{0:dd/MM/yyyy}"/>
+                <asp:BoundField DataField="DateClosed" HeaderText="DateClosed" SortExpression="DateClosed" DataFormatString="{0:dd/MM/yyyy}"/>
                 <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
                 <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
             </Columns>
@@ -33,8 +33,10 @@
         </asp:GridView>
     </p>
     <p>
-&nbsp;<asp:Label ID="lblClosed" runat="server"></asp:Label>
-&nbsp;<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Incidents] WHERE [IncidentID] = @IncidentID" InsertCommand="INSERT INTO [Incidents] ([CustomerID], [ProductCode], [TechID], [DateOpened], [DateClosed], [Title], [Description]) VALUES (@CustomerID, @ProductCode, @TechID, @DateOpened, @DateClosed, @Title, @Description)" SelectCommand="SELECT * FROM [Incidents]" UpdateCommand="UPDATE [Incidents] SET [CustomerID] = @CustomerID, [ProductCode] = @ProductCode, [TechID] = @TechID, [DateOpened] = @DateOpened, [DateClosed] = @DateClosed, [Title] = @Title, [Description] = @Description WHERE [IncidentID] = @IncidentID">
+        <asp:Label ID="lblClosed" runat="server" ForeColor="Green" Visible="False"></asp:Label>
+    </p>
+    <p>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Incidents] WHERE [IncidentID] = @IncidentID" InsertCommand="INSERT INTO [Incidents] ([CustomerID], [ProductCode], [TechID], [DateOpened], [DateClosed], [Title], [Description]) VALUES (@CustomerID, @ProductCode, @TechID, @DateOpened, @DateClosed, @Title, @Description)" SelectCommand="SELECT * FROM [Incidents]" UpdateCommand="UPDATE [Incidents] SET [CustomerID] = @CustomerID, [ProductCode] = @ProductCode, [TechID] = @TechID, [DateOpened] = @DateOpened, [DateClosed] = @DateClosed, [Title] = @Title, [Description] = @Description WHERE [IncidentID] = @IncidentID">
             <DeleteParameters>
                 <asp:Parameter Name="IncidentID" Type="Int32" />
             </DeleteParameters>
@@ -59,6 +61,7 @@
             </UpdateParameters>
         </asp:SqlDataSource>
     </p>
-    <p>
-        &nbsp;</p>
+    <p  style="text-align:center">
+        <asp:Label ID="lblWelcome" runat="server" Font-Bold="True" Font-Underline="False" ForeColor="Blue" Text="Welcome to Software Support." Visible="False"></asp:Label>
+    </p>
 </asp:Content>
