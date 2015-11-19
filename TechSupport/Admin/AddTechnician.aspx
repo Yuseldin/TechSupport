@@ -45,7 +45,7 @@
             <asp:BoundField DataField="TechID" HeaderText="TechID" InsertVisible="False" ReadOnly="True" SortExpression="TechID" />
         </Fields>
     </asp:DetailsView>
-    <asp:SqlDataSource ID="CreateUserName" runat="server"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
     <div style="width: 293px; margin-left: auto; margin-right: auto;">
        <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" OnCreatedUser="CreateUserWizard1_CreatedUser">
            <WizardSteps>
@@ -97,7 +97,7 @@
                                    <asp:Label ID="TechType" runat="server" AssociatedControlID="Email">Tech Type:</asp:Label>
                                </td>
                                <td>
-                                   <asp:DropDownList ID="TextBox1" runat="server" DataSourceID="TechTypeDataSource" DataTextField="TypeName" DataValueField="TypeName"></asp:DropDownList>
+                                   <asp:DropDownList ID="DropDown" runat="server" DataSourceID="TechTypeDataSource" DataTextField="TypeName" DataValueField="TypeName" OnSelectedIndexChanged="DropDown_SelectedIndexChanged"></asp:DropDownList>
                                    <asp:SqlDataSource ID="TechTypeDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT [TypeName] FROM [TechTypes]"></asp:SqlDataSource>
                                  <%--  <asp:RequiredFieldValidator ID="TechTypeRequired" runat="server" ControlToValidate="TechType" ErrorMessage="TechType is required." ToolTip="TechType is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>--%>
                                </td>
@@ -188,7 +188,7 @@
                            </tr>
                            <tr>
                                <td align="center">
-                                   <asp:Button ID="ContinueButton" runat="server" CausesValidation="False" CommandName="Continue" Text="Continue" ValidationGroup="CreateUserWizard1" />
+                                   <asp:Button ID="ContinueButton" runat="server" CausesValidation="False" CommandName="Continue" Text="Continue" ValidationGroup="CreateUserWizard1" OnClick="ContinueButton_Click" PostBackUrl="~/Admin/ViewTechnicians.aspx" />
                                </td>
                            </tr>
                        </table>
