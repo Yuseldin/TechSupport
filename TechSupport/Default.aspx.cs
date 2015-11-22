@@ -33,31 +33,15 @@ namespace TechSupport
             }
 
 
+
             //Once the incident is closed, it will show a confirmation message
             if (!string.IsNullOrEmpty(Request["ID"]))
             {
                 string myname = Request.QueryString["ID"];
 
-                //string qclosed = "SELECT [IncidentID] FROM [Incidents] WHERE ([DateClosed] IS NULL)";
-                //SqlCommand inClosed = new SqlCommand(qclosed, con);
+                lblOpen.Text = "Incident '" + myname + "' succesfully closed.";
+                lblOpen.Visible = true;
 
-                //con.Open();
-                //SqlDataReader read = inClosed.ExecuteReader();
-
-                //while (read.Read())
-                //{
-                //    string closed = read["IncidentID"].ToString();
-                //    if (myname == closed)
-                //    {
-                        lblClosed.Text = "Incident '" + myname + "' succesfully closed.";
-                        lblClosed.Visible = true;
-                    //}
-                    //else
-                    //{
-                    //    lblClosed.Text = "Incident '" + myname + "' is already closed";
-                    //    lblClosed.Visible = true;
-                    //}
-                //}
             }
             con.Close();
             
@@ -65,9 +49,11 @@ namespace TechSupport
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
-            string qclosed = "SELECT [IncidentID] FROM [Incidents] WHERE ([DateClosed] IS NOT NULL) AND TechID ='" + Session["username"] + "'";
+            //query statement to get the closed incidents with the same ID as the textbox
+            string qclosed = "SELECT [IncidentID] FROM [Incidents] WHERE ([DateClosed] IS NOT NULL) AND IncidentID ='" +txtClose.Text + "'";
             SqlCommand inClosed = new SqlCommand(qclosed, con);
-
+            
+            //query statement to get the incidents with the same ID as the technician loged in.
             string inID = "SELECT IncidentID FROM Incidents WHERE TechID ='" + Session["username"] + "'";
             SqlCommand incident = new SqlCommand(inID, con);
 
@@ -80,32 +66,38 @@ namespace TechSupport
             string date = now.ToString("MM/dd/yyyy");                       
             string close = "UPDATE Incidents SET DateClosed ='" + date + "' WHERE IncidentID ='" + txtClose.Text + "' AND TechID ='" + Session["username"] + "' ";
 
-            while (dr.Read() && read.Read())
+            if (read.Read())
             {
                 string closed = read["IncidentID"].ToString();
-                string incidentId = dr["IncidentID"].ToString();
-                //if the textbox is empty or the incidentID typed doesnt match the ones on the screen, it will show an error message
-                if (txtClose.Text == "" || txtClose.Text != incidentId)
-                {
-                    lblError.Visible = true;
-                    lblClosed.Visible = false;
-                }
-                else if (txtClose.Text==closed)
+                //if the first query statement matches the textbox, it means that the the incident is already closed.
+                if (txtClose.Text == closed)
                 {
                     lblClosed.Text = "Incident '" + txtClose.Text + "' is already closed";
                     lblClosed.Visible = true;
                 }
-                else //if th IncidentID is the right one, it will close it by setting the date in the ClosedDate field
-                {
-                    lblError.Visible = false;
-                    SqlDataSource1.SelectCommand = close;
-
-                    GridView1.DataBind();
-                    Response.Redirect("Default.aspx?ID=" + txtClose.Text);
-                }               
             }
+            else
+            {
+                while (dr.Read())
+                {
+                    string incidentId = dr["IncidentID"].ToString();
+                    //if the textbox is empty or the incidentID typed doesnt match the ones on the screen, it will show an error message
+                    if (txtClose.Text == "" || txtClose.Text != incidentId)
+                    {
+                        lblError.Visible = true;
+                        lblClosed.Visible = false;
+                    }
+                    else //if the IncidentID is the right one, it will close it by setting the date in the ClosedDate field
+                    {
+                        lblError.Visible = false;
+                        SqlDataSource1.SelectCommand = close;
 
+                        GridView1.DataBind();
+                        Response.Redirect("Default.aspx?ID=" + txtClose.Text);
+                    }
+                }
 
+            }
             
 
             con.Close();

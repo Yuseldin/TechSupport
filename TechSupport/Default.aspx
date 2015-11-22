@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
         <asp:Label ID="Label1" runat="server" Text="Select IncidentID:"></asp:Label>
-&nbsp;<asp:TextBox ID="txtClose" runat="server" Width="60px"></asp:TextBox>
+&nbsp;<asp:TextBox ID="txtClose" runat="server" Width="60px" TabIndex="1"></asp:TextBox>
 &nbsp;<asp:Button ID="btnClose" runat="server" OnClick="btnClose_Click" Text="Close Incident" />
 &nbsp;<asp:Label ID="lblError" runat="server" ForeColor="Red" Text="Please select the right IncidentID." Visible="False"></asp:Label>
 </p>
@@ -33,7 +33,8 @@
         </asp:GridView>
     </p>
 <p>
-        <asp:Label ID="lblClosed" runat="server" ForeColor="Green" Visible="False"></asp:Label>
+        <asp:Label ID="lblClosed" runat="server" ForeColor="Red" Visible="False"></asp:Label>
+        <asp:Label ID="lblOpen" runat="server" ForeColor="Green" Visible="False"></asp:Label>
     </p>
 <p>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Incidents] WHERE [IncidentID] = @IncidentID" InsertCommand="INSERT INTO [Incidents] ([CustomerID], [ProductCode], [TechID], [DateOpened], [DateClosed], [Title], [Description]) VALUES (@CustomerID, @ProductCode, @TechID, @DateOpened, @DateClosed, @Title, @Description)" SelectCommand="SELECT * FROM [Incidents]" UpdateCommand="UPDATE [Incidents] SET [CustomerID] = @CustomerID, [ProductCode] = @ProductCode, [TechID] = @TechID, [DateOpened] = @DateOpened, [DateClosed] = @DateClosed, [Title] = @Title, [Description] = @Description WHERE [IncidentID] = @IncidentID">
