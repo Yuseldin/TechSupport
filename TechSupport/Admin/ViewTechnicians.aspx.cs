@@ -47,7 +47,7 @@ namespace TechSupport.Admin
             btnUpdate.Visible = false;
             BtnCancel.Visible = false;
 
-            //lblErrorText.Visible = false;
+            lblErrorText.Visible = false;
             ViewAllTechsGrid.Visible = true;
         }
 
@@ -90,13 +90,13 @@ namespace TechSupport.Admin
             
             lblViewLevel1.Visible = true;
 
-            //lblErrorText.Visible = false;
+            
             //Hides labels
             lblViewLevel2.Visible = false;
             lblEditDetails.Visible = false;
             lblSearchByID.Visible = false;
             lblViewAllTechs.Visible = false;
-
+            
 
             btnViewAllTechs.Enabled = true;
             btnEditDetails.Enabled = true;
@@ -105,18 +105,17 @@ namespace TechSupport.Admin
             btnEditGrid.Visible = false;
             btnUpdate.Visible = false;
             BtnCancel.Visible = false;
-
             
             ViewAllTechsGrid.Visible = true;
 
             if (ViewAllTechsGrid.Rows.Count == 0)
             {
-                //lblErrorText.Visible = true;
-                //lblErrorText.Text = "No Technicians exist in that role.";
+               lblErrorText.Visible = true;
+               lblErrorText.Text = "No Level 1 Support Officers exist.";
             }
             else
             {
-                //lblErrorText.Visible = false;
+                lblErrorText.Visible = false;
             }
         }
 
@@ -126,12 +125,12 @@ namespace TechSupport.Admin
 
             if (ViewAllTechsGrid.Rows.Count == 0)
             {
-                //lblErrorText.Visible = true;
-                //lblErrorText.Text = "No Technicians exist in that role.";
+                lblErrorText.Visible = true;
+                lblErrorText.Text = "No Level 2 Technicians exist.";
             }
             else
             {
-                //lblErrorText.Visible = false;
+                lblErrorText.Visible = false;
             }
 
             lblViewLevel1.Visible = false;

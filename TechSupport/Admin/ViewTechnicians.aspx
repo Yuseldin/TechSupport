@@ -50,7 +50,7 @@
                     <asp:Label ID="Label1" runat="server" Text="View All Technicians:"></asp:Label>
                 </td>
                 <td class="auto-style2">
-                    <asp:Button ID="btnViewAllTechs" runat="server" Text="Go" />
+                    <asp:Button ID="btnViewAllTechs" runat="server" Text="Go" OnClick="btnViewAllTechs_Click" />
                 </td>
             </tr>
             <tr>
@@ -58,7 +58,7 @@
                     <asp:Label ID="Label2" runat="server" Text="List all Support Officer's Level 1:"></asp:Label>
                 </td>
                 <td class="auto-style2">
-                    <asp:Button ID="btnViewLevel1" runat="server" Text="Go" />
+                    <asp:Button ID="btnViewLevel1" runat="server" Text="Go" OnClick="btnViewLevel1_Click" />
                 </td>
             </tr>
             <tr>
@@ -66,7 +66,7 @@
                     <asp:Label ID="Label3" runat="server" Text="List all Level 2 Techs:"></asp:Label>
                 </td>
                 <td>
-                    <asp:Button ID="btnViewLevel2" runat="server" Text="Go" />
+                    <asp:Button ID="btnViewLevel2" runat="server" Text="Go" OnClick="btnViewLevel2_Click" />
                 </td>
             </tr>
             <tr>
@@ -74,7 +74,7 @@
                     <asp:Label ID="Label4" runat="server" Text="Edit Details:"></asp:Label>
                 </td>
                 <td>
-                    <asp:Button ID="btnEditDetails" runat="server" Text="Go" />
+                    <asp:Button ID="btnEditDetails" runat="server" Text="Go" OnClick="btnEditDetails_Click" />
                 </td>
             </tr>
             <tr>
@@ -82,8 +82,7 @@
                     <asp:Label ID="Label5" runat="server" Text="Search by ID:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtBoxSearch" runat="server" Width="90px" ValidationGroup="Search"></asp:TextBox>
-                    <asp:TextBox ID="txtCompareTechID" runat="server" Width="90px" ValidationGroup="Search" Enabled="False"></asp:TextBox>                                       
+                    <asp:TextBox ID="txtBoxSearch" runat="server" Width="90px" ValidationGroup="Search"></asp:TextBox>                                    
                     <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" ValidationGroup="Search" />                    
                 </td>
             </tr>
@@ -110,11 +109,11 @@
     <asp:Label ID="lblEditDetails" runat="server" Text="Edit Technicians Details" Visible="False" Style="font-weight: 700"></asp:Label>
     <asp:Label ID="lblSearchByID" runat="server" Text="Search Technicians By ID" Visible="False" Style="font-weight: 700"></asp:Label>
     <br />
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="The search box is empty, please input a number to continue." ControlToValidate="txtBoxSearch" ValidationGroup="Search" ForeColor="#FF3300"></asp:RequiredFieldValidator>
-    <br />
+    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="The search box is empty, please input a number to continue." ControlToValidate="txtBoxSearch" ValidationGroup="Search" ForeColor="#FF3300"></asp:RequiredFieldValidator>--%>
+    <%--<br />--%>
     <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="RegularExpressionValidator" ControlToValidate="txtBoxSearch" ValidationExpression="[a-z A-Z]|[^\w \xC0-\xFF]" ValidationGroup="Search" ForeColor="#FF3300"></asp:RegularExpressionValidator>--%>
     <%--<asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="CompareValidator" ControlToValidate="txtBoxSearch" ForeColor="#FF3300" Operator="DataTypeCheck" Type="Integer" ValidationGroup="Search"></asp:CompareValidator>--%>
-    <%--<asp:Label ID="lblErrorText" runat="server" Text="Error!" Visible="False"></asp:Label>--%>
+
     <asp:Label ID="lblErrorText" runat="server" Text="error" Visible="False" ForeColor="#FF3300"></asp:Label>
        
     <asp:GridView class="gridview" ID="ViewAllTechsGrid" runat="server" Style="text-align: left;" OnRowDataBound="ViewAllTechsGrid_RowDataBound" AutoGenerateColumns="False" DataKeyNames="TechID">
