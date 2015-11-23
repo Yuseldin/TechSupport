@@ -11,12 +11,18 @@ namespace TechSupport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Handle the timeout exception
+            Response.AddHeader("Session Timed Out", Convert.ToString(Session.Timeout * 60) + 5);
+            if(String.IsNullOrEmpty(Session["username"].ToString()))
+            {
+                Server.Transfer("Default.aspx");
+            }
         }
 
         protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
         {
 
         }
+
     }
 }
