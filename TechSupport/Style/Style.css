@@ -13,7 +13,7 @@ a:hover {
     text-decoration: underline overline;
 }
 a:link, a:visited {
-    color: #00FFFF;
+    color: #000000;
     text-align: left;
 }
 a:active {

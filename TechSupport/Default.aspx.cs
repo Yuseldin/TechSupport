@@ -50,7 +50,7 @@ namespace TechSupport
         protected void btnClose_Click(object sender, EventArgs e)
         {
             //query statement to get the closed incidents with the same ID as the textbox
-            string qclosed = "SELECT [IncidentID] FROM [Incidents] WHERE ([DateClosed] IS NOT NULL) AND IncidentID ='" +txtClose.Text + "'";
+            string qclosed = "SELECT [IncidentID] FROM [Incidents] WHERE ([DateClosed] IS NOT NULL) AND IncidentID ='" + txtClose.Text + "' AND TechID ='" + Session["username"] + "'";
             SqlCommand inClosed = new SqlCommand(qclosed, con);
             
             //query statement to get the incidents with the same ID as the technician loged in.
@@ -72,6 +72,7 @@ namespace TechSupport
                 //if the first query statement matches the textbox, it means that the the incident is already closed.
                 if (txtClose.Text == closed)
                 {
+                    lblError.Visible = false;
                     lblClosed.Text = "Incident '" + txtClose.Text + "' is already closed";
                     lblClosed.Visible = true;
                 }
