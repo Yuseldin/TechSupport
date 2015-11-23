@@ -157,6 +157,15 @@ namespace TechSupport.Admin {
         protected global::System.Web.UI.WebControls.Label lblSearchByID;
         
         /// <summary>
+        /// lblErrorText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorText;
+        
+        /// <summary>
         /// ViewAllTechsGrid control.
         /// </summary>
         /// <remarks>
@@ -191,6 +200,15 @@ namespace TechSupport.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnCancel;
+        
+        /// <summary>
+        /// TechSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource TechSearch;
         
         /// <summary>
         /// EditDetails control.
