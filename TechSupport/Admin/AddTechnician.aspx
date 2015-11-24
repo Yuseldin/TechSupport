@@ -61,13 +61,13 @@
         <Fields>
             <asp:BoundField DataField="UserId" HeaderText="UserId" ReadOnly="True" SortExpression="UserId" />
         </Fields>
-    </asp:DetailsView>--%>    <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETConnectionString %>" SelectCommand="SELECT UserId FROM aspnet_Membership ORDER BY UserId DESC"></asp:SqlDataSource>--%>
+    </asp:DetailsView>--%><%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ASPNETConnectionString %>" SelectCommand="SELECT UserId FROM aspnet_Membership ORDER BY UserId DESC"></asp:SqlDataSource>--%>
 
     <hr />
     <asp:SqlDataSource ID="InsertTech" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT TechID FROM Technicians ORDER BY TechID DESC">
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="InsertID" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT TechID FROM Technicians ORDER BY TechID DESC"></asp:SqlDataSource>
-    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="TechID" DataSourceID="InsertID" Height="50px" Width="125px" Visible="False">
+    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="TechID" DataSourceID="InsertID" Height="50px" Width="125px">
         <Fields>
             <asp:BoundField DataField="TechID" HeaderText="TechID" InsertVisible="False" ReadOnly="True" SortExpression="TechID" />
         </Fields>
@@ -127,8 +127,11 @@
                                    <asp:Label ID="TechType" runat="server" AssociatedControlID="Email">Tech Type:</asp:Label>
                                </td>
                                <td class="auto-style33">
-                                   <asp:DropDownList ID="DropDown" runat="server" DataSourceID="TechTypeDataSource" DataTextField="TypeName" DataValueField="TypeName" OnSelectedIndexChanged="DropDown_SelectedIndexChanged"></asp:DropDownList>
-                                   <asp:SqlDataSource ID="TechTypeDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT [TypeName] FROM [TechTypes]"></asp:SqlDataSource>
+                                   <asp:DropDownList ID="MyDropDown" runat="server" OnSelectedIndexChanged="DropDown_SelectedIndexChanged">
+                                       <asp:ListItem>Support Officer Level 1</asp:ListItem>
+                                       <asp:ListItem>Technician Level 2</asp:ListItem>
+                                   </asp:DropDownList>
+                                   <%--<asp:SqlDataSource ID="TechTypeDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT [TypeName] FROM [TechTypes]"></asp:SqlDataSource>--%>
                                  <%--  <asp:RequiredFieldValidator ID="TechTypeRequired" runat="server" ControlToValidate="TechType" ErrorMessage="TechType is required." ToolTip="TechType is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>--%>
                                </td>
                            </tr>

@@ -27,6 +27,8 @@ namespace TechSupport.Admin
             //fill up the read only txtBox UserName
             CreateUserWizard1.UserName = UserName.ToString();
 
+            
+
         }
 
         protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
@@ -37,6 +39,14 @@ namespace TechSupport.Admin
             string Phone = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("Phone")).Text;
             Email = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("Email")).Text;
 
+            dropDown = ((DropDownList)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("MyDropDown")).Text;
+
+            //dropDown = CreateUserWizard1.CreateUserStep.ContentTemplateContainer.Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.ToString();
+
+            //if (CreateUserWizard1.CreateUserStep.Controls.OfType<DropDownList>().FirstOrDefault().ID == "DropDown")
+            //{
+            //    dropDown = CreateUserWizard1.CreateUserStep.Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value;
+            //}
            
 
             string conn = ConfigurationManager.ConnectionStrings["TechSupportConnectionString"].ConnectionString;
