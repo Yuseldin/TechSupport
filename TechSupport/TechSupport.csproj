@@ -66,7 +66,9 @@
       <DependentUpon>TechSupport.mdf</DependentUpon>
     </Content>
     <Content Include="Default.aspx" />
-    <Content Include="Error\Error.aspx" />
+    <Content Include="Error\500.html" />
+    <Content Include="Error\404.html" />
+    <Content Include="Error\Error.html" />
     <Content Include="Login1.aspx" />
     <Content Include="Resources\Functions.js" />
     <Content Include="Style\GridView.css" />
@@ -114,13 +116,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Error\Error.aspx.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Error\Error.aspx.designer.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="ErrorMsg.cs" />
     <Compile Include="Login1.aspx.cs">
       <DependentUpon>Login1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

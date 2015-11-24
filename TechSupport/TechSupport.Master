@@ -7,8 +7,22 @@
     <title>TechSupport</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+
+    <script src="Resources/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+    <script >
+                myClosure = function () {
+            var canyousee = "here I'm ";
+            return (function () {
+                return { canyouseeIt: function () { return confirm(canyousee) } };
+            });
+        }
+
+  $(function () {
+      $("#datepicker").datepicker();
+  });
+
+    </script>
     <link href="Style/Style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="/Resources/Functions.js" ></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -30,5 +44,6 @@
         </asp:ContentPlaceHolder>
     </div>
     </form>
+
 </body>
 </html>

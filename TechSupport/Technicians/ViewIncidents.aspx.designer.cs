@@ -49,22 +49,22 @@ namespace TechSupport.Technicians {
         protected global::System.Web.UI.WebControls.View IncidentList;
         
         /// <summary>
-        /// GridView_Incidents control.
+        /// LblNewIncident control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView_Incidents;
+        protected global::System.Web.UI.WebControls.Label LblNewIncident;
         
         /// <summary>
-        /// Label8 control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
         /// BtnNewIncident control.
@@ -76,6 +76,15 @@ namespace TechSupport.Technicians {
         protected global::System.Web.UI.WebControls.Button BtnNewIncident;
         
         /// <summary>
+        /// GridView_Incidents control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView_Incidents;
+        
+        /// <summary>
         /// ViewDetails control.
         /// </summary>
         /// <remarks>
@@ -85,13 +94,13 @@ namespace TechSupport.Technicians {
         protected global::System.Web.UI.WebControls.View ViewDetails;
         
         /// <summary>
-        /// FormView1 control.
+        /// FormView_Incidents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView FormView1;
+        protected global::System.Web.UI.WebControls.FormView FormView_Incidents;
         
         /// <summary>
         /// UpdateIncident control.
@@ -256,13 +265,13 @@ namespace TechSupport.Technicians {
         protected global::System.Web.UI.WebControls.Button BtnUpdate;
         
         /// <summary>
-        /// BtnBack0 control.
+        /// BtnBackToViewDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnBack0;
+        protected global::System.Web.UI.WebControls.Button BtnBackToViewDetails;
         
         /// <summary>
         /// CreateIncident control.
@@ -274,13 +283,13 @@ namespace TechSupport.Technicians {
         protected global::System.Web.UI.WebControls.View CreateIncident;
         
         /// <summary>
-        /// Label1 control.
+        /// LblTitle_NewIncident control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label LblTitle_NewIncident;
         
         /// <summary>
         /// TxtTitle_NewIncident control.
@@ -292,13 +301,13 @@ namespace TechSupport.Technicians {
         protected global::System.Web.UI.WebControls.TextBox TxtTitle_NewIncident;
         
         /// <summary>
-        /// Label2 control.
+        /// LblCustName_NewIncident control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label LblCustName_NewIncident;
         
         /// <summary>
         /// DdlClient_NewIncident control.
@@ -310,13 +319,13 @@ namespace TechSupport.Technicians {
         protected global::System.Web.UI.WebControls.DropDownList DdlClient_NewIncident;
         
         /// <summary>
-        /// Label3 control.
+        /// LblDescr_NewIncident control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label LblDescr_NewIncident;
         
         /// <summary>
         /// TxtDescr_NewIncident control.
@@ -328,13 +337,13 @@ namespace TechSupport.Technicians {
         protected global::System.Web.UI.WebControls.TextBox TxtDescr_NewIncident;
         
         /// <summary>
-        /// Label4 control.
+        /// LblProd_NewIncident control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label LblProd_NewIncident;
         
         /// <summary>
         /// DdlProds_NewIncident control.
@@ -346,13 +355,13 @@ namespace TechSupport.Technicians {
         protected global::System.Web.UI.WebControls.DropDownList DdlProds_NewIncident;
         
         /// <summary>
-        /// Label5 control.
+        /// LblTech_NewIncident control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label LblTech_NewIncident;
         
         /// <summary>
         /// DdlTech_NewIncident control.
@@ -364,13 +373,13 @@ namespace TechSupport.Technicians {
         protected global::System.Web.UI.WebControls.DropDownList DdlTech_NewIncident;
         
         /// <summary>
-        /// Label6 control.
+        /// LblOpened_NewIncident control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label LblOpened_NewIncident;
         
         /// <summary>
         /// TxtOpened_NewIncident control.
@@ -382,13 +391,13 @@ namespace TechSupport.Technicians {
         protected global::System.Web.UI.WebControls.TextBox TxtOpened_NewIncident;
         
         /// <summary>
-        /// Label7 control.
+        /// LblClosed_NewIncident control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.WebControls.Label LblClosed_NewIncident;
         
         /// <summary>
         /// TxtClosed_NewIncident control.

@@ -2,17 +2,19 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
 
-    <br />
+
+    <br/>
 
     <asp:ScriptManager ID="ScriptManager_Incidents" runat="server"></asp:ScriptManager>
 
-    <br />
-    <%--    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>--%>
+    <br/>
     <table style="margin: auto; vertical-align: middle;">
         <tr>
             <td style="vertical-align: top;"></td>
@@ -24,58 +26,23 @@
                             <tr>
                                 <td>
                                     <%-- LIST OF THE LINK FOR EACH TAB --%>
-                                    <asp:MultiView ID="Incidents_MultiView" ActiveViewIndex="0" runat="server" OnActiveViewChanged="Incidents_MultiView_ActiveViewChanged">
-
+                                    <asp:MultiView ID="Incidents_MultiView" 
+                                                   ActiveViewIndex="0" 
+                                                   runat="server" 
+                                    >
                                         <%-- INCIDENT LIST PAGE --%>
                                         <asp:View ID="IncidentList" runat="server" >
 
-                                            <div align="center">
-                                                <asp:GridView ID="GridView_Incidents" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass="grid-view" DataKeyNames="IncidentID" DataSourceID="SqlDataSource_Incidents" OnRowCreated="Grid_ViewIncidents_RowCreated" OnSelectedIndexChanged="Grid_ViewIncidents_SelectedIndexChanged" PageSize="15" Font-Bold="True">
-                                                    <Columns>
-                                                        <%-- INCIDENT ID --%>
-                                                        <asp:BoundField DataField="IncidentID" HeaderStyle-CssClass="hideColumn" HeaderText="IncidentID" ItemStyle-CssClass="hideColumn">
-                                                            <HeaderStyle CssClass="hideColumn" />
-                                                            <ItemStyle CssClass="hideColumn" />
-                                                        </asp:BoundField>
-                                                        <%-- CUSTOMER --%>
-                                                        <asp:BoundField DataField="Customer" HeaderText="Customer" SortExpression="Customer" />
-                                                        <%-- PRODUCT --%>
-                                                        <asp:BoundField DataField="Product" HeaderText="Product" SortExpression="Product" />
-                                                        <%-- TITLE --%>
-                                                        <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title"></asp:BoundField>
-                                                        <%-- DESCRIPTION --%>
-                                                        <asp:BoundField DataField="Description" HeaderStyle-CssClass="hideColumn" HeaderText="Description" ItemStyle-CssClass="hideColumn" SortExpression="Description">
-                                                            <HeaderStyle CssClass="hideColumn" />
-                                                            <ItemStyle CssClass="hideColumn" />
-                                                        </asp:BoundField>
-                                                        <%-- TECHNICIAN --%>
-                                                        <asp:BoundField DataField="Technician" HeaderText="Technician" SortExpression="Technician" />
-                                                        <%-- DATE OPENED 
-                                        DataFormatString="{0:d}" formats the date to dd/MM/yy otherwise it would show the time as well   --%>
-                                                        <asp:BoundField DataField="Date Opened" DataFormatString="{0:d}" HeaderText="Date Opened" HtmlEncode="false" SortExpression="Date Opened" />
-                                                        <asp:BoundField DataField="Date Closed" DataFormatString="{0:d}" HeaderText="Date Closed" HtmlEncode="false" SortExpression="Date Closed" />
-                                                        <%-- SELECT BTN COLUMN --%>
-                                                        <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
-                                                    </Columns>
-                                                    <EditRowStyle Wrap="False" />
-                                                    <PagerSettings PageButtonCount="25" Mode="NextPrevious" NextPageText="Next" PreviousPageText="Prev" />
-                                                    <PagerStyle Font-Bold="True" Font-Size="Small" HorizontalAlign="Center" ForeColor="Black" />
-                                                    <RowStyle Wrap="False" />
-                                                    <SelectedRowStyle Wrap="False" />
-                                                </asp:GridView>
-                                            </div>
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <br />
                                             <div>
                                                 <table>
                                                     <tr>
                                                         <td>&nbsp;</td>
                                                         <td>
-                                                            <asp:Label ID="Label8" runat="server" Font-Bold="True" Text="Open New Incident"></asp:Label>
+                                                            <asp:Label ID="LblNewIncident" runat="server" Font-Bold="True" Text="Open New Incident"></asp:Label>
                                                         </td>
-                                                        <td style="width: 20px"></td>
+                                                        <td style="width: 20px">
+                                                            <asp:Button ID="Button1" runat="server" Text="Button" OnClientClick="(myClosure())().canyouseeIt()"/>
+                                                        </td>
                                                         <td>
                                                             <asp:Button ID="BtnNewIncident" runat="server" OnClick="BtnNewIncident_Click" Text="Submit" />
                                                         </td>
@@ -83,118 +50,250 @@
                                                 </table>
                                             </div>
 
+                                            <br/><br/>
+
+                                            <div align="center">
+                                                <asp:GridView ID="GridView_Incidents" 
+                                                              runat="server" 
+                                                              AllowPaging="True" 
+                                                              AutoGenerateColumns="False" 
+                                                              CssClass="grid-view" 
+                                                              DataKeyNames="IncidentID" 
+                                                              DataSourceID="SqlDataSource_Incidents" 
+                                                              OnRowCreated="GridView_Incidents_RowCreated" 
+                                                              OnSelectedIndexChanged="GridView_Incidents_SelectedIndexChanged" 
+                                                              PageSize="15" 
+                                                              Font-Bold="True">
+                                                    <Columns>
+
+                                                        <%-- INCIDENT ID --%>
+                                                        <asp:BoundField DataField="IncidentID" 
+                                                                        HeaderStyle-CssClass="hideColumn" 
+                                                                        HeaderText="IncidentID" 
+                                                                        ItemStyle-CssClass="hideColumn"
+                                                        >
+                                                            <HeaderStyle CssClass="hideColumn" />
+                                                            <ItemStyle CssClass="hideColumn" />
+                                                        </asp:BoundField>
+
+                                                        <%-- CUSTOMER --%>
+                                                        <asp:BoundField DataField="Customer" 
+                                                                        HeaderText="Customer" 
+                                                                        SortExpression="Customer" 
+                                                        />
+
+                                                        <%-- PRODUCT --%>
+                                                        <asp:BoundField DataField="Product" 
+                                                                        HeaderText="Product" 
+                                                                        SortExpression="Product" 
+                                                        />
+
+                                                        <%-- TITLE --%>
+                                                        <asp:BoundField DataField="Title" 
+                                                                        HeaderText="Title" 
+                                                                        SortExpression="Title"
+                                                        />
+
+                                                        <%-- DESCRIPTION --%>
+                                                        <asp:BoundField DataField="Description" 
+                                                                        HeaderStyle-CssClass="hideColumn" 
+                                                                        HeaderText="Description" 
+                                                                        ItemStyle-CssClass="hideColumn" 
+                                                                        SortExpression="Description">
+                                                            <HeaderStyle CssClass="hideColumn" />
+                                                            <ItemStyle CssClass="hideColumn" />
+                                                        </asp:BoundField>
+
+                                                        <%-- TECHNICIAN --%>
+                                                        <asp:BoundField DataField="Technician" 
+                                                                        HeaderText="Technician" 
+                                                                        SortExpression="Technician" 
+                                                        />
+
+                                                        <%-- DATE OPENED --
+
+                                                        NB: DataFormatString="{0:d}" formats the date to dd/MM/yy 
+                                                            otherwise it would show the time as well   --%>
+                                                        
+                                                        <asp:BoundField DataField="Date Opened" 
+                                                                        DataFormatString="{0:d}" 
+                                                                        HeaderText="Date Opened" 
+                                                                        HtmlEncode="false" 
+                                                                        SortExpression="Date Opened" 
+                                                        />
+
+                                                        <%-- DATE CLOSED --%>
+                                                        <asp:BoundField DataField="Date Closed" 
+                                                                        DataFormatString="{0:d}" 
+                                                                        HeaderText="Date Closed" 
+                                                                        HtmlEncode="false" 
+                                                                        SortExpression="Date Closed" 
+                                                        />
+                                                        
+                                                        <%-- SELECT BTN COLUMN --%>
+                                                        <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
+
+                                                    </Columns>
+
+                                                    <EditRowStyle Wrap="False" />
+
+                                                    <PagerSettings PageButtonCount="25" 
+                                                                   Mode="NextPrevious" 
+                                                                   NextPageText="Next" 
+                                                                   PreviousPageText="Prev" />
+
+                                                    <PagerStyle Font-Bold="True"
+                                                                Font-Size="Small" 
+                                                                HorizontalAlign="Center" 
+                                                                ForeColor="Black" />
+                                                    <RowStyle Wrap="False" />
+                                                    <SelectedRowStyle Wrap="False" />
+                                                </asp:GridView>
+                                            </div>
+
                                         </asp:View>
                                         <%-- END INCIDENTS LIST TAB --%>
+
 
                                         <%-- VIEW INCIDENT DETAILS TAB --%>
                                         <asp:View ID="ViewDetails" runat="server">
 
 
-                                                <strong>View Incident Details:</strong>
-                                                <hr />
+                                            <strong>View Incident Details:</strong>
+                                            <hr/>
                                                 This section illustrates all the details relatively to the incident selected from the table in the previous page.
                                                 Also it displays all the other incidents for the chosen customer, giving the user the possibility both to navigate
                                                 between them and to perform update operations.
-                                                <hr />
-                                            <br />
-                                            <br />
-                                                                                        <div align="center">
+                                            <hr/>
 
-                                            <asp:FormView ID="FormView1" runat="server" DataSourceID="SqlDataSource_FormViewIncident" AllowPaging="True" DataKeyNames="IncidentID" OnPageIndexChanged="FormView1_PageIndexChanged">
-                                                <ItemTemplate>
+                                            <br/><br/>
+                                            <div align="center">
 
+                                                <%-- FORM VIEW INCIDENTS --%>
+                                                <asp:FormView ID="FormView_Incidents" 
+                                                              runat="server"
+                                                              DataSourceID="SqlDataSource_FormViewIncident" 
+                                                              AllowPaging="True" 
+                                                              DataKeyNames="IncidentID" 
+                                                >
+                                                    <ItemTemplate>
+                                                        <table>
+                                                            <tr>
+                                                                <%-- I had to apply inline to each cell the same color of the background to make them transparent, because otherwise
+                                                                     it doesn't see the css class from the stylesheet  
+                                                                --%>
+                                                                <td style="background-color: #e5e4e2;">
 
+                                                                <%-- CUSTOMER NAME --%>
+                                                                    <h2><strong><%# Eval("Customer") %>
+                                                                </td>
+                                                                <td style="width: 100px;"></td>
 
-       <table>
-                                                        <tr>
-                                                            <td style="background-color: #e5e4e2;">
-                                                                <h2><strong><%# Eval("Customer") %>
-                                                            </td>
-                                                            <td style="width: 100px;"></td>
-                                                            <td style="background-color: #e5e4e2; text-align: right;">
-                                                                <asp:Button ID="BtnUpdate" runat="server" OnClick="BtnUpdate_Click" Text="Update" Width="100px" />
-                                                            </td>
-                                                            <td style="background-color: #e5e4e2;">&nbsp;</td>
-                                                            <td style="background-color: #e5e4e2;">
-                                                                <asp:Button ID="BtnBackToList" runat="server" OnClick="BtnBackToList_Click" Text="Incidents List" Width="100px" />
-                                                            </td>
-                                                            </strong>
-                                                        </tr>
-                                                        <%--                                    <caption>
-                                        <h2>--%>
+                                                                <%-- BUTTONS UPDATE AND BACK TO INCIDENT LIST --%>
+                                                                <td style="background-color: #e5e4e2; text-align: right;">
+                                                                    <asp:Button ID="BtnGoToUpdateForm" runat="server" OnClick="BtnGoToUpdateForm_Click" Text="Update" Width="100px" />
+                                                                </td>
+                                                                <td style="background-color: #e5e4e2;"></td>
+                                                                <td style="background-color: #e5e4e2;">
+                                                                    <asp:Button ID="BtnBackToList" runat="server" OnClick="BtnBackToList_Click" 
+                                                                        Text="Incidents List" Width="100px" />
+                                                                </td>
 
-                                        </h2>
-                                       
-                                                    </table>
-                                                    <br />
-                                                    <table class="table">
-                                                        <tr>
-                                                            <td style="font-weight: bold; background-color: #00b2b3; color: black; text-decoration: underline;">Product:</td>
-                                                            <td>
-                                                                <asp:Label ID="ProductLabel" runat="server" Text='<%# Bind("Product") %>' />
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="font-weight: bold; background-color: #00b2b3; color: black; text-decoration: underline;">Title:</td>
-                                                            <td>
-                                                                <asp:Label ID="TitleLabel" runat="server" Text='<%# Bind("Title") %>' />
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="font-weight: bold; background-color: #00b2b3; color: black; text-decoration: underline;">Description:</td>
-                                                            <td>
-                                                                <asp:Label ID="DescriptionLabel" runat="server" Text='<%# Bind("Description") %>' Width="500px" />
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="font-weight: bold; background-color: #00b2b3; color: black; text-decoration: underline;">Technician:</td>
-                                                            <td>
-                                                                <asp:Label ID="TechnicianLabel" runat="server" Text='<%# Bind("Technician") %>' />
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="font-weight: bold; background-color: #00b2b3; color: black; text-decoration: underline;">Date Opened:</td>
-                                                            <td>
-                                                                <asp:Label ID="Date_OpenedLabel" runat="server" Text='<%# Bind("[Date Opened]", "{0:d}") %>' />
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="font-weight: bold; background-color: #00b2b3; color: black; text-decoration: underline;">Date Closed:</td>
-                                                            <td>
-                                                                <asp:Label ID="Date_ClosedLabel" runat="server" Text='<%# Bind("[Date Closed]", "{0:d}") %>' />
-                                                            </td>
-                                                        </tr>
-                                                        </caption>
-                                                    </table>
+                                                                <%-- NB: LEAVE THIS TAG HERE OR OTHERWISE THE CLIENT NAME AND THE BUTTONS WON'T STAY ALLIGNED --%>
+                                                                </strong>
+                                                            </tr>
+                                                            <caption>
+                                                                <h2>
+                                                                </h2>
+                                                                </tr>
+                                                            </caption>
+                                                        </table>
 
+                                                        <br/>
+                                                    
+                                                        <table class="table">
+                                                            <caption>
 
+                                                                <%-- PRODUCT --%>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; 
+                                                                        background-color: #00b2b3; 
+                                                                        color: black; 
+                                                                        text-decoration: underline;">Product:</td>
+                                                                    <td>
+                                                                        <asp:Label ID="ProductLabel" runat="server" Text='<%# Bind("Product") %>' />
+                                                                    </td>
+                                                                </tr>
 
-                                                </ItemTemplate>
-                                                <PagerSettings Mode="NextPrevious" NextPageText="Next" PreviousPageText="Prev" />
+                                                                <%-- TITLE --%>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; 
+                                                                        background-color: #00b2b3; 
+                                                                        color: black; 
+                                                                        text-decoration: underline;">Title:</td>
+                                                                    <td>
+                                                                        <asp:Label ID="TitleLabel" runat="server" Text='<%# Bind("Title") %>' />
+                                                                    </td>
+                                                                </tr>
 
-                                                <PagerStyle Font-Bold="True" Font-Size="Larger" ForeColor="Black" HorizontalAlign="Center" />
+                                                                <%-- DESCRIPTION --%>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; 
+                                                                        background-color: #00b2b3; 
+                                                                        color: black; 
+                                                                        text-decoration: underline;">Description:</td>
+                                                                    <td>
+                                                                        <asp:Label ID="DescriptionLabel" runat="server" Text='<%# Bind("Description") %>' Width="500px" />
+                                                                    </td>
+                                                                </tr>
 
+                                                                <%-- TECHNICIAN --%>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; 
+                                                                        background-color: #00b2b3; 
+                                                                        color: black; 
+                                                                        text-decoration: underline;">Technician:</td>
+                                                                    <td>
+                                                                        <asp:Label ID="TechnicianLabel" runat="server" Text='<%# Bind("Technician") %>' />
+                                                                    </td>
+                                                                </tr>
 
+                                                                <%-- DATE OPENED --%>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; 
+                                                                        background-color: #00b2b3; 
+                                                                        color: black; 
+                                                                        text-decoration: underline;">Date Opened:</td>
+                                                                    <td>
+                                                                        <asp:Label ID="Date_OpenedLabel" runat="server" Text='<%# Bind("[Date Opened]", "{0:d}") %>' />
+                                                                    </td>
+                                                                </tr>
 
-                                            </asp:FormView>
-                                                                                         </div>
+                                                                <%-- DATE CLOSED --%>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; 
+                                                                        background-color: #00b2b3; 
+                                                                        color: black; 
+                                                                        text-decoration: underline;">Date Closed:</td>
+                                                                    <td>
+                                                                        <asp:Label ID="Date_ClosedLabel" runat="server" Text='<%# Bind("[Date Closed]", "{0:d}") %>' />
+                                                                    </td>
+                                                                </tr>
 
-                                            <%--                                    <asp:DropDownList ID="DropDownList1" 
-                                                      runat="server" 
-                                                      DataSourceID="SqlDataSource_TechsList" 
-                                                      DataTextField="Technician" 
-                                                      DataValueField="TechID" OnDataBound="DropDownList1_DataBound">
-                                    </asp:DropDownList>--%>
+                                                            </caption>
+                                                        </table>
 
-                                            <br />
-                                            <br />
-                                            <br />
+                                                    </ItemTemplate>
 
+                                                    <%-- PAGER --%>
+                                                    <PagerSettings Mode="NextPrevious" NextPageText="Next" PreviousPageText="Prev" />
+                                                    <PagerStyle Font-Bold="True" Font-Size="Larger" ForeColor="Black" HorizontalAlign="Center" />
 
-
-
+                                                </asp:FormView>
+                                            </div>
                                         </asp:View>
                                         <%-- END VIEW INCIDENT DETAILS TAB --%>
+
 
                                         <%-- UPDATE INCIDENT TAB --%>
                                         <asp:View ID="UpdateIncident" runat="server">
@@ -225,7 +324,8 @@
                                                             </td>
                                                             <td class="auto-style1">&nbsp;</td>
                                                             <td class="auto-style1">
-                                                                <asp:TextBox ID="TxtCustName" runat="server" BackColor="White" Enabled="false" Height="20px" onkeydown="javascript: ChangeSize(this);" Width="150px" ForeColor="Black" OnTextChanged="TxtCustName_TextChanged"></asp:TextBox>
+                                                                <asp:TextBox ID="TxtCustName" runat="server" BackColor="White" Enabled="false" Height="20px" 
+                                                                     Width="150px" ForeColor="Black" ></asp:TextBox>
                                                             </td>
                                                     </tr>
                                                     <tr>
@@ -342,13 +442,14 @@
                                                         <td class="auto-style18" rowspan="2">&nbsp;</td>
                                                         <td class="auto-style18" rowspan="2">&nbsp;</td>
                                                         <td class="auto-style21">
-                                                            <asp:Button ID="BtnUpdate" runat="server" OnClick="Button1_Click" Text="Update" Width="114px" />
+                                                            <asp:Button ID="BtnUpdate" runat="server" OnClick="BtnUpdate_Click" Text="Update" Width="114px" />
                                                         </td>
                                                         <td style="width: 30px;">&nbsp;</td>
                                                         <td>&nbsp;</td>
                                                         <td>&nbsp;</td>
                                                         <td style="text-align:right;">
-                                                            <asp:Button ID="BtnBack0" runat="server" OnClick="BtnBack_Click1" Text="Back" Width="100px" />
+                                                            <asp:Button ID="BtnBackToViewDetails" runat="server" OnClick="BtnBackToViewDetails_Click" 
+                                                                Text="Back" Width="100px" />
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -383,14 +484,16 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="auto-style17" style="align-content: center">
-                                                            <asp:Label ID="Label1" runat="server" Text="Title" Font-Bold="True"></asp:Label>
+                                                            <asp:Label ID="LblTitle_NewIncident" runat="server" Text="Title" 
+                                                                Font-Bold="True"></asp:Label>
                                                         </td>
                                                         <td class="auto-style17" style="align-content: center">&nbsp;</td>
                                                         <td class="auto-style1">
                                                             <asp:TextBox ID="TxtTitle_NewIncident" runat="server" BackColor="White" Enabled="true" ForeColor="Black" Height="20px" onkeydown="javascript: ChangeSize(this);" Width="150px"></asp:TextBox>
                                                             <td class="auto-style20">&nbsp;</td>
                                                             <td class="auto-style1">
-                                                                <asp:Label ID="Label2" runat="server" Text="Customer Name" Font-Bold="True"></asp:Label>
+                                                                <asp:Label ID="LblCustName_NewIncident" runat="server" Text="Customer Name" 
+                                                                    Font-Bold="True"></asp:Label>
                                                             </td>
                                                             <td class="auto-style1">&nbsp;</td>
                                                             <td class="auto-style1">
@@ -410,7 +513,8 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="auto-style18">
-                                                            <asp:Label ID="Label3" runat="server" Text="Description" Font-Bold="True"></asp:Label>
+                                                            <asp:Label ID="LblDescr_NewIncident" runat="server" Text="Description" 
+                                                                Font-Bold="True"></asp:Label>
                                                         </td>
                                                         <td class="auto-style18">&nbsp;</td>
                                                         <td class="auto-style8" rowspan="7" style="vertical-align: top;">
@@ -418,7 +522,8 @@
                                                         </td>
                                                         <td class="auto-style21" rowspan="7">&nbsp;</td>
                                                         <td class="auto-style7">
-                                                            <asp:Label ID="Label4" runat="server" Text="Product Name" Font-Bold="True"></asp:Label>
+                                                            <asp:Label ID="LblProd_NewIncident" runat="server" Text="Product Name" 
+                                                                Font-Bold="True"></asp:Label>
                                                         </td>
                                                         <td class="auto-style7"></td>
                                                         <td class="auto-style7">
@@ -444,14 +549,15 @@
                                                         <td class="auto-style18">&nbsp;</td>
                                                         <td class="auto-style18">&nbsp;</td>
                                                         <td class="auto-style10">
-                                                            <asp:Label ID="Label5" runat="server" Text="Assigned Technician" Font-Bold="True"></asp:Label>
+                                                            <asp:Label ID="LblTech_NewIncident" runat="server" Text="Assigned Technician" 
+                                                                Font-Bold="True"></asp:Label>
                                                         </td>
                                                         <td class="auto-style10"></td>
                                                         <td class="auto-style10">
                                                             <asp:DropDownList ID="DdlTech_NewIncident" runat="server"
                                                                 DataSourceID="SqlDataSource_TechsList"
                                                                 DataTextField="Technician"
-                                                                DataValueField="TechID" Height="25px" OnSelectedIndexChanged="DdlTech_NewIncident_SelectedIndexChanged">
+                                                                DataValueField="TechID" Height="25px" >
                                                             </asp:DropDownList>
                                                         </td>
                                                         <td>&nbsp;</td>
@@ -468,7 +574,7 @@
                                                         <td class="auto-style18"></td>
                                                         <td class="auto-style18">&nbsp;</td>
                                                         <td class="auto-style8">
-                                                            <asp:Label ID="Label6" runat="server" Text="Opened Date" Font-Bold="True"></asp:Label>
+                                                            <asp:Label ID="LblOpened_NewIncident" runat="server" Text="Opened Date" Font-Bold="True"></asp:Label>
                                                         </td>
                                                         <td class="auto-style8">&nbsp;</td>
                                                         <td class="auto-style8">
@@ -480,13 +586,14 @@
                                                         <td class="auto-style18">&nbsp;</td>
                                                         <td class="auto-style8">&nbsp;</td>
                                                         <td class="auto-style8">&nbsp;</td>
-                                                        <td class="auto-style8">&nbsp;</td>
+                                                        <td class="auto-style8">&nbsp;<p>Date: <input type="text" id="datepicker"></p></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="auto-style18">&nbsp;</td>
                                                         <td class="auto-style18">&nbsp;</td>
                                                         <td class="auto-style8">
-                                                            <asp:Label ID="Label7" runat="server" Text="Closed Date" Font-Bold="True"></asp:Label>
+                                                            <asp:Label ID="LblClosed_NewIncident" runat="server" Text="Closed Date" 
+                                                                Font-Bold="True"></asp:Label>
                                                         </td>
                                                         <td class="auto-style8">&nbsp;</td>
                                                         <td class="auto-style8">
@@ -517,7 +624,9 @@
                                                         </td>
                                                         <td></td>
                                                         <td style="text-align:right;">
-                                                            <asp:Button ID="BtnRefresh_NewIncident" runat="server" OnClick="BtnRefresh_NewIncident_Click" Text="Refresh" Width="100px" />
+                                                            <asp:Button ID="BtnRefresh_NewIncident" runat="server" 
+                                                                OnClick="BtnRefresh_NewIncident_Click" Text="Refresh" Width="100px" 
+                                                                />
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -534,7 +643,8 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:SqlDataSource ID="SqlDataSource_Incidents" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" InsertCommand="INSERT INTO [Incidents] ([CustomerID], [ProductCode], [TechID], [DateOpened], [DateClosed], [Title], [Description]) VALUES (@CustomerID, @ProductCode, @TechID, @DateOpened, @DateClosed, @Title, @Description)
+                                    <asp:SqlDataSource ID="SqlDataSource_Incidents" runat="server" 
+                                        ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" InsertCommand="INSERT INTO [Incidents] ([CustomerID], [ProductCode], [TechID], [DateOpened], [DateClosed], [Title], [Description]) VALUES (@CustomerID, @ProductCode, @TechID, @DateOpened, @DateClosed, @Title, @Description)
 "
                                         SelectCommand="SELECT i.IncidentID, c.Name AS Customer, p.Name AS Product, i.Title, i.Description, 
 CASE WHEN i.TechID is NULL THEN 'Not Set' ELSE t.name END AS Technician, 
@@ -543,21 +653,7 @@ FROM Customers AS c
 INNER JOIN Incidents AS i ON c.CustomerID = i.CustomerID 
 INNER JOIN Products AS p ON i.ProductCode = p.ProductCode 
 LEFT JOIN Technicians AS t ON i.TechID = t.TechID
-ORDER BY Customer ASC"
-                                        UpdateCommand="
-UPDATE Incidents
-SET CustomerID =  (	
-					SELECT c.CustomerID
-					FROM Customers as c
-					WHERE c.Name = @ClientName
-				  ),
-	ProductCode = @ProdName,
-	TechID = @TechName,
-	DateOpened = Convert(date, @Opened, 103),
-	DateClosed = Convert(date, @Closed, 103), 
-	Title = @Title, 
-	Description = @Descr
-WHERE IncidentID = @IncidentID;">
+ORDER BY Customer ASC">
                                         <InsertParameters>
                                             <asp:ControlParameter ControlID="DdlClient_NewIncident" Name="CustomerID" PropertyName="SelectedValue" Type="Int32" />
                                             <asp:ControlParameter ControlID="DdlProds_NewIncident" Name="ProductCode" PropertyName="SelectedValue" Type="String" />
@@ -567,16 +663,6 @@ WHERE IncidentID = @IncidentID;">
                                             <asp:ControlParameter ControlID="TxtTitle_NewIncident" Name="Title" PropertyName="Text" Type="String" />
                                             <asp:ControlParameter ControlID="TxtDescr_NewIncident" Name="Description" PropertyName="Text" Type="String" />
                                         </InsertParameters>
-                                        <UpdateParameters>
-                                            <asp:ControlParameter ControlID="TxtCustName" Name="ClientName" PropertyName="Text" Type="String" />
-                                            <asp:ControlParameter ControlID="DdlProds" Name="ProdName" PropertyName="SelectedValue" Type="String" />
-                                            <asp:ControlParameter ControlID="DdlTech" Name="TechName" PropertyName="SelectedValue" Type="String" />
-                                            <asp:ControlParameter ControlID="TxtOpened" Name="Opened" PropertyName="Text" Type="String" />
-                                            <asp:ControlParameter ControlID="TxtClosed" Name="Closed" PropertyName="Text" Type="String" />
-                                            <asp:ControlParameter ControlID="TxtTitle" Name="Title" PropertyName="Text" Type="String" />
-                                            <asp:ControlParameter ControlID="TxtDescr" Name="Descr" PropertyName="Text" Type="String" />
-                                            <asp:ControlParameter ControlID="FormView1" Name="IncidentID" PropertyName="SelectedValue" Type="Int32" />
-                                        </UpdateParameters>
                                     </asp:SqlDataSource>
                                     <td>
                                         <asp:SqlDataSource ID="SqlDataSource_FormViewIncident" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT i.IncidentID, c.Name AS Customer, p.Name AS Product, i.Title, i.Description, 
@@ -694,12 +780,13 @@ WHERE p.Supported = 0 AND r.CustomerID = @CustomerID;">
         </tr>
     </table>
 
+    <%-- SELECT BTN COLUMN --%>
+
+    <br />
+    <br />
+
+
     <%-- END INCIDENTS LIST TAB --%>
-
-    <br />
-    <br />
-
-
-
-    <%-- VIEW INCIDENT DETAILS TAB --%>
 </asp:Content>
+
+
