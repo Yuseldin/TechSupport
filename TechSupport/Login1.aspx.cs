@@ -7,6 +7,15 @@ using System.Web.UI.WebControls;
 using System.Web.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
+using System.Web.Security;
+
+//Author Block
+//Author: Jak Revai
+//Project: Revai_Jak_TechSupport_AS3
+//Description: Create Web App in C#
+//Version: 1.0
+//NOTE: The design of these pages were created on a monitor with a resolution of: 1920x1080, if the pages look funny then that is why.
 
 namespace TechSupport
 {
@@ -19,16 +28,76 @@ namespace TechSupport
 
         protected void Login_Authenticate(object sender, AuthenticateEventArgs e)
         {
+            if (Membership.ValidateUser(Login.UserName, Login.Password)) //Checks the username and password against the stored username and password in the asp_membership table
+            {
+                MembershipUser userInfo = Membership.GetUser(Login.UserName);
+                string employed = "";
 
+                if (Login.UserName == "Admin")
+                {
+                    string username = Login.UserName;
+                    Session["username"] = username;
+                    e.Authenticated = true;
+                }
+                else
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT Employed FROM Technicians WHERE TechID = @techid");
+                    cmd.Parameters.AddWithValue("@techid", Login.UserName);
+
+                    //Connection
+                    string conStr = ConfigurationManager.ConnectionStrings["TechSupportConnectionString"].ConnectionString;
+
+                    using (SqlConnection con = new SqlConnection(conStr))
+                    {
+                        cmd.Connection = con;
+                        try
+                        {
+                            con.Open();
+                            employed = cmd.ExecuteScalar().ToString();
+                            con.Close();
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                    }
+                }
+
+                if (Login.UserName == "Admin")
+                {
+                    string username = Login.UserName;
+                    Session["username"] = username;
+                    e.Authenticated = true;
+                }
+                else if (userInfo != null && employed.Equals("0")) //Checks if the userInfo exists and the User is employed from TechSupport database
+                {
+                    string username = Login.UserName;
+                    Session["username"] = username;
+
+                    e.Authenticated = true; //Continues with the login procedure
+                }
+                else
+                {
+                    e.Authenticated = false;
+                    Login.FailureText = "You are no longer employed, therefore this account has been disabled."; //The account is no longer employed and cant login
+                }
+            }
+            else
+            {
+                e.Authenticated = false;
+                Login.FailureText = "Your login attempt was not successful. Please try again.";
+            }
+                
         }
 
         protected void Login_LoggedIn(object sender, EventArgs e)
-        {
+        {            
             
-            string username = Login.UserName;
-            Session["username"] = username;
         }
 
-      
+        protected void LoginButton_Click(object sender, EventArgs e)
+        {
+            
+        }     
     }
 }

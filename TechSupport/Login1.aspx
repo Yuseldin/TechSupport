@@ -2,6 +2,13 @@
 
 <!DOCTYPE html>
 
+<%--Author Block
+Author: Jak Revai
+Project: Revai_Jak_TechSupport_AS3
+Description: Create Web App in C#
+Version: 1.0
+NOTE: The design of these pages were created on a monitor with a resolution of: 1920x1080, if the pages look funny then that is why.--%>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <link href="Style/Style.css" rel="stylesheet" type="text/css"/>
@@ -27,6 +34,9 @@
             color:red;
             text-align: left;
         }
+        .auto-style24 {
+            height: 18px;
+        }
     </style>
     </head>
 <body>
@@ -40,14 +50,14 @@
         <div style="text-align: center;">
             <div style="width: 236px; margin-left: auto; margin-right: auto;">
 
-                <asp:Login ID="Login" runat="server" DestinationPageUrl="~/Default.aspx" OnLoggedIn="Login_LoggedIn" Width="394px">
+                <asp:Login ID="Login" runat="server" DestinationPageUrl="~/Default.aspx" OnLoggedIn="Login_LoggedIn" Width="394px" OnAuthenticate="Login_Authenticate">
                     <LayoutTemplate>
                         <table cellpadding="1" cellspacing="0" style="border-collapse:collapse;">
                             <tr>
                                 <td>
                                     <table cellpadding="0">
                                         <tr>
-                                            <td align="center" colspan="2">Log In</td>
+                                            <td align="center" colspan="2" class="auto-style24">Log In</td>
                                         </tr>
                                         <tr>
                                             <td align="right" class="auto-style8">
@@ -83,7 +93,7 @@
                                         </tr>
                                         <tr>
                                             <td align="right" colspan="2">
-                                                <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="Log In" ValidationGroup="Login" />
+                                                <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="Log In" ValidationGroup="Login" OnClick="LoginButton_Click" />
                                             </td>
                                         </tr>
                                     </table>
