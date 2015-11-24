@@ -53,6 +53,25 @@ namespace TechSupport.Admin
             }
         }
 
+        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow) //Making sure that the row being accessed contains data
+            {
+                DataRowView currentRow = (DataRowView)e.Row.DataItem; //Retrieves a reference to the data used to databound the row
+
+                //Finds the employed column and converts the database int values into readable text for the end user
+                if (Convert.ToInt32(currentRow["Subscribed"]) == 0)
+                {                                                       //0 = Subscribed                                                            
+                    e.Row.Cells[4].Text = "Yes";                        //1 = Unsubscribed
+                }
+                else if (Convert.ToInt32(currentRow["Subscribed"]) == 1)
+                {
+                    e.Row.Cells[4].Text = "No";
+                }
+            }
+        }
+
+
         protected void GridView2_RowEditing(object sender, GridViewEditEventArgs e)
         {          
             if (txtSearch.Text!="")
@@ -60,7 +79,6 @@ namespace TechSupport.Admin
                 Registration();
             }
             GridView2.EditIndex = e.NewEditIndex;
-            
         }
 
         protected void GridView2_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -98,37 +116,18 @@ namespace TechSupport.Admin
             }
         }
 
-        protected void GridView2_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            if (txtSearch.Text != "")
-            {
-                Registration();
-            }
-            string update = "UPDATE [Registrations] SET [RegistrationDate] = @RegistrationDate, [Subscribed] = @Subscribed WHERE [CustomerID] = @CustomerID AND [ProductCode] = @ProductCode";
-        }
-
-        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow) //Making sure that the row being accessed contains data
-            {
-                DataRowView currentRow = (DataRowView)e.Row.DataItem; //Retrieves a reference to the data used to databound the row
-
-                //Finds the employed column and converts the database int values into readable text for the end user
-                if (Convert.ToInt32(currentRow["Subscribed"]) == 0)
-                {                                                       //0 = Subscribed                                                            
-                    e.Row.Cells[4].Text = "Yes";                        //1 = Unsubscribed
-                }
-                else if (Convert.ToInt32(currentRow["Subscribed"]) == 1)
-                {
-                    e.Row.Cells[4].Text = "No";
-                }
-            }
-        }
-
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in GridView2.Rows) //Looping through each row in the grid
+            //foreach (GridViewRow row in GridView2.Rows) //Looping through each row in the grid
+            //{
+            GridViewRow row = GridView2.SelectedRow;
+            if (GridView2.SelectedRow == null)
             {
+                lblError.Text = "Please select a customer";
+            }
+            else
+            {
+                lblError.Visible = false;
                 if (row.RowType == DataControlRowType.DataRow) //Checks to make sure the row contains data
                 {
                     //it searches for the edit button to hide it when clicked, and then sets the update and cancel buttons to visible
@@ -144,7 +143,7 @@ namespace TechSupport.Admin
                     {
                         row.Cells[0].Controls.OfType<LinkButton>().LastOrDefault().Visible = true;
                     }
-                    
+
                     //searches for the labels to hide them
                     row.Cells[3].Controls.OfType<Label>().FirstOrDefault().Visible = false; //Finds all the labels in the gridview and make them invisible
                     row.Cells[4].Controls.OfType<Label>().FirstOrDefault().Visible = false; //Finds all the labels in the gridview and make them invisible
@@ -152,11 +151,11 @@ namespace TechSupport.Admin
                     //Finds all the textboxes in the gridview and make them visible
                     if (row.Cells[3].Controls.OfType<TextBox>().ToList().Count > 0)
                     {
-                        row.Cells[3].Controls.OfType<TextBox>().FirstOrDefault().Visible = true; 
+                        row.Cells[3].Controls.OfType<TextBox>().FirstOrDefault().Visible = true;
                     }
                     //Finds all dropdown boxes //Code for Employed dropdown box
                     if (row.Cells[4].Controls.OfType<DropDownList>().ToList().Count > 0 &&
-                        row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown1")) 
+                        row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown1"))
                     {
                         row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().Visible = true; //Makes it visible
 
@@ -173,15 +172,75 @@ namespace TechSupport.Admin
                     }
 
                 }
+
             }
-            
+            //}
+
         }
 
+        protected void GridView2_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            if (txtSearch.Text != "")
+            {
+                Registration();
+            }
+            
+            //foreach (GridViewRow row in GridView2.Rows) //Converting the dropdown boxes to integers
+            //{
+            GridViewRow row = GridView2.Rows[e.RowIndex];
+                if (row.RowType == DataControlRowType.DataRow) //Checks to make sure the row contains data
+                {
+                    //Subscribed dropdown boxes
+                    if (row.Cells[4].Controls.OfType<DropDownList>().ToList().Count > 0 &&
+                        row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex == 0 &&
+                        row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown1")) //If the value in the dropdown list is "Yes"
+                    {
+                        row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value = "0";
+                        Convert.ToInt32(row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().Text);
+                    }
+                    if (row.Cells[4].Controls.OfType<DropDownList>().ToList().Count > 0 &&
+                        row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().SelectedIndex == 1 &&
+                        row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().ID.Equals("DropDown1")) //If the value in the dropdown list is "No"
+                    {
+                        row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value = "1";
+                        Convert.ToInt32(row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().Text);
+                    }
+                }
+            //}
+            //UPDATING THE DATABASE
+            
+                if (row.RowType == DataControlRowType.DataRow)
+                {
+                    DateTime da = new DateTime(2012, 2 ,25);
+                    string date = da.ToString("MM/dd/YYYY");
+                    //date = row.Cells[3].Controls.OfType<TextBox>().FirstOrDefault().Text;
 
+                    SqlCommand cmd = new SqlCommand("UPDATE [Registrations] SET [RegistrationDate] = @RegistrationDate, [Subscribed] = @Subscribed WHERE [CustomerID] = @CustomerID AND [ProductCode] = @ProductCode");
+                    cmd.Parameters.AddWithValue("@CustomerID", row.Cells[1].Controls.OfType<Label>().FirstOrDefault().Text);
+                    cmd.Parameters.AddWithValue("@ProductCode", row.Cells[2].Controls.OfType<Label>().FirstOrDefault().Text);
+                    cmd.Parameters.AddWithValue("@RegistrationDate", da);
+                    cmd.Parameters.AddWithValue("@Subscribed", row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value);
 
-
-
-
+                    //Connection
+                    string conStr = ConfigurationManager.ConnectionStrings["TechSupportConnectionString"].ConnectionString;
+                    using (SqlConnection con = new SqlConnection(conStr))
+                    {
+                        cmd.Connection = con;
+                        try
+                        {
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                    }
+                }
+            
+            GridView2.DataBind();
+        }
 
     }
 }

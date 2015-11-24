@@ -67,24 +67,37 @@
             <AlternatingRowStyle BackColor="#DCDCDC" />
             <Columns>
                 <asp:TemplateField ShowHeader="False">
+                    <%--<EditItemTemplate>
+                         <asp:LinkButton ID="btnUpdate" runat="server" CausesValidation="True" CommandName="Update" Text="Update" Visible="false"></asp:LinkButton>
+                        &nbsp;<asp:LinkButton ID="btnCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" Visible="false"></asp:LinkButton>
+                    </EditItemTemplate>--%>
                     <ItemTemplate>
                         <%--<asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>--%>
                         <asp:LinkButton ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />
-                        <asp:LinkButton ID="btnUpdate" runat="server" CausesValidation="True" CommandName="Update" Text="Update" Visible="false"></asp:LinkButton>
+                       <asp:LinkButton ID="btnUpdate" runat="server" CausesValidation="True" CommandName="Update" Text="Update" Visible="false"></asp:LinkButton>
                         &nbsp;<asp:LinkButton ID="btnCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" Visible="false"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="CustomerID" HeaderText="CustomerID" ReadOnly="True" SortExpression="CustomerID" />
-                <asp:BoundField DataField="ProductCode" HeaderText="ProductCode" ReadOnly="True" SortExpression="ProductCode" />
+                <%--<asp:BoundField DataField="CustomerID" HeaderText="CustomerID" ReadOnly="True" SortExpression="CustomerID" />--%>
+                <asp:TemplateField HeaderText="CustomerID">
+                    <ItemTemplate>
+                        <asp:Label ID="lblCustomerID" runat="server" Text='<%# Bind("CustomerID") %>' Visible="true"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <%--<asp:BoundField DataField="ProductCode" HeaderText="ProductCode" ReadOnly="True" SortExpression="ProductCode" />--%>
+                <asp:TemplateField HeaderText="ProductCode">
+                    <ItemTemplate>
+                        <asp:Label ID="lblProductCode" runat="server" Text='<%# Bind("ProductCode") %>' Visible="true"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <%--<asp:BoundField DataField="RegistrationDate" HeaderText="RegistrationDate" SortExpression="RegistrationDate" DataFormatString="{0:dd/MM/yyyy}"/>--%>
                 <%--<asp:BoundField DataField="Subscribed" HeaderText="Subscribed" SortExpression="Subscribed" />--%>
                 <asp:TemplateField HeaderText="RegistrationDate">
                     <ItemTemplate>
-                        <asp:Label ID="lblRegistrationDate" runat="server" Text='<%# Bind("RegistrationDate") %>' Visible="true" DataFormatString="{0:dd/MM/yyyy}"></asp:Label>
-                        <asp:TextBox ID="txtRegistrationDate" runat="server" Text='<%# Bind("RegistrationDate") %>' Visible="false" DataFormatString="{0:dd/MM/yyyy}"></asp:TextBox>
+                        <asp:Label ID="lblRegistrationDate" runat="server" Text='<%# Bind("RegistrationDate") %>' Visible="true" ></asp:Label>
+                        <asp:TextBox ID="txtRegistrationDate" runat="server" Text='<%# Bind("RegistrationDate") %>' Visible="false" ></asp:TextBox>
                     </ItemTemplate>
                 </asp:TemplateField>
-
                 <asp:TemplateField HeaderText="Subscribed">
                     <ItemTemplate>
                         <asp:Label ID="lblSubscribed" runat="server" Text='<%# Bind("Subscribed") %>' Visible="True"></asp:Label>
@@ -94,6 +107,8 @@
                         </asp:DropDownList>
                     </ItemTemplate>
                 </asp:TemplateField>
+                
+                <asp:CommandField ShowSelectButton="True" />
                 
             </Columns>
             <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
