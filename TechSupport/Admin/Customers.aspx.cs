@@ -191,14 +191,14 @@ namespace TechSupport.Admin
             }
         }
 
-        protected void GridView2_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        protected void btnUpdate_Click(object sender, EventArgs e)
         {
             if (txtSearch.Text != "")
             {
                 Registration();
             }
 
-            GridViewRow row = GridView2.Rows[e.RowIndex];
+            GridViewRow row = GridView2.SelectedRow;
                 if (row.RowType == DataControlRowType.DataRow) //Checks to make sure the row contains data
                 {
                     //Subscribed dropdown boxes
@@ -253,13 +253,8 @@ namespace TechSupport.Admin
             GridView2.DataBind();
         }
 
-        protected void GridView2_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-            //GridViewRow row = GridView2.Rows[e.NewSelectedIndex];
 
-            //row.Cells[4].Controls.OfType<Label>().FirstOrDefault().Visible = true;
 
-        }
 
     }
 }

@@ -21,7 +21,7 @@
                 <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
                 <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
                 <asp:BoundField DataField="ZipCode" HeaderText="ZipCode" SortExpression="ZipCode" />
-                <asp:BoundField DataField="country" HeaderText="country" SortExpression="country" />
+                <asp:BoundField DataField="country" HeaderText="Country" SortExpression="country" />
                 <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
                 <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
             </Columns>
@@ -63,7 +63,7 @@
         </asp:SqlDataSource>
     </p>
     <p>
-        <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="CustomerID,ProductCode" DataSourceID="SqlDataSource1" GridLines="Vertical" OnRowCancelingEdit="GridView2_RowCancelingEdit" OnRowEditing="GridView2_RowEditing" OnRowDataBound="GridView2_RowDataBound" OnRowUpdating="GridView2_RowUpdating" OnSelectedIndexChanging="GridView2_SelectedIndexChanging">
+        <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="CustomerID,ProductCode" DataSourceID="SqlDataSource1" GridLines="Vertical" OnRowCancelingEdit="GridView2_RowCancelingEdit" OnRowEditing="GridView2_RowEditing" OnRowDataBound="GridView2_RowDataBound">
             <AlternatingRowStyle BackColor="#DCDCDC" />
             <Columns>
                 <%--<asp:CommandField ShowSelectButton="True" />--%>
@@ -76,7 +76,7 @@
                         <%--<asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>--%>
                         <asp:LinkButton ID="btnSelect" runat="server" OnClick="btnSelect_Click" Text="Select" CommandName="Select"/>
                         <%--<asp:LinkButton ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />--%>
-                       <asp:LinkButton ID="btnUpdate" runat="server" CausesValidation="True" CommandName="Update" Text="Update" Visible="false"></asp:LinkButton>
+                       <asp:LinkButton ID="btnUpdate" runat="server" CausesValidation="True" OnClick="btnUpdate_Click" Text="Update" Visible="false"></asp:LinkButton>
                         &nbsp;<asp:LinkButton ID="btnCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" Visible="false"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
