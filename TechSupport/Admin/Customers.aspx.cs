@@ -68,6 +68,7 @@ namespace TechSupport.Admin
                 {
                     e.Row.Cells[4].Text = "No";
                 }
+
             }
         }
 
@@ -131,7 +132,7 @@ namespace TechSupport.Admin
                 if (row.RowType == DataControlRowType.DataRow) //Checks to make sure the row contains data
                 {
                     //it searches for the edit button to hide it when clicked, and then sets the update and cancel buttons to visible
-                    if (row.Cells[0].Controls.OfType<LinkButton>().ElementAt(0).ID == "btnEdit")
+                    if (row.Cells[0].Controls.OfType<LinkButton>().ElementAt(0).ID == "btnSelect")
                     {
                         row.Cells[0].Controls.OfType<LinkButton>().FirstOrDefault().Visible = false;
                     }
@@ -178,15 +179,25 @@ namespace TechSupport.Admin
 
         }
 
+        protected void btnSelect_Click(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in GridView2.Rows) 
+            {
+                if (txtSearch.Text != "")
+                {
+                    Registration();
+                }
+                row.Cells[4].Controls.OfType<Label>().FirstOrDefault().Visible = true;               
+            }
+        }
+
         protected void GridView2_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             if (txtSearch.Text != "")
             {
                 Registration();
             }
-            
-            //foreach (GridViewRow row in GridView2.Rows) //Converting the dropdown boxes to integers
-            //{
+
             GridViewRow row = GridView2.Rows[e.RowIndex];
                 if (row.RowType == DataControlRowType.DataRow) //Checks to make sure the row contains data
                 {
@@ -206,20 +217,20 @@ namespace TechSupport.Admin
                         Convert.ToInt32(row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().Text);
                     }
                 }
-            //}
+            
             //UPDATING THE DATABASE
             
                 if (row.RowType == DataControlRowType.DataRow)
                 {
-                    DateTime da = new DateTime(2012, 2 ,25);
-                    string date = da.ToString("MM/dd/YYYY");
-                    //date = row.Cells[3].Controls.OfType<TextBox>().FirstOrDefault().Text;
-
+                    string da = row.Cells[3].Controls.OfType<TextBox>().FirstOrDefault().Text;
+                    DateTime date = Convert.ToDateTime(da);
+                    string value = row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value;
+                    int iValue = Convert.ToInt32(value);
                     SqlCommand cmd = new SqlCommand("UPDATE [Registrations] SET [RegistrationDate] = @RegistrationDate, [Subscribed] = @Subscribed WHERE [CustomerID] = @CustomerID AND [ProductCode] = @ProductCode");
                     cmd.Parameters.AddWithValue("@CustomerID", row.Cells[1].Controls.OfType<Label>().FirstOrDefault().Text);
                     cmd.Parameters.AddWithValue("@ProductCode", row.Cells[2].Controls.OfType<Label>().FirstOrDefault().Text);
-                    cmd.Parameters.AddWithValue("@RegistrationDate", da);
-                    cmd.Parameters.AddWithValue("@Subscribed", row.Cells[4].Controls.OfType<DropDownList>().FirstOrDefault().SelectedItem.Value);
+                    cmd.Parameters.AddWithValue("@RegistrationDate", date);
+                    cmd.Parameters.AddWithValue("@Subscribed", iValue);
 
                     //Connection
                     string conStr = ConfigurationManager.ConnectionStrings["TechSupportConnectionString"].ConnectionString;
@@ -240,6 +251,14 @@ namespace TechSupport.Admin
                 }
             
             GridView2.DataBind();
+        }
+
+        protected void GridView2_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            //GridViewRow row = GridView2.Rows[e.NewSelectedIndex];
+
+            //row.Cells[4].Controls.OfType<Label>().FirstOrDefault().Visible = true;
+
         }
 
     }

@@ -63,9 +63,10 @@
         </asp:SqlDataSource>
     </p>
     <p>
-        <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="CustomerID,ProductCode" DataSourceID="SqlDataSource1" GridLines="Vertical" OnRowCancelingEdit="GridView2_RowCancelingEdit" OnRowEditing="GridView2_RowEditing" OnRowDataBound="GridView2_RowDataBound" OnRowUpdating="GridView2_RowUpdating">
+        <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="CustomerID,ProductCode" DataSourceID="SqlDataSource1" GridLines="Vertical" OnRowCancelingEdit="GridView2_RowCancelingEdit" OnRowEditing="GridView2_RowEditing" OnRowDataBound="GridView2_RowDataBound" OnRowUpdating="GridView2_RowUpdating" OnSelectedIndexChanging="GridView2_SelectedIndexChanging">
             <AlternatingRowStyle BackColor="#DCDCDC" />
             <Columns>
+                <%--<asp:CommandField ShowSelectButton="True" />--%>
                 <asp:TemplateField ShowHeader="False">
                     <%--<EditItemTemplate>
                          <asp:LinkButton ID="btnUpdate" runat="server" CausesValidation="True" CommandName="Update" Text="Update" Visible="false"></asp:LinkButton>
@@ -73,7 +74,8 @@
                     </EditItemTemplate>--%>
                     <ItemTemplate>
                         <%--<asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>--%>
-                        <asp:LinkButton ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />
+                        <asp:LinkButton ID="btnSelect" runat="server" OnClick="btnSelect_Click" Text="Select" CommandName="Select"/>
+                        <%--<asp:LinkButton ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />--%>
                        <asp:LinkButton ID="btnUpdate" runat="server" CausesValidation="True" CommandName="Update" Text="Update" Visible="false"></asp:LinkButton>
                         &nbsp;<asp:LinkButton ID="btnCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" Visible="false"></asp:LinkButton>
                     </ItemTemplate>
@@ -94,8 +96,8 @@
                 <%--<asp:BoundField DataField="Subscribed" HeaderText="Subscribed" SortExpression="Subscribed" />--%>
                 <asp:TemplateField HeaderText="RegistrationDate">
                     <ItemTemplate>
-                        <asp:Label ID="lblRegistrationDate" runat="server" Text='<%# Bind("RegistrationDate") %>' Visible="true" ></asp:Label>
-                        <asp:TextBox ID="txtRegistrationDate" runat="server" Text='<%# Bind("RegistrationDate") %>' Visible="false" ></asp:TextBox>
+                        <asp:Label ID="lblRegistrationDate" runat="server" Text='<%# Bind("RegistrationDate","{0:dd/MM/yyyy}") %>' Visible="true" ></asp:Label>
+                        <asp:TextBox ID="txtRegistrationDate" runat="server" Text='<%# Bind("RegistrationDate","{0:dd/MM/yyyy}") %>' Visible="false" ></asp:TextBox>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Subscribed">
@@ -108,8 +110,6 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 
-                <asp:CommandField ShowSelectButton="True" />
-                
             </Columns>
             <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
             <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
@@ -121,7 +121,7 @@
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#000065" />
         </asp:GridView>        
-        <%--<asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />--%>
+        <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" DeleteCommand="DELETE FROM [Registrations] WHERE [CustomerID] = @CustomerID AND [ProductCode] = @ProductCode" InsertCommand="INSERT INTO [Registrations] ([CustomerID], [ProductCode], [RegistrationDate]) VALUES (@CustomerID, @ProductCode, @RegistrationDate)" SelectCommand="SELECT * FROM [Registrations] ORDER BY [CustomerID]" UpdateCommand="UPDATE [Registrations] SET [RegistrationDate] = @RegistrationDate, [Subscribed] = @Subscribed WHERE [CustomerID] = @CustomerID AND [ProductCode] = @ProductCode">
             <DeleteParameters>
                 <asp:Parameter Name="CustomerID" Type="Int32" />
