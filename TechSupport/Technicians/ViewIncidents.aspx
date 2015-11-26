@@ -3,17 +3,23 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
+    <style type="text/css">
+        .auto-style24 {
+            height: 21px;
+        }
+        .auto-style25 {
+            height: 21px;
+            width: 5px;
+        }
+    </style>
 
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-
-
+    
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <br/>
-
-    <asp:ScriptManager ID="ScriptManager_Incidents" runat="server"></asp:ScriptManager>
-
     <br/>
     <table style="margin: auto; vertical-align: middle;">
         <tr>
@@ -40,9 +46,8 @@
                                                         <td>
                                                             <asp:Label ID="LblNewIncident" runat="server" Font-Bold="True" Text="Open New Incident"></asp:Label>
                                                         </td>
-                                                        <td style="width: 20px">
-                                                            <asp:Button ID="Button1" runat="server" Text="Button" OnClientClick="(myClosure())().canyouseeIt()"/>
-                                                        </td>
+                                                        <td class="auto-style18">
+                                                            &nbsp;</td>
                                                         <td>
                                                             <asp:Button ID="BtnNewIncident" runat="server" OnClick="BtnNewIncident_Click" Text="Submit" />
                                                         </td>
@@ -159,11 +164,13 @@
                                         <asp:View ID="ViewDetails" runat="server">
 
 
-                                            <strong>View Incident Details:</strong>
+                                            <strong>
+                                                <asp:Label ID="Label1" runat="server" Text="View Incident Details:"></asp:Label></strong>
                                             <hr/>
-                                                This section illustrates all the details relatively to the incident selected from the table in the previous page.
+                                            <asp:Label ID="Label2" runat="server" Text="This section illustrates all the details relatively to the incident selected from the table in the previous page.
                                                 Also it displays all the other incidents for the chosen customer, giving the user the possibility both to navigate
-                                                between them and to perform update operations.
+                                                between them and to perform update operations.">
+                                            </asp:Label>
                                             <hr/>
 
                                             <br/><br/>
@@ -302,10 +309,26 @@
                                                 <strong>Update Incident:</strong>
                                                 <hr />
                                                 This section allows to update the selected incident and then redirect to the previous page where the user can keep nagivate and perform other operations.
+                                                
+                                                <br/><br/>
+
+                                                   <asp:ValidationSummary 
+                                                    ID="ValidationSummary1" 
+                                                    runat="server" 
+                                                    HeaderText="Following error occured:" 
+                                                    ShowMessageBox="false" 
+                                                    DisplayMode="BulletList" 
+                                                    ShowSummary="true"
+                                                    
+                                                    Width="450"
+                                                    ForeColor="Red"
+                                                    />
                                                 <hr />
                                             </div>
                                             <br />
                                             <div align="center">
+
+
                                                 <table aria-orientation="horizontal">
                                                     <tr>
                                                         <td class="auto-style1">&nbsp;</td>
@@ -317,23 +340,45 @@
                                                         </td>
                                                         <td class="auto-style17" style="align-content: center">&nbsp;</td>
                                                         <td class="auto-style1">
-                                                            <asp:TextBox ID="TxtTitle" runat="server" BackColor="White" Enabled="true" Height="20px" Width="150px" ForeColor="Black"></asp:TextBox>
-                                                            <td class="auto-style20">&nbsp;</td>
+                                                            <asp:TextBox ID="TxtTitle" runat="server" BackColor="White" Enabled="true" Height="20px" Width="250px" ForeColor="Black" onkeypress="return CheckLength();"></asp:TextBox>
+                                                            <td class="auto-style20">&nbsp;
+                                                                <asp:RequiredFieldValidator id="RequiredFieldValidator1" runat="server"
+                                                                  ControlToValidate="TxtTitle"
+                                                                  ErrorMessage="The incident title is a required field."
+                                                                  ForeColor="Red" 
+                                                                    EnableClientScript="true"
+                                                                     display="None"
+>
+                                                                </asp:RequiredFieldValidator>
+
+                                                            </td>
                                                             <td class="auto-style1">
                                                                 <asp:Label ID="LblCustomer" runat="server" Text="Customer Name" Font-Bold="True"></asp:Label>
                                                             </td>
                                                             <td class="auto-style1">&nbsp;</td>
                                                             <td class="auto-style1">
                                                                 <asp:TextBox ID="TxtCustName" runat="server" BackColor="White" Enabled="false" Height="20px" 
-                                                                     Width="150px" ForeColor="Black" ></asp:TextBox>
+                                                                     Width="250px" ForeColor="Black" ></asp:TextBox>
+                                                            </td>
+                                                            <td>
+
                                                             </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="auto-style17" style="align-content: center">&nbsp;</td>
                                                         <td class="auto-style17" style="align-content: center">&nbsp;</td>
                                                         <td class="auto-style1" rowspan="6">
-                                                            <asp:TextBox ID="TxtDescr" runat="server" BackColor="White" Enabled="true" ForeColor="Black" Height="104px" Style="resize: none" TextMode="MultiLine" Width="197px"></asp:TextBox>
-                                                            <td class="auto-style20">&nbsp;</td>
+                                                            <asp:TextBox ID="TxtDescr" runat="server" BackColor="White" Enabled="true" ForeColor="Black" Height="104px" Style="resize: none" TextMode="MultiLine" Width="250px" onkeypress="return CheckLength1();"></asp:TextBox>
+                                                                                                                            <asp:RequiredFieldValidator id="RequiredFieldValidator2" runat="server"
+                                                                  ControlToValidate="TxtDescr"
+                                                                  ErrorMessage="The incident description is a required field."
+                                                                  ForeColor="Red" 
+                                                                     display="None"
+                                                                     EnableClientScript="true"
+             SetFocusOnError="true">
+                                                                </asp:RequiredFieldValidator>
+
+                                                             <td class="auto-style20">&nbsp;</td>
                                                             <td class="auto-style1">&nbsp;</td>
                                                             <td class="auto-style1">&nbsp;</td>
                                                             <td class="auto-style1">&nbsp;</td>
@@ -353,7 +398,7 @@
                                                             <asp:DropDownList ID="DdlProds" runat="server"
                                                                 DataSourceID="SqlDataSource_ProdsList"
                                                                 DataTextField="Product"
-                                                                DataValueField="ProductCode" OnDataBound="DdlProds_DataBound" Height="25px">
+                                                                DataValueField="ProductCode" OnDataBound="DdlProds_DataBound" Height="25px" Width="250px">
                                                                 <asp:ListItem Selected="True">Choose a Product</asp:ListItem>
                                                             </asp:DropDownList>
                                                         </td>
@@ -381,7 +426,7 @@
                                                                 DataSourceID="SqlDataSource_TechsList"
                                                                 DataTextField="Technician"
                                                                 DataValueField="TechID"
-                                                                OnDataBound="DdlTech_DataBound" Height="25px">
+                                                                OnDataBound="DdlTech_DataBound" Height="25px" Width="250px">
                                                             </asp:DropDownList>
                                                         </td>
                                                         <td>
@@ -405,7 +450,15 @@
                                                         </td>
                                                         <td class="auto-style8">&nbsp;</td>
                                                         <td class="auto-style8">
-                                                            <asp:TextBox ID="TxtOpened"  runat="server" BackColor="White" Enabled="true" Height="20px" Width="150px" ForeColor="Black"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtOpened"  runat="server" BackColor="White" Enabled="true" Height="20px" Width="250px" ForeColor="Black"  onkeypress="return CheckLength3();"></asp:TextBox>
+                                                                                                                             <asp:RequiredFieldValidator id="RequiredFieldValidator3" runat="server"
+                                                                  ControlToValidate="TxtOpened"
+                                                                  ErrorMessage="The client name is a required field."
+                                                                  ForeColor="Red" 
+                                                                     display="None"
+                                                                     EnableClientScript="true">
+                                                                </asp:RequiredFieldValidator>
+
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -425,7 +478,7 @@
                                                         <td class="auto-style8">&nbsp;</td>
                                                         <td class="auto-style8">
                                                             <asp:TextBox ID="TxtClosed" runat="server" BackColor="White"
-                                                                Enabled="true" Height="20px" Width="150px" ForeColor="Black"></asp:TextBox>
+                                                                Enabled="true" Height="20px" Width="250px" ForeColor="Black"  onkeypress="return CheckLength3();"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -473,6 +526,19 @@
                                                 <hr />
                                                 This section permits to create a new incident for every customer that has purchased one of our products. Then it
                                                 will redirect to the incidents list.
+                                                <br/><br/>
+                                                  <asp:ValidationSummary 
+                                                    ID="ValidationSummary2" 
+                                                    runat="server" 
+                                                    HeaderText="Following error occured:" 
+                                                    ShowMessageBox="false" 
+                                                    DisplayMode="BulletList" 
+                                                    ShowSummary="true"
+                                                    
+                                                    Width="450"
+                                                    ForeColor="Red"
+                                                    />
+
                                                 <hr />
                                             </div>
                                             <br />
@@ -489,8 +555,11 @@
                                                         </td>
                                                         <td class="auto-style17" style="align-content: center">&nbsp;</td>
                                                         <td class="auto-style1">
-                                                            <asp:TextBox ID="TxtTitle_NewIncident" runat="server" BackColor="White" Enabled="true" ForeColor="Black" Height="20px" onkeydown="javascript: ChangeSize(this);" Width="150px"></asp:TextBox>
-                                                            <td class="auto-style20">&nbsp;</td>
+                                                            <asp:TextBox ID="TxtTitle_NewIncident" runat="server" BackColor="White" Enabled="true" ForeColor="Black" Height="20px"  onkeypress="return CheckLength();" Width="250px"></asp:TextBox>
+
+                                                            <td class="auto-style20">&nbsp;
+
+                                                            </td>
                                                             <td class="auto-style1">
                                                                 <asp:Label ID="LblCustName_NewIncident" runat="server" Text="Customer Name" 
                                                                     Font-Bold="True"></asp:Label>
@@ -498,17 +567,22 @@
                                                             <td class="auto-style1">&nbsp;</td>
                                                             <td class="auto-style1">
                                                                 <asp:DropDownList ID="DdlClient_NewIncident" runat="server" DataSourceID="SqlDataSource_ClientsList" DataTextField="Customer" DataValueField="ClientID"
-                                                                    OnSelectedIndexChanged="DdlClient_NewIncident_SelectedIndexChanged" AutoPostBack="True" OnDataBound="DdlClient_NewIncident_DataBound" Height="25px">
+                                                                    OnSelectedIndexChanged="DdlClient_NewIncident_SelectedIndexChanged" AutoPostBack="True" OnDataBound="DdlClient_NewIncident_DataBound" Height="25px" Width="250px">
                                                                 </asp:DropDownList>
                                                             </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="auto-style17" style="align-content: center">&nbsp;</td>
-                                                        <td class="auto-style17" style="align-content: center">&nbsp;</td>
-                                                        <td class="auto-style1">&nbsp;<td class="auto-style20">&nbsp;</td>
-                                                            <td class="auto-style1">&nbsp;</td>
-                                                            <td class="auto-style1">&nbsp;</td>
-                                                            <td class="auto-style1">&nbsp;</td>
+                                                        <td class="auto-style24" style="align-content: center"></td>
+                                                        <td class="auto-style24" style="align-content: center; "></td>
+                                                        <td class="auto-style24">                                                                 <asp:RequiredFieldValidator id="RequiredFieldValidator4" runat="server"
+                                                                  ControlToValidate="TxtTitle_NewIncident"
+                                                                  ErrorMessage="The incident title is a required field."
+                                                                  ForeColor="Red" Display="None">
+                                                                </asp:RequiredFieldValidator>
+<td class="auto-style25"></td>
+                                                            <td class="auto-style24"></td>
+                                                            <td class="auto-style24"></td>
+                                                            <td class="auto-style24"></td>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -518,7 +592,14 @@
                                                         </td>
                                                         <td class="auto-style18">&nbsp;</td>
                                                         <td class="auto-style8" rowspan="7" style="vertical-align: top;">
-                                                            <asp:TextBox ID="TxtDescr_NewIncident" runat="server" Style="resize: none" BackColor="White" Enabled="true" Height="104px" TextMode="MultiLine" Width="197px" ForeColor="Black"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtDescr_NewIncident" runat="server" Style="resize: none" BackColor="White" Enabled="true" Height="104px" TextMode="MultiLine" Width="250px" ForeColor="Black"  onkeypress="return CheckLength1();"></asp:TextBox>
+                                                                 <asp:RequiredFieldValidator id="RequiredFieldValidator5" runat="server"
+                                                                  ControlToValidate="TxtDescr_NewIncident"
+                                                                  ErrorMessage="The incident description is a required field."
+                                                                  ForeColor="Red" 
+                                                                     display="None"
+                                                                     EnableClientScript="true">
+                                                                </asp:RequiredFieldValidator>
                                                         </td>
                                                         <td class="auto-style21" rowspan="7">&nbsp;</td>
                                                         <td class="auto-style7">
@@ -530,7 +611,7 @@
                                                             <asp:DropDownList ID="DdlProds_NewIncident" runat="server"
                                                                 DataSourceID="SqlDataSource_DdlProds_NewIncident"
                                                                 DataTextField="Product"
-                                                                DataValueField="ProductCode" Height="25px">
+                                                                DataValueField="ProductCode" Height="25px" Width="250px">
                                                             </asp:DropDownList>
                                                         </td>
                                                         <td>&nbsp;</td>
@@ -557,7 +638,7 @@
                                                             <asp:DropDownList ID="DdlTech_NewIncident" runat="server"
                                                                 DataSourceID="SqlDataSource_TechsList"
                                                                 DataTextField="Technician"
-                                                                DataValueField="TechID" Height="25px" >
+                                                                DataValueField="TechID" Height="25px" Width="250px" >
                                                             </asp:DropDownList>
                                                         </td>
                                                         <td>&nbsp;</td>
@@ -578,7 +659,15 @@
                                                         </td>
                                                         <td class="auto-style8">&nbsp;</td>
                                                         <td class="auto-style8">
-                                                            <asp:TextBox ID="TxtOpened_NewIncident" runat="server" BackColor="White" Enabled="true" Height="20px" Width="150px" ForeColor="Black"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtOpened_NewIncident" runat="server" BackColor="White" Enabled="true" Height="20px" Width="250px" ForeColor="Black"  onkeypress="return CheckLength3();"></asp:TextBox>
+                                                                                                                             <asp:RequiredFieldValidator id="RequiredFieldValidator6" runat="server"
+                                                                  ControlToValidate="TxtOpened_NewIncident"
+                                                                  ErrorMessage="The new incident requires an open date."
+                                                                  ForeColor="Red" 
+                                                                    display="None"
+                                                                     EnableClientScript="true">
+                                                                </asp:RequiredFieldValidator>
+
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -586,7 +675,7 @@
                                                         <td class="auto-style18">&nbsp;</td>
                                                         <td class="auto-style8">&nbsp;</td>
                                                         <td class="auto-style8">&nbsp;</td>
-                                                        <td class="auto-style8">&nbsp;<p>Date: <input type="text" id="datepicker"></p></td>
+                                                        <td class="auto-style8">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="auto-style18">&nbsp;</td>
@@ -597,7 +686,7 @@
                                                         </td>
                                                         <td class="auto-style8">&nbsp;</td>
                                                         <td class="auto-style8">
-                                                            <asp:TextBox ID="TxtClosed_NewIncident" runat="server" BackColor="White" Enabled="true" Height="20px" Width="150px" ForeColor="Black"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtClosed_NewIncident" runat="server" BackColor="White" Enabled="true" Height="20px" Width="250px" ForeColor="Black"  onkeypress="return CheckLength3();"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -780,11 +869,44 @@ WHERE p.Supported = 0 AND r.CustomerID = @CustomerID;">
         </tr>
     </table>
 
-    <%-- SELECT BTN COLUMN --%>
+    <%-- SELECT BTN COLUMN "<%TxtTitle.ClientID%>"--%>
 
     <br />
     <br />
 
+    <script type="text/javascript">
+        //And the javascript code is
+        function CheckLength() {
+            var textbox = document.getElementById(control).value;
+            if (textbox.trim().length >= 50) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        function CheckLength1() {
+            var textbox = document.getElementById(control).value;
+            if (textbox.trim().length >= 2000) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        function CheckLength3() {
+            var textbox = document.getElementById(control).value;
+            if (textbox.trim().length >= 12) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+    </script>
 
     <%-- END INCIDENTS LIST TAB --%>
 </asp:Content>

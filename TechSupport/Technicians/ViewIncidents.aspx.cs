@@ -88,15 +88,26 @@ namespace TechSupport.Technicians
         /// <param name="e"></param>
         protected void GridView_Incidents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Calls the select method for the SqlDataSource binded to the form view for the incident details
-            this.SqlDataSource_FormViewIncident.Select(DataSourceSelectArguments.Empty);
-            //Bind the formview so that it refreshes and it displays the selected record
-            this.FormView_Incidents.DataBind();
-            //Having made so that in the formview are loaded all the incidents for the selected customer, this method
-            //set the displayed page on the specific record selected in the gridview
-            setFormView_Incidents();
-            //Set the active view of the multiview control on the view incident page
-            this.Incidents_MultiView.ActiveViewIndex = 1;
+            try
+            {
+                //Calls the select method for the SqlDataSource binded to the form view for the incident details
+                this.SqlDataSource_FormViewIncident.Select(DataSourceSelectArguments.Empty);
+                //Bind the formview so that it refreshes and it displays the selected record
+                this.FormView_Incidents.DataBind();
+                //Having made so that in the formview are loaded all the incidents for the selected customer, this method
+                //set the displayed page on the specific record selected in the gridview
+                setFormView_Incidents();
+                //Set the active view of the multiview control on the view incident page
+                this.Incidents_MultiView.ActiveViewIndex = 1;
+            }
+            catch(InvalidOperationException ex)
+            {
+                Session["Exception"] = ex;
+            }
+            catch(Exception ex)
+            {
+                Session["Exception"] = ex;
+            }
         }
 
 
@@ -228,16 +239,27 @@ namespace TechSupport.Technicians
         /// <param name="e"></param>
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            //Call the Update method of SqlDataSource_FormViewIncident which executes the update query updating the 
-            //selected record
-            SqlDataSource_FormViewIncident.Update();
-            //Call the DataBind method for both the gridview and the formview refreshing the incident with the new changes 
-            GridView_Incidents.DataBind();
-            FormView_Incidents.DataBind();
-            //Display the view incident details page
-            this.Incidents_MultiView.ActiveViewIndex = 1;
-            //Reset the form
-            ResetUpdateForm();
+            try
+            {
+                //Call the Update method of SqlDataSource_FormViewIncident which executes the update query updating the 
+                //selected record
+                SqlDataSource_FormViewIncident.Update();
+                //Call the DataBind method for both the gridview and the formview refreshing the incident with the new changes 
+                GridView_Incidents.DataBind();
+                FormView_Incidents.DataBind();
+                //Display the view incident details page
+                this.Incidents_MultiView.ActiveViewIndex = 1;
+                //Reset the form
+                ResetUpdateForm();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Session["Exception"] = ex;
+            }
+            catch (Exception ex)
+            {
+                Session["Exception"] = ex;
+            }
         }
 
 
@@ -261,6 +283,8 @@ namespace TechSupport.Technicians
             if (ok)
             //Convert back to string the date formatting it as dd/MM/yyyy
             { output = dt.ToString("dd/MM/yyyy"); }
+            //Prevent eventual null reference exceptions in case input is null
+            else if (input == null) { return string.Empty; }
             //If the conversion is not all right it passes as output the parameter untouched
             else { output = input.ToString(); }
 
@@ -459,15 +483,26 @@ namespace TechSupport.Technicians
         /// <param name="e"></param>
         protected void BtnCreateNewIncident_Click(object sender, EventArgs e)
         {
-            //Call the Insert method against the SqlDataSource_Incidents which then updates the database
-            SqlDataSource_Incidents.Insert();
-            //Refresh both the gridview and formview with the new incident
-            GridView_Incidents.DataBind();
-            FormView_Incidents.DataBind();
-            //Bring back to the incident list page
-            this.Incidents_MultiView.ActiveViewIndex = 0;
-            //Reset the form
-            resetNewIncidentForm();
+            try
+            {
+                //Call the Insert method against the SqlDataSource_Incidents which then updates the database
+                SqlDataSource_Incidents.Insert();
+                //Refresh both the gridview and formview with the new incident
+                GridView_Incidents.DataBind();
+                FormView_Incidents.DataBind();
+                //Bring back to the incident list page
+                this.Incidents_MultiView.ActiveViewIndex = 0;
+                //Reset the form
+                resetNewIncidentForm();
+            }
+            catch (InvalidOperationException ex)
+            {
+                Session["Exception"] = ex;
+            }
+            catch (Exception ex)
+            {
+                Session["Exception"] = ex;
+            }
         }
 
 
@@ -484,28 +519,6 @@ namespace TechSupport.Technicians
         }
 
 
-
-        #endregion CREATE NEW INCIDENT
-
-
-
-        //
-        //
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void Button3_Click(object sender, EventArgs e)
-        {
-            this.Incidents_MultiView.ActiveViewIndex = 2;
-        }
-
-
-
-
-
-
         //
         //DDL CLIENT NEW INCIDENT SELECTED INDEX CHANGED
         /// <summary>
@@ -516,9 +529,17 @@ namespace TechSupport.Technicians
         /// <param name="e"></param>
         protected void DdlClient_NewIncident_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             DdlProds_NewIncident.DataBind();
         }
+
+
+        #endregion CREATE NEW INCIDENT
+
+
+
+
+
+
 
 
 
@@ -534,14 +555,9 @@ namespace TechSupport.Technicians
         /// <param name="e"></param>
         protected void DdlProds_DataBound(object sender, EventArgs e)
         {
-            //DdlProds.d
-            //string prod = this.TxtProdName.Text;
-            //if (!String.IsNullOrEmpty(prod))
-            //{ 
-            //    DdlTech.Items.FindByText(prod).Selected = true; 
-            //}
 
         }
+
 
 
 
