@@ -11,7 +11,15 @@ namespace TechSupport.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+        }
 
+        protected void btnInsertProduct_Click(object sender, EventArgs e)
+        {
+            
+            SqlProducts.Insert();
+            GridView1.DataBind();   
+            
         }
     }
 }
