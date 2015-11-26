@@ -33,7 +33,7 @@ namespace TechSupport
                 MembershipUser userInfo = Membership.GetUser(Login.UserName); //Retrieves all user info based on the username
                 string employed = "";
 
-                if (Login.UserName == "Admin") //If the username entered is Admin, then bypass the sql command and log straight in
+                if (Login.UserName == "Admin" || Login.UserName == "admin") //If the username entered is Admin, then bypass the sql command and log straight in
                 {
                     string username = Login.UserName;
                     Session["username"] = username;
@@ -63,7 +63,7 @@ namespace TechSupport
                     }
                 }
 
-                if (Login.UserName == "Admin") //safety check just incase the admin is redirected up top for some unknown reason, probably redundant at this point
+                if (Login.UserName == "Admin" || Login.UserName == "admin") //safety check just incase the admin is redirected up top for some unknown reason, probably redundant at this point
                 {
                     string username = Login.UserName;
                     Session["username"] = username;
