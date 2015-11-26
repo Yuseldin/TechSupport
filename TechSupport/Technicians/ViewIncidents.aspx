@@ -806,7 +806,6 @@ WHERE IncidentID = @IncidentID;">
                         <td>
                             <asp:SqlDataSource ID="SqlDataSource_ClientsList" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT DISTINCT c.CustomerID AS [ClientID], c.Name as [Customer]
 FROM Customers AS c
-INNER JOIN Incidents AS i ON c.CustomerID = i.CustomerID 
 INNER JOIN Registrations as r on c.CustomerID = r.CustomerID
 WHERE r.Subscribed = 0
 ORDER BY Customer;"></asp:SqlDataSource>
