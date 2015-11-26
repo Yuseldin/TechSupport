@@ -1,0 +1,6 @@
+﻿
+
+$(function () {
+    $("#<%= TxtOpened.ClientID %>").datepicker();
+});
+

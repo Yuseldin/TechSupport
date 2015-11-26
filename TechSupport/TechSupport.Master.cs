@@ -17,6 +17,9 @@ namespace TechSupport
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //It rebind the master page adjusting the javascript/jquery file path relatively to the content
+            //page that is being called.
+            Page.Header.DataBind();
             string name = "SELECT Name FROM Technicians WHERE TechID ='" + Session["username"] + "'";
             string level1 = "SELECT TechID FROM Technicians WHERE (TypeID = '1') AND TechID ='" + Session["username"] + "'";
             string level2 = "SELECT TechID FROM Technicians WHERE (TypeID = '2') AND TechID ='" + Session["username"] + "'";
@@ -67,18 +70,18 @@ namespace TechSupport
                 }
                 con.Close();
 
-            }
+        }
             catch 
             {
                 Menu1.Visible = true;
             }
 
-            
+
         }
 
         protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
-        {           
-            
+        {
+
         }
 
         protected void Menu1_MenuItemDataBound(object sender, MenuEventArgs e)

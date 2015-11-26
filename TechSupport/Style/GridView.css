@@ -1,23 +1,22 @@
 ﻿.grid-view
 {
-   padding: 0;
+   padding: 4px;
    margin: 0;
    border: 1px solid #333;
-  margin-left:auto; margin-right:auto;
+   margin-left:auto; 
+   margin-right:auto;
    font-family: "Verdana, Arial, Helvetica, sans-serif, Trebuchet MS";
    font-size: 0.9em;
-   white-space: nowrap;
 }
 
 .grid-view tr.header
 {
    color: white;
-   background-color: darkblue;
+   background-color: blue;
    height: 25px;
    vertical-align: middle;
    text-align: center;
    font-weight: bold;
-   white-space: nowrap;
 }
 
 .grid-view tr.normal
@@ -27,7 +26,6 @@
    height: 25px;
    vertical-align: middle;
    text-align: center;
-   white-space: nowrap;
 }
 
 .grid-view tr.alternate
@@ -37,7 +35,6 @@
    height: 25px;
    vertical-align: middle;
    text-align: center;
-   white-space: nowrap;
 }
 
 .grid-view tr.normal:hover, .grid-view tr.alternate:hover
@@ -45,8 +42,6 @@
    background-color: azure;
    color: black;
    font-weight: bold;
-   white-space: nowrap;
-
 }
 
 .hideColumn
@@ -55,43 +50,60 @@
 }
 
 
+/*VARIE*/
+
 /*TABLE CLASS*/
+.rowHeader 
+{
+    font-weight: bold;
+    background-color:mediumslateblue;
+    color: black;
+    text-decoration-line: underline;
+}
+
 
 .table {
     vertical-align: middle;
     text-align: left;
     padding: 2px;
-    table-layout: fixed;
+    margin: auto;
 }
+
 .table td, .table th {
     border: 1px solid black;
     padding: .2em .5em .2em .5em;
     vertical-align: middle;
     text-align: left;
-    white-space: nowrap;
     font-weight: bold;
-
-     white-space: -o-pre-wrap; 
     word-wrap: break-word;
-    white-space: pre-wrap; 
-    white-space: -moz-pre-wrap; 
-    white-space: -pre-wrap;
 }
+
 .table tr:nth-child(even) td{
-    background-color: #D1D1BA;
+   color: black;
+   background-color: #b3ccff;
 }
+
 .table tr:nth-child(odd) td{
-    background-color: #ADAD85;
-    font-weight: bolder;
+   color: black;
+   background-color: #009999;
 }
+
 .table th{ 
     background-color: #999999
 }
+
+textarea
+{
+           resize: none;
+        }
+
+
 
 .stdCell
 {
     height: 20px;
 }
+
 
 /********************** TABLE AUTOSTYLE ************************/
 
@@ -101,8 +113,7 @@
         }
         .auto-style1
     {
-        height: 20px;
-    }
+}
         .auto-style17
         {
             height: 20px;

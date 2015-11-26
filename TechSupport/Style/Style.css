@@ -24,7 +24,7 @@ h1 {
     background-color: #FFFFFF;
     bottom: 100px;
 }
-.menu ul li a {
+li a {
     border: 1px solid #000000;
     background-color: #0066FF;
     color: #FFFFFF;
@@ -37,8 +37,8 @@ h1 {
     text-align: center;
     vertical-align: middle;
 }
-.menu ul li a:hover{
-    background-color: #bfcbd6;
-    color: #465c71;
-    text-decoration: none;    
-}
+    .menu ul li a:hover {
+        background-color: #bfcbd6;
+        color: #465c71;
+        text-decoration: none;
+    }    
