@@ -15,7 +15,7 @@ using System.Web.Security;
 //Project: Revai_Jak_TechSupport_AS3
 //Description: Create Web App in C#
 //Version: 1.0
-//NOTE: The design of these pages were created on a monitor with a resolution of: 1920x1080, if the pages look funny then that is why.
+//NOTE: The design of these pages were created on a monitor with a resolution of: 1920x1080, if the pages look funny on a smaller resolution then that is why.
 
 namespace TechSupport
 {
@@ -30,10 +30,10 @@ namespace TechSupport
         {
             if (Membership.ValidateUser(Login.UserName, Login.Password)) //Checks the username and password against the stored username and password in the asp_membership table
             {
-                MembershipUser userInfo = Membership.GetUser(Login.UserName);
+                MembershipUser userInfo = Membership.GetUser(Login.UserName); //Retrieves all user info based on the username
                 string employed = "";
 
-                if (Login.UserName == "Admin")
+                if (Login.UserName == "Admin") //If the username entered is Admin, then bypass the sql command and log straight in
                 {
                     string username = Login.UserName;
                     Session["username"] = username;
@@ -41,7 +41,7 @@ namespace TechSupport
                 }
                 else
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT Employed FROM Technicians WHERE TechID = @techid");
+                    SqlCommand cmd = new SqlCommand("SELECT Employed FROM Technicians WHERE TechID = @techid"); //SQL to select the Employed value from TechSupport Database based on the username entered
                     cmd.Parameters.AddWithValue("@techid", Login.UserName);
 
                     //Connection
@@ -63,7 +63,7 @@ namespace TechSupport
                     }
                 }
 
-                if (Login.UserName == "Admin")
+                if (Login.UserName == "Admin") //safety check just incase the admin is redirected up top for some unknown reason, probably redundant at this point
                 {
                     string username = Login.UserName;
                     Session["username"] = username;
@@ -85,7 +85,7 @@ namespace TechSupport
             else
             {
                 e.Authenticated = false;
-                Login.FailureText = "Your login attempt was not successful. Please try again.";
+                Login.FailureText = "Your login attempt was not successful. Please try again."; //The login attempt failed
             }
                 
         }

@@ -7,7 +7,7 @@ Author: Jak Revai
 Project: Revai_Jak_TechSupport_AS3
 Description: Create Web App in C#
 Version: 1.0
-NOTE: The design of these pages were created on a monitor with a resolution of: 1920x1080, if the pages look funny then that is why.--%>
+NOTE: The design of these pages were created on a monitor with a resolution of: 1920x1080, if the pages look funny on a smaller resolution then that is why.--%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
