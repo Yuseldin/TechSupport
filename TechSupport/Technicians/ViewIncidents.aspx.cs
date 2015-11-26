@@ -36,6 +36,8 @@ namespace TechSupport.Technicians
             this.GridView_Incidents.AllowSorting = false;
             //Calls the method which populates the dictionary with all the textboxes
             ctrlList = ListCtrls();
+            this.TxtOpened.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            this.TxtOpened_NewIncident.Text= DateTime.Today.ToString("dd/MM/yyyy");
         }
 
 
