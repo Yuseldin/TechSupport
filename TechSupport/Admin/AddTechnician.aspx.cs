@@ -144,7 +144,7 @@ namespace TechSupport.Admin
 
         protected void DropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dropDown = CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("DropDown").ToString();
+           // dropDown = CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("DropDown").ToString();
         }
 
        

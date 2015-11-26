@@ -31,13 +31,14 @@ namespace TechSupport.Admin
             //fill up the read only txtBox UserName
             txtCustomerID.Text = customerID.ToString();
 
-            //INSERT INTO Customers(CustomerID, Name, Address, City, State, ZipCode, country, Phone, Email) VALUES (,,,,,,,,)
+            
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-           
-           
+
+
             custID = txtCustomerID.Text;
             custName = txtName.Text;
             custPhone = txtPhone.Text;
@@ -45,18 +46,57 @@ namespace TechSupport.Admin
             custAddress = txtAddress.Text;
             custCity = txtCity.Text;
             custZipCode = txtZipCode.Text;
-            custCountry = txtCountry.Text;
-            custState = txtState.Text;
+            custCountry = DropDownCountry.SelectedItem.Text;
+            custState = DropDownState.SelectedItem.Text;
 
             string conn = ConfigurationManager.ConnectionStrings["TechSupportConnectionString"].ConnectionString;
             string insertCustomer = "INSERT INTO Customers(Name, Address, City, State, ZipCode, country, Phone, Email) VALUES ('" + custName + "' ,'" + custAddress + "' ,'" + custCity + "' , '" + custState + "' ,'" + custZipCode + "' , '" + custCountry + "' ,'" + custPhone + "' , '" + custEmail + "')";
 
             using (SqlConnection myConnection = new SqlConnection(conn))
-                {
-                    myConnection.Open();
+            {
+                myConnection.Open();
 
-                    SqlCommand command = new SqlCommand(insertCustomer, myConnection);
-                }
+                SqlCommand command = new SqlCommand(insertCustomer, myConnection);
+
+                //Inserting into user roles
+                command.Parameters.AddWithValue("Name", custName);
+                command.Parameters.AddWithValue("Address", custAddress);
+                command.Parameters.AddWithValue("CIty", custCity);
+                command.Parameters.AddWithValue("State", custState);
+                command.Parameters.AddWithValue("ZipCode", custZipCode);
+                command.Parameters.AddWithValue("country", custCountry);
+                command.Parameters.AddWithValue("Phone", custPhone);
+                command.Parameters.AddWithValue("Email", custEmail);
+
+
+                command.ExecuteNonQuery();
+
+                myConnection.Close();
+
+                lblDate.Text = DateTime.Now.ToString();
+                //DateTime date = DateTime.Now;
+                
+
+                SqlDataGetProduct.Insert();
+
+                GridView1.DataBind();
+
+                //txtAddress.Text = "";
+                //txtCity.Text = "";
+                //txtEmail.Text = "";
+                //txtName.Text = "";
+                //txtPhone.Text = "";
+                //txtZipCode.Text = "";
+                //txt
+
+                Response.Redirect(Request.RawUrl);
+                
+            }
+        }
+
+        protected void DropDownProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
         }
     }
 }

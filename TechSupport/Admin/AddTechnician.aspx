@@ -67,7 +67,7 @@
     <asp:SqlDataSource ID="InsertTech" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT TechID FROM Technicians ORDER BY TechID DESC">
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="InsertID" runat="server" ConnectionString="<%$ ConnectionStrings:TechSupportConnectionString %>" SelectCommand="SELECT TechID FROM Technicians ORDER BY TechID DESC"></asp:SqlDataSource>
-    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="TechID" DataSourceID="InsertID" Height="50px" Width="125px">
+    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="TechID" DataSourceID="InsertID" Height="50px" Width="125px" Visible="False">
         <Fields>
             <asp:BoundField DataField="TechID" HeaderText="TechID" InsertVisible="False" ReadOnly="True" SortExpression="TechID" />
         </Fields>
