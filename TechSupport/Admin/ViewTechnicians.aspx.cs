@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
 //Project: Revai_Jak_TechSupport_AS3
 //Description: Create Web App in C#
 //Version: 1.0
-//NOTE: The design of these pages were created on a monitor with a resolution of: 1920x1080, if the pages look funky then that is why.
+//NOTE: The design of these pages were created on a monitor with a resolution of: 1920x1080, if the pages look funny on a smaller resolution then that is why.
 
 namespace TechSupport.Admin
 {
@@ -148,7 +148,7 @@ namespace TechSupport.Admin
             btnUpdate.Visible = false;
             BtnCancel.Visible = false;
 
-            //lblErrorText.Visible = false;
+            lblErrorText.Visible = false;
             ViewAllTechsGrid.Visible = true;
         }
        
@@ -168,7 +168,7 @@ namespace TechSupport.Admin
             btnViewLevel1.Enabled = true;
             btnViewLevel2.Enabled = true;
 
-            //lblErrorText.Visible = false; //Need to set them to false when any button is pressed, maybe group the buttons??
+            lblErrorText.Visible = false;
             ViewAllTechsGrid.Visible = true;
 
             btnEditGrid.Visible = true;
@@ -321,6 +321,7 @@ namespace TechSupport.Admin
             BtnCancel.Visible = false;
             btnEditGrid.Visible = true;
 
+            #region Converting the dropdown boxes
             foreach (GridViewRow row in ViewAllTechsGrid.Rows) //Converting the dropdown boxes to integers
             {
                 if (row.RowType == DataControlRowType.DataRow) //Checks to make sure the row contains data
@@ -360,7 +361,8 @@ namespace TechSupport.Admin
                         }
                     }
                 }
-            }
+            } 
+            #endregion
 
             //UPDATING THE DATABASE
             foreach (GridViewRow row in ViewAllTechsGrid.Rows)
