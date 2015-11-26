@@ -789,7 +789,7 @@ WHERE IncidentID = @IncidentID;">
                                                 <asp:ControlParameter ControlID="TxtClosed" Name="Closed" PropertyName="Text" Type="String" />
                                                 <asp:ControlParameter ControlID="TxtTitle" Name="Title" PropertyName="Text" Type="String" />
                                                 <asp:ControlParameter ControlID="TxtDescr" Name="Descr" PropertyName="Text" Type="String" />
-                                                <asp:ControlParameter ControlID="FormView1" Name="IncidentID" PropertyName="SelectedValue" Type="Int32" />
+                                                <asp:ControlParameter ControlID="FormView_Incidents" Name="IncidentID" PropertyName="SelectedValue" Type="Int32" />
                                             </UpdateParameters>
                                         </asp:SqlDataSource>
                             </tr>
