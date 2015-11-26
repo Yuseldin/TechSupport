@@ -119,8 +119,6 @@ namespace TechSupport.Admin
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            //foreach (GridViewRow row in GridView2.Rows) //Looping through each row in the grid
-            //{
             GridViewRow row = GridView2.SelectedRow;
             if (GridView2.SelectedRow == null)
             {
@@ -175,12 +173,11 @@ namespace TechSupport.Admin
                 }
 
             }
-            //}
 
         }
 
         protected void btnSelect_Click(object sender, EventArgs e)
-        {
+        {          
             foreach (GridViewRow row in GridView2.Rows) 
             {
                 if (txtSearch.Text != "")
