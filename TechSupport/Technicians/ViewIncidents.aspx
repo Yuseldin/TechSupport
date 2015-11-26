@@ -68,7 +68,8 @@
                                                               OnRowCreated="GridView_Incidents_RowCreated" 
                                                               OnSelectedIndexChanged="GridView_Incidents_SelectedIndexChanged" 
                                                               PageSize="15" 
-                                                              Font-Bold="True">
+                                                              Font-Bold="True" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
+                                                    <AlternatingRowStyle BackColor="#DCDCDC" />
                                                     <Columns>
 
                                                         <%-- INCIDENT ID --%>
@@ -142,17 +143,23 @@
 
                                                     <EditRowStyle Wrap="False" />
 
+                                                    <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                                                    <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
+
                                                     <PagerSettings PageButtonCount="25" 
-                                                                   Mode="NextPrevious" 
                                                                    NextPageText="Next" 
                                                                    PreviousPageText="Prev" />
 
-                                                    <PagerStyle Font-Bold="True"
+                                                    <PagerStyle
                                                                 Font-Size="Small" 
                                                                 HorizontalAlign="Center" 
-                                                                ForeColor="Black" />
-                                                    <RowStyle Wrap="False" />
-                                                    <SelectedRowStyle Wrap="False" />
+                                                                ForeColor="Black" BackColor="#999999" />
+                                                    <RowStyle Wrap="False" BackColor="#EEEEEE" ForeColor="Black" />
+                                                    <SelectedRowStyle Wrap="False" BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                                    <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                                    <SortedDescendingHeaderStyle BackColor="#000065" />
                                                 </asp:GridView>
                                             </div>
 
@@ -183,6 +190,8 @@
                                                               AllowPaging="True" 
                                                               DataKeyNames="IncidentID" 
                                                 >
+
+                                                    <%-- PAGER --%>
                                                     <ItemTemplate>
                                                         <table>
                                                             <tr>
@@ -292,9 +301,8 @@
 
                                                     </ItemTemplate>
 
-                                                    <%-- PAGER --%>
-                                                    <PagerSettings Mode="NextPrevious" NextPageText="Next" PreviousPageText="Prev" />
-                                                    <PagerStyle Font-Bold="True" Font-Size="Larger" ForeColor="Black" HorizontalAlign="Center" />
+                                                    <PagerSettings NextPageText="Next" PreviousPageText="Prev" />
+                                                    <PagerStyle Font-Size="Larger" />
 
                                                 </asp:FormView>
                                             </div>
@@ -789,7 +797,7 @@ WHERE IncidentID = @IncidentID;">
                                                 <asp:ControlParameter ControlID="TxtClosed" Name="Closed" PropertyName="Text" Type="String" />
                                                 <asp:ControlParameter ControlID="TxtTitle" Name="Title" PropertyName="Text" Type="String" />
                                                 <asp:ControlParameter ControlID="TxtDescr" Name="Descr" PropertyName="Text" Type="String" />
-                                                <asp:ControlParameter ControlID="FormView1" Name="IncidentID" PropertyName="SelectedValue" Type="Int32" />
+                                                <asp:ControlParameter ControlID="FormView_Incidents" Name="IncidentID" PropertyName="SelectedValue" Type="Int32" />
                                             </UpdateParameters>
                                         </asp:SqlDataSource>
                             </tr>
@@ -888,9 +896,9 @@ WHERE p.Supported = 0 AND r.CustomerID = @CustomerID;">
 
         
 
-        $(function () {
-            $("TxtOpened_NewIncident").datepicker();
-        });
+        //$(function () {
+        //    $("TxtOpened_NewIncident").datepicker();
+        //});
     </script>
 
     <%-- END INCIDENTS LIST TAB --%>

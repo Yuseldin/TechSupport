@@ -1,6 +1,6 @@
 ﻿
 
-$(function () {
-    $("#<%= TxtOpened.ClientID %>").datepicker();
-});
+//$(function () {
+//    $("#<%= TxtOpened.ClientID %>").datepicker();
+//});
 
