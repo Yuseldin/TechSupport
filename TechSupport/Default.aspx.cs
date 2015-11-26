@@ -8,6 +8,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+//Author: Yusef Acbani
+//Project: Acabani_Yusef_TechSupport_AS3
+//Description: Create Web App in C#
+
 namespace TechSupport
 {
     public partial class Default : System.Web.UI.Page
@@ -49,11 +53,11 @@ namespace TechSupport
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
-            //query statement to get the closed incidents with the same ID as the textbox
+            //query statement to get the closed incidents with the same IncidentID as the textbox
             string qclosed = "SELECT [IncidentID] FROM [Incidents] WHERE ([DateClosed] IS NOT NULL) AND IncidentID ='" + txtClose.Text + "' AND TechID ='" + Session["username"] + "'";
             SqlCommand inClosed = new SqlCommand(qclosed, con);
             
-            //query statement to get the incidents with the same ID as the technician loged in.
+            //query statement to get the incidents with the same TechID as the technician loged in.
             string inID = "SELECT IncidentID FROM Incidents WHERE TechID ='" + Session["username"] + "'";
             SqlCommand incident = new SqlCommand(inID, con);
 
@@ -61,7 +65,7 @@ namespace TechSupport
             SqlDataReader read = inClosed.ExecuteReader();
             SqlDataReader dr = incident.ExecuteReader();
 
-            //CLosing the Incident will set the DateClosed to today's date
+            //CLosing the Incident will set DateClosed to today's date
             DateTime now = DateTime.Now;            
             string date = now.ToString("MM/dd/yyyy");                       
             string close = "UPDATE Incidents SET DateClosed ='" + date + "' WHERE IncidentID ='" + txtClose.Text + "' AND TechID ='" + Session["username"] + "' ";
@@ -82,13 +86,13 @@ namespace TechSupport
                 while (dr.Read())
                 {
                     string incidentId = dr["IncidentID"].ToString();
-                    //if the textbox is empty or the incidentID typed doesnt match the ones on the screen, it will show an error message
+                    //if the textbox is empty or the incidentID typed doesn't match the ones on the screen, it will show an error message
                     if (txtClose.Text == "" || txtClose.Text != incidentId)
                     {
                         lblError.Visible = true;
                         lblClosed.Visible = false;
                     }
-                    else //if the IncidentID is the right one, it will close it by setting the date in the ClosedDate field
+                    else //if the IncidentID is the right one, it will close it by setting the date in the ClosedDate field and refresh the page
                     {
                         lblError.Visible = false;
                         SqlDataSource1.SelectCommand = close;
