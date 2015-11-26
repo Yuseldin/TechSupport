@@ -116,7 +116,8 @@
 
     <asp:Label ID="lblErrorText" runat="server" Text="error" Visible="False" ForeColor="#FF3300"></asp:Label>
        
-    <asp:GridView class="gridview" ID="ViewAllTechsGrid" runat="server" Style="text-align: left;" OnRowDataBound="ViewAllTechsGrid_RowDataBound" AutoGenerateColumns="False" DataKeyNames="TechID">
+    <asp:GridView class="gridview" ID="ViewAllTechsGrid" runat="server" Style="text-align: left;" OnRowDataBound="ViewAllTechsGrid_RowDataBound" AutoGenerateColumns="False" DataKeyNames="TechID" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
+        <AlternatingRowStyle BackColor="#DCDCDC" />
         <Columns>
             <asp:BoundField DataField="TechID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="TechID"></asp:BoundField>
 
@@ -163,6 +164,15 @@
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
+        <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+        <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+        <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+        <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+        <SortedAscendingHeaderStyle BackColor="#0000A9" />
+        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+        <SortedDescendingHeaderStyle BackColor="#000065" />
     </asp:GridView>
     <br /> 
     <asp:Button ID="btnEditGrid" runat="server" Text="Edit" class="gridview" Visible="false" OnClick="btnEditGrid_Click"/>
