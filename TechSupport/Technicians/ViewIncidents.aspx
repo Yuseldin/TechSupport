@@ -340,7 +340,7 @@
                                                         </td>
                                                         <td class="auto-style17" style="align-content: center">&nbsp;</td>
                                                         <td class="auto-style1">
-                                                            <asp:TextBox ID="TxtTitle" runat="server" BackColor="White" Enabled="true" Height="20px" Width="250px" ForeColor="Black" onkeypress="return CheckLength();"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtTitle" runat="server" BackColor="White" Enabled="true" Height="20px" Width="250px" ForeColor="Black" onkeypress="return CheckLength(50, this);"></asp:TextBox>
                                                             <td class="auto-style20">&nbsp;
                                                                 <asp:RequiredFieldValidator id="RequiredFieldValidator1" runat="server"
                                                                   ControlToValidate="TxtTitle"
@@ -368,7 +368,7 @@
                                                         <td class="auto-style17" style="align-content: center">&nbsp;</td>
                                                         <td class="auto-style17" style="align-content: center">&nbsp;</td>
                                                         <td class="auto-style1" rowspan="6">
-                                                            <asp:TextBox ID="TxtDescr" runat="server" BackColor="White" Enabled="true" ForeColor="Black" Height="104px" Style="resize: none" TextMode="MultiLine" Width="250px" onkeypress="return CheckLength1();"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtDescr" runat="server" BackColor="White" Enabled="true" ForeColor="Black" Height="104px" Style="resize: none" TextMode="MultiLine" Width="250px" onkeypress="return CheckLength(2000, this);"></asp:TextBox>
                                                                                                                             <asp:RequiredFieldValidator id="RequiredFieldValidator2" runat="server"
                                                                   ControlToValidate="TxtDescr"
                                                                   ErrorMessage="The incident description is a required field."
@@ -450,7 +450,7 @@
                                                         </td>
                                                         <td class="auto-style8">&nbsp;</td>
                                                         <td class="auto-style8">
-                                                            <asp:TextBox ID="TxtOpened"  runat="server" BackColor="White" Enabled="true" Height="20px" Width="250px" ForeColor="Black"  onkeypress="return CheckLength3();"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtOpened"  runat="server" BackColor="White" Enabled="true" Height="20px" Width="250px" ForeColor="Black"  onkeypress="return CheckLength(12, this);"></asp:TextBox>
                                                                                                                              <asp:RequiredFieldValidator id="RequiredFieldValidator3" runat="server"
                                                                   ControlToValidate="TxtOpened"
                                                                   ErrorMessage="The client name is a required field."
@@ -478,7 +478,7 @@
                                                         <td class="auto-style8">&nbsp;</td>
                                                         <td class="auto-style8">
                                                             <asp:TextBox ID="TxtClosed" runat="server" BackColor="White"
-                                                                Enabled="true" Height="20px" Width="250px" ForeColor="Black"  onkeypress="return CheckLength3();"></asp:TextBox>
+                                                                Enabled="true" Height="20px" Width="250px" ForeColor="Black"  onkeypress="return CheckLength(12, this);"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -555,7 +555,7 @@
                                                         </td>
                                                         <td class="auto-style17" style="align-content: center">&nbsp;</td>
                                                         <td class="auto-style1">
-                                                            <asp:TextBox ID="TxtTitle_NewIncident" runat="server" BackColor="White" Enabled="true" ForeColor="Black" Height="20px"  onkeypress="return CheckLength();" Width="250px"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtTitle_NewIncident" runat="server" BackColor="White" Enabled="true" ForeColor="Black" Height="20px"  onkeypress="return CheckLength(50, this);" Width="250px"></asp:TextBox>
 
                                                             <td class="auto-style20">&nbsp;
 
@@ -592,7 +592,7 @@
                                                         </td>
                                                         <td class="auto-style18">&nbsp;</td>
                                                         <td class="auto-style8" rowspan="7" style="vertical-align: top;">
-                                                            <asp:TextBox ID="TxtDescr_NewIncident" runat="server" Style="resize: none" BackColor="White" Enabled="true" Height="104px" TextMode="MultiLine" Width="250px" ForeColor="Black"  onkeypress="return CheckLength1();"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtDescr_NewIncident" runat="server" Style="resize: none" BackColor="White" Enabled="true" Height="104px" TextMode="MultiLine" Width="250px" ForeColor="Black"  onkeypress="return CheckLength(2000, this);"></asp:TextBox>
                                                                  <asp:RequiredFieldValidator id="RequiredFieldValidator5" runat="server"
                                                                   ControlToValidate="TxtDescr_NewIncident"
                                                                   ErrorMessage="The incident description is a required field."
@@ -659,7 +659,7 @@
                                                         </td>
                                                         <td class="auto-style8">&nbsp;</td>
                                                         <td class="auto-style8">
-                                                            <asp:TextBox ID="TxtOpened_NewIncident" runat="server" BackColor="White" Enabled="true" Height="20px" Width="250px" ForeColor="Black"  onkeypress="return CheckLength3();"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtOpened_NewIncident" runat="server" BackColor="White" Enabled="true" Height="20px" Width="250px" ForeColor="Black"  onkeypress="return CheckLength(12, this);"></asp:TextBox>
                                                                                                                              <asp:RequiredFieldValidator id="RequiredFieldValidator6" runat="server"
                                                                   ControlToValidate="TxtOpened_NewIncident"
                                                                   ErrorMessage="The new incident requires an open date."
@@ -686,7 +686,7 @@
                                                         </td>
                                                         <td class="auto-style8">&nbsp;</td>
                                                         <td class="auto-style8">
-                                                            <asp:TextBox ID="TxtClosed_NewIncident" runat="server" BackColor="White" Enabled="true" Height="20px" Width="250px" ForeColor="Black"  onkeypress="return CheckLength3();"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtClosed_NewIncident" runat="server" BackColor="White" Enabled="true" Height="20px" Width="250px" ForeColor="Black"  onkeypress="return CheckLength(12, this);"></asp:TextBox>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -869,16 +869,16 @@ WHERE p.Supported = 0 AND r.CustomerID = @CustomerID;">
         </tr>
     </table>
 
-    <%-- SELECT BTN COLUMN "<%TxtTitle.ClientID%>"--%>
+    <%-- SELECT BTN COLUMN document.getElementById("<%=TxtTitle.ClientID%>")--%>
 
     <br />
     <br />
 
     <script type="text/javascript">
         //And the javascript code is
-        function CheckLength() {
-            var textbox = document.getElementById(control).value;
-            if (textbox.trim().length >= 50) {
+        function CheckLength(length, control) {
+            var textbox = control.value;
+            if (textbox.trim().length >= length) {
                 return false;
             }
             else {
@@ -886,26 +886,11 @@ WHERE p.Supported = 0 AND r.CustomerID = @CustomerID;">
             }
         }
 
-        function CheckLength1() {
-            var textbox = document.getElementById(control).value;
-            if (textbox.trim().length >= 2000) {
-                return false;
-            }
-            else {
-                return true;
-            }
-        }
+        
 
-        function CheckLength3() {
-            var textbox = document.getElementById(control).value;
-            if (textbox.trim().length >= 12) {
-                return false;
-            }
-            else {
-                return true;
-            }
-        }
-
+        $(function () {
+            $("TxtOpened_NewIncident").datepicker();
+        });
     </script>
 
     <%-- END INCIDENTS LIST TAB --%>
