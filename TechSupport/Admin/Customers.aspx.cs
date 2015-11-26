@@ -35,7 +35,7 @@ namespace TechSupport.Admin
             SqlCommand customer = new SqlCommand(cust, con);
             con.Open();
             SqlDataReader dr = customer.ExecuteReader(); 
-            //You can search a Customer by inserting their ID in the txtbox and clicking the search button.
+            //You can search a Customer by inserting their ID in the textbox and clicking the search button.
             while (dr.Read())
             {
                 string CustID = dr["CustomerID"].ToString();
